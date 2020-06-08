@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style type="text/css">
+    .mirror-width-scroll::-webkit-scrollbar {
+      width: 0px;
+    }
+</style>
+<body>
+  
+  <link rel="stylesheet" href="https://server.cocreate.app/css/CoCreateUI.min.css" type="text/css" />
+   
+ <form
+ id="create_for"
+    data-realtime="false"
+  data-collection="modules"
+  data-form_id="module-form">
+
+  
+  <br>
+  <br>
+  <br>
+  
+<!--
+  <textarea class="floating-label_field" data-collection="modules" data-realtime="true" data-document_id="5ded25992e9e2b106cc78fb0" name="name" style="width:80%;" rows=5 id="textfield" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Test 1"></textarea>
+  
+  <input class="floating-label_field" data-collection="modules" data-document_id="5ded25992e9e2b106cc78fb0" name="inputname" style="width:80%;" placeholder="Test 2"/>
+-->
+  
+  </form>
+  
+    <form action=""  data-realtime="true" data-collection="activity">
+      <textarea  data-collection="modules" data-document_id="5ded25992e9e2b106cc78fb0" name="nameOtro" style="width:80%;" rows=5 id="textfield_otro" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Test 3"></textarea>
+      <textarea data-document_id="" name="nameOtromas" style="width:80%;" rows=5 id="textfield_otro_mas" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Test 3"></textarea>
+      
+      <button id="addMore">AddMore RealTimeTrue</button>
+      <button id="updateYjs">Update YJS and Cursor</button>
+  </form>
+
+    <script>
+    var config = {
+      apiKey: 'c2b08663-06e3-440c-ef6f-13978b42883a',
+      securityKey: 'f26baf68-e3a9-45fc-effe-502e47116265',
+      organization_Id: '5de0387b12e200ea63204d6c'
+    }
+  </script>
+  
+  <script>
+      var i = 0;
+      var addMore = document.getElementById('addMore');
+      addMore.addEventListener('click',function(e){
+        e.preventDefault()
+        var input = document.createElement("input");
+        var name = 'dinamico'+i
+        input.name=name
+        input.id=name
+        input.dataset["realtime"]='true'
+        input.dataset["document_id"]=''
+        input.dataset["placeholder"]=name
+        console.log("Click")
+        console.log(input)
+        i++;
+        var formulario = getParents(this,'form');
+        var insertedNode = formulario.insertBefore(input, this);
+      })
+      var updateYjs = document.getElementById('updateYjs');
+      updateYjs.addEventListener('click',function(e){
+        e.preventDefault()
+        UpdateYjsandMulticursor()
+      });
+  </script>
+
+<!--CoCreateJS-->
+<!--<script src="https://server.cocreate.app/js/CoCreate.min.js"></script> -->
+
+
+ <script src="https://server.cocreate.app/js/socket.io.js"></script>
+ <script src="https://server.cocreate.app/js/CoCreate.js"></script>
+ <script src="https://server.cocreate.app/js/CoCreate-floating-label.js"></script>
+ <script src="https://server.cocreate.app/js/bower_components/yjs/y.js"></script>
+ <script src="https://server.cocreate.app/js/CoCreate-y.js"></script>
+ <script src="https://server.cocreate.app/js/CoCreate-collaboration.js"></script>
+ <!--<script src="https://server.cocreate.app/js/archive/CoCreate-colaboration.4.js"></script>-->
+ 
+ 
+
+
+</body>
+</html>
