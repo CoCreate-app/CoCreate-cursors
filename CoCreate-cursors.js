@@ -480,4 +480,4 @@ if(debug)
   console.log("elements to INIT -> ",element_multicursors)
 initialize_multicursor(element_multicursors);
 
-CoCreateObserver.register('[data-realtime=true]',initCursorEl);
+CoCreateInit.register('[data-realtime=true]',initCursorEl);
