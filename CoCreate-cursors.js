@@ -372,9 +372,9 @@ function recalculate_local_cursors(element,count){
                       }
 }
 
-var initialize_multicursor = function(element_multicursors){
-      element_multicursors.forEach(function (element, index, array) {
-          formulario = getParents(element,'form')
+
+function initCursorEl(element){
+  let formulario = getParents(element,'form')
           if(debug)
             console.log(element.getAttribute('data-realtime'))
           if( element.getAttribute('data-realtime') =='true' ||  (formulario && formulario.getAttribute('data-realtime') =='true' ) ){
@@ -468,6 +468,11 @@ var initialize_multicursor = function(element_multicursors){
                     
                   }
           }//end if realtime TRUE
+}
+
+var initialize_multicursor = function(element_multicursors){
+      element_multicursors.forEach(function (element, index, array) {
+          initCursorEl(element);
       }); // element_multicursors.forEach
 }//end initialize_multicursor
 
@@ -475,3 +480,4 @@ if(debug)
   console.log("elements to INIT -> ",element_multicursors)
 initialize_multicursor(element_multicursors);
 
+CoCreateObserver.register('[data-realtime=true]',initCursorEl);
