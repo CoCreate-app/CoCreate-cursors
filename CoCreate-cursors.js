@@ -476,6 +476,7 @@ var initialize_multicursor = function(element_multicursors){
       }); // element_multicursors.forEach
 }//end initialize_multicursor 
 
+
 if(debug)
   console.log("elements to INIT -> ",element_multicursors)
 initialize_multicursor(element_multicursors);
