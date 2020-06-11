@@ -474,7 +474,7 @@ var initialize_multicursor = function(element_multicursors){
       element_multicursors.forEach(function (element, index, array) {
           initCursorEl(element);
       }); // element_multicursors.forEach
-}//end initialize_multicursor
+}//end initialize_multicursor 
 
 if(debug)
   console.log("elements to INIT -> ",element_multicursors)
