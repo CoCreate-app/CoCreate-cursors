@@ -63,7 +63,7 @@ var getCaretCoordinates = function (element, position_start, position_end) {
   }
   var ID_MIRROR = element.dataset['mirror_id']; //document_id + name +  '--mirror-div';
   mirrorDiv = document.getElementById(ID_MIRROR);
-  var add_class_scroll = (element.className.indexOf('floating-label_field') == -1) ? false : true;
+  var add_class_scroll = (element.className.indexOf('floating-label') == -1) ? false : true;
 
   if (!mirrorDiv) {
     mirrorDiv = document.createElement('div');
@@ -169,7 +169,7 @@ function getDocument(collection,module_id){
   })
 }
 
-socket.on('getDocument', function(data) {
+CoCreateSocket.listen('getDocument', function(data) {
     cursor = document.querySelector('.cursor-flag[data-document_id="'+data['document_id']+'"]')
     if (cursor)
       cursor.innerHTML = data.result[cursor.getAttribute('name')]
@@ -476,9 +476,23 @@ var initialize_multicursor = function(element_multicursors){
       }); // element_multicursors.forEach
 }//end initialize_multicursor 
 
+function initCursorElements(container) {
+  let mainContainer = container || window;
+  
+  if (!mainContainer.querySelectorAll) {
+    return;
+  }
+  
+  let elements = mainContainer.querySelectorAll('[data-realtime=true]');
+  
+  elements.forEach(el => {
+    initCursorEl(el);
+  })
+}
 
 if(debug)
   console.log("elements to INIT -> ",element_multicursors)
 initialize_multicursor(element_multicursors);
 
-CoCreateInit.register('[data-realtime=true]',initCursorEl);
+// CoCreateInit.register_old('[data-realtime=true]',initCursorEl);
+CoCreateInit.register('CoCreateCursor', window, initCursorElements);
