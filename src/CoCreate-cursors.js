@@ -2,14 +2,18 @@
 
 var element_multicursors = document.querySelectorAll('input,textarea')
 
-var debug = false
+var debug = true
 var enviroment_prod = true
 var properties = ['boxSizing','borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','fontStyle','fontVariant','fontWeight','fontStretch','fontSize','lineHeight','fontFamily','textAlign','textTransform','textIndent','textDecoration','letterSpacing','wordSpacing','textRendering','webkitWritingMode','textTransform','textIndent','overflowWrap'];
 var length_uuid = 30;
 
 
 class CocreateUtils{
-  
+  static print(message,debug) {
+    debug = debug || false;
+    if(debug)
+      console.log(message)
+  }
   static generateUUID(length=null) {
     var d = new Date().getTime();
     var d2 = (performance && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
@@ -177,7 +181,7 @@ CoCreateSocket.listen('getDocument', function(data) {
 
 
 function draw_cursor(json){
- // console.log(json)
+        CocreateUtils.print(["draw Cursor ",json],debug)
         let element = json['element'];
         let activate_cursor = (element.dataset['cursors'])?element.dataset['mirror_id']:true;
         if(activate_cursor){
@@ -186,8 +190,7 @@ function draw_cursor(json){
           let socket_id = json['clientId']
           let document_id = element.getAttribute('data-document_id') || '';
           if(document_id!=''){
-            if(debug)
-              console.log("action document_id " + document_id)
+            CocreateUtils.print("action document_id " + document_id,debug)
             if( typeof element.dataset['mirror_id'] == 'undefined' || element.dataset['mirror_id'] == '')
                 element.dataset['mirror_id'] = CocreateUtils.generateUUID(length_uuid)
             let coordinates = getCaretCoordinates(element,start,end);
@@ -205,13 +208,16 @@ function draw_cursor(json){
                //if(data && data.hasOwnProperty('id_mirror')){
                  cursores_other_elements = document.querySelectorAll('#socket_'+socket_id+identify)
                  cursores_other_elements.forEach(function(child_cursor, index, array){
-                   if(child_cursor.parentElement.getAttribute('id') != id_mirror)
+                   if(child_cursor.parentElement.getAttribute('id') != id_mirror){
+                     CocreateUtils.print("remove old cursor others elements",debug)
                       child_cursor.remove()
+                   }
                  })
                //}
                  cursor = mi_mirror.querySelector('.cursor-container#socket_'+socket_id+identify);
                  if(!cursor  && json.hasOwnProperty('user')){
                     if(user){
+                      CocreateUtils.print("Create Cursor",debug)
                       let cursor_template = '<div style="color:blue;" class="cursor-container" \
                                                   id="socket_'+socket_id+identify+'" \
                                                   ><div class="cursor" \
@@ -239,6 +245,7 @@ function draw_cursor(json){
               cursor = mi_mirror.querySelector('.cursor-container#socket_'+socket_id+identify);
             }
             if(cursor){
+              CocreateUtils.print(["Update Cursor",cursor,coordinates],debug)
               let font_size = getStyle(element,'font-size')
               font_size = parseFloat(font_size.substring(0,font_size.length-2));
               let cursor_height = ( (font_size * 112.5) / 100)
@@ -333,6 +340,7 @@ Element.prototype.remove = function() {
 
 
 function recalculate_local_cursors(element,count){
+                      CocreateUtils.print("count "+count,debug)
                       let my_start = element.selectionStart;
                       let name = element.getAttribute('name') || '';
                       let document_id = element.getAttribute('data-document_id') || '';
@@ -344,14 +352,17 @@ function recalculate_local_cursors(element,count){
                       if(cursor_container){
                           cursor_container.forEach(function (child_cursor, index, array) {
                               let start = parseInt(child_cursor.getAttribute('data-start'));
-                              if(debug)
-                                console.log("my_start ",my_start,'start',start)
+                              let user_name = child_cursor.getAttribute('data-user_name');
+                                CocreateUtils.print(["my_start local",my_start,'start cursor '+user_name+" = ",start],debug)
                               if(start > my_start ){
+                                CocreateUtils.print("Es mayor",debug)
+                                
                                 let end = parseInt(child_cursor.getAttribute('data-end'));
                                 let pos_start = start+count;
                                 let pos_end = end+count;
-                                if(debug)
-                                  console.log('pos_start',pos_start,'pos_end',pos_end)
+                                
+                                CocreateUtils.print(['pos_start',pos_start,'pos_end',pos_end],debug)
+                                
                                 let dataset = child_cursor.querySelector('.cursor-flag').dataset
                                 let clientId = dataset.socket_id;
                                 let json = {
@@ -364,6 +375,9 @@ function recalculate_local_cursors(element,count){
                                                 'name':dataset.user_name
                                                 },
                                         }
+
+                                CocreateUtils.print(["sent Draw Cursor ",json],debug)
+
                                 draw_cursor(json);
                                 
                               }
