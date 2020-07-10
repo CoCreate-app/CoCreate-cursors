@@ -167,13 +167,13 @@ function getStyle(el,styleProp)
 
 
 function getDocument(collection,module_id){
-  CoCreate.getDocument({
+  CoCreate.readDocument({
     'collection': collection,
     'document_id': module_id
   })
 }
 
-CoCreateSocket.listen('getDocument', function(data) {
+CoCreateSocket.listen('readDocument', function(data) {
     cursor = document.querySelector('.cursor-flag[data-document_id="'+data['document_id']+'"]')
     if (cursor)
       cursor.innerHTML = data.result[cursor.getAttribute('name')]
@@ -236,7 +236,7 @@ function draw_cursor(json){
                     }
                     if(user_id){
                      // si tiene user_id actualiza el nombre del cursor usando crud
-                      CoCreate.getDocument({
+                      CoCreate.readDocument({
                         'collection' : 'users', 
                         'document_id': user_id
                       })
