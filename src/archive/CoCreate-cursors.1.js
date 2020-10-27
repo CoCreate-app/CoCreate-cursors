@@ -38,6 +38,8 @@ class CocreateUtilsCursor{
   
 }
 
+
+
 var getParents = function (elem, selector) {
 
 	if (!Element.prototype.matches) {
@@ -115,7 +117,6 @@ var getCaretCoordinates = function (element, position_start, position_end) {
   }else{
     style.overflow="visible"
   }*/
-  
   style.paddingRight = (parseInt(style.paddingRight) + scrollwidth - parseInt(computed.borderRightWidth)) +'px';
   let cursor_container = mirrorDiv.querySelectorAll('.cursor-container');
   let selectors_by_users = mirrorDiv.querySelectorAll('.selectors_by_users');
@@ -307,6 +308,8 @@ function refresh_mirror(element){
   let document_id = element.getAttribute('data-document_id') || '';
   if(document_id!=''){
     name = element.getAttribute('name')
+    //id_mirror = document_id+name+'--mirror-div'
+    //console.log("refresh_mirror ",element.dataset['mirror_id'])
     id_mirror = element.dataset['mirror_id']
     mi_mirror = document.getElementById(id_mirror)
     CocreateUtilsCursor.print(["refresh_mirror ",mi_mirror],debug)
@@ -343,6 +346,8 @@ Element.prototype.remove = function() {
   }
 }
 
+
+
 function recalculate_local_cursors(element,count){
                       CocreateUtilsCursor.print("count "+count,debug)
                       let my_start = element.selectionStart;
@@ -360,10 +365,13 @@ function recalculate_local_cursors(element,count){
                                 CocreateUtilsCursor.print(["my_start local",my_start,'start cursor '+user_name+" = ",start],debug)
                               if(start > my_start ){
                                 CocreateUtilsCursor.print("Es mayor",debug)
+                                
                                 let end = parseInt(child_cursor.getAttribute('data-end'));
                                 let pos_start = start+count;
                                 let pos_end = end+count;
+                                
                                 CocreateUtilsCursor.print(['pos_start',pos_start,'pos_end',pos_end],debug)
+                                
                                 let dataset = child_cursor.querySelector('.cursor-flag').dataset
                                 let clientId = dataset.socket_id;
                                 let json = {
@@ -376,20 +384,27 @@ function recalculate_local_cursors(element,count){
                                                 'name':dataset.user_name
                                                 },
                                         }
+
                                 CocreateUtilsCursor.print(["sent Draw Cursor ",json],debug)
+
                                 draw_cursor(json);
+                                
                               }
                             //mirrorDiv.appendChild(child_cursor);
                         })
                       }
 }
 
+
 function initCursorEl(element){
   let formulario = getParents(element,'form')
+          if(debug)
+            console.log("Init",element.getAttribute('data-realtime'))
           if( element.getAttribute('data-realtime') =='true' ||  (formulario && formulario.getAttribute('data-realtime') =='true' ) ){
             if(element.getAttribute('data-realtime') =='false')
                       return false;
-                  CocreateUtilsCursor.print(["Init Events ",element],debug)
+                  if(debug)            
+                    console.log(" Init Events To ",element)
                   element.addEventListener('input',function(event){
                       let start = element.selectionStart;
                       let end = element.selectionEnd;
@@ -410,10 +425,14 @@ function initCursorEl(element){
                       if(count)
                         recalculate_local_cursors(this,count)
                   },false)
+                  
+                  //mirror scroll textarea and div background
+                  //if (element.nodeName == 'TEXTAREA'){
                     element.addEventListener('scroll',function(){
+                      
                       let name = element.getAttribute('name')
                       let document_id = element.getAttribute('data-document_id') || '';
-                      let id_mirror = element.dataset['mirror_id'];
+                      let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
                       let mi_mirror = document.getElementById(id_mirror)
                       if(mi_mirror){
                         mi_mirror.scrollTo(element.scrollLeft,element.scrollTop);
@@ -423,10 +442,14 @@ function initCursorEl(element){
                     //resize
                     function outputsize() {
                       element_multicursors.forEach(function (element_for, index, array) {
+
                               let name = element_for.getAttribute('name')
-                              let id_mirror = element.dataset['mirror_id']; 
+                              //let document_id = element_for.getAttribute('data-document_id')
+                              let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
+                              //console.log(element_for.dataset['mirror_id']); //let id_mirror = document_id+name+'--mirror-div';
                               CocreateUtilsCursor.print(["Resize id_mirror -> "+id_mirror],debug)
                               let mi_mirror = document.getElementById(id_mirror)
+                              
                               if(mi_mirror){
                                 mi_mirror.style["width"] = element_for.offsetWidth+"px";
                                 mi_mirror.style["height"] = element_for.offsetHeight+"px";
@@ -435,16 +458,20 @@ function initCursorEl(element){
                                 var isFocused = (document.activeElement === element);
                                 if(isFocused)
                                   getCaretCoordinates(element,element.selectionStart,element.selectionEnd)
+                                  //getCaretCoordinates(element_for,element_for.selectionStart,element_for.selectionEnd)
+                                  
                                 refresh_mirror(element)
                               }
                         })
                     }
                     new ResizeObserver(outputsize).observe(element)
+
+                  //}else{
                   //if (element.nodeName == 'INPUT'){
                     element.addEventListener('mousemove',function(event){
                         let name = element.getAttribute('name')
                         let document_id = element.getAttribute('data-document_id')
-                        let id_mirror = element.dataset['mirror_id'];
+                        let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
                         let mi_mirror = document.getElementById(id_mirror)
                         if(mi_mirror)
                           mi_mirror.scrollTo(element.scrollLeft,element.scrollTop);
@@ -453,15 +480,16 @@ function initCursorEl(element){
                     element.addEventListener('focusout',function(event){
                         let name = element.getAttribute('name')
                         let document_id = element.getAttribute('data-document_id') || '';
-                        let id_mirror = element.dataset['mirror_id'];
+                        let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
                         let mi_mirror = document.getElementById(id_mirror)
                         if(mi_mirror)
                           mi_mirror.scrollTo(element.scrollLeft,element.scrollTop);
+
                     })
                     
                     element.addEventListener('keyup',function(event){
                        let name = element.getAttribute('name')
-                       let id_mirror = element.dataset['mirror_id'];
+                       let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
                         let mi_mirror = document.getElementById(id_mirror)
                         if(mi_mirror)
                           mi_mirror.scrollTo(element.scrollLeft,element.scrollTop);
