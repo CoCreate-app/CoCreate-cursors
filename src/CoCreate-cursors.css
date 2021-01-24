@@ -2,6 +2,7 @@
 .cursor-container{
     position:absolute;
     width:2px;
+    z-index:10;
 }
 /*.cursor:hover ~ .cursor-flag{*/
 /*  display:block;*/
@@ -26,7 +27,7 @@ color:white;
 height:6px;
 width: 6px;
 left: -2px;
-z-index:999;
+/*z-index:999;*/
 pointer-events:auto;
 }
 .cursor-flag:hover{

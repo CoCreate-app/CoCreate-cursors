@@ -1,6 +1,7 @@
 /**Uso esta variable para mostrar errores en caso que no este en prod*/
 
 var element_multicursors = document.querySelectorAll('input,textarea,[contenteditable]')
+
 //console.log(element_multicursors)
 var debug = false
 var enviroment_prod = true
@@ -56,7 +57,7 @@ var getParents = function (elem, selector) {
 	}
 }
 
-var mirrorDiv, computed, style;
+var mirrorDiv, computed, style, computedParentElement;
 
 var getCaretCoordinates = function (element, position_start, position_end) {
   // mirrored div
@@ -73,13 +74,15 @@ var getCaretCoordinates = function (element, position_start, position_end) {
     mirrorDiv = document.createElement('div');
     mirrorDiv.id = ID_MIRROR;//document_id +name+ '--mirror-div';
       mirrorDiv.className = (enviroment_prod) ? 'mirror_color mirror_scroll mirror-width-scroll' : 'mirror-width-scroll';
-    document.body.appendChild(mirrorDiv);
+    //document.body.appendChild(mirrorDiv);
+    element.insertAdjacentElement('afterend',mirrorDiv);
   }
 
   var scrollwidth = element.offsetWidth - element.scrollWidth;
 
   style = mirrorDiv.style;
   computed = getComputedStyle(element);
+  computedParentElement = getComputedStyle(element.parentElement);
   let margin_top = parseInt(computed['marginTop'])
   let margin_left = parseInt(computed['marginLeft'])
 
@@ -97,8 +100,10 @@ var getCaretCoordinates = function (element, position_start, position_end) {
   
   let scrrollTop_browser = document.documentElement.scrollTop
   
-  style.top = ((rect.top+scrrollTop_browser)-1) - (parseInt(computed['marginTop']) - parseInt(computed['borderTopWidth']) ) + 'px'//parseInt(computed.borderTopWidth) + 'px'; //  element.offsetTop + parseInt(computed.borderTopWidth) + 'px';
-  style.left = rect.left - (parseInt(computed['marginLeft']) -  parseInt(computed['borderLeftWidth']) ) + 'px'//parseInt(computed.borderLeftWidth) + 'px'   // margin_left+"px";//"400px";
+  //style.top = ((rect.top+scrrollTop_browser)-1) - (parseInt(computed['marginTop']) - parseInt(computed['borderTopWidth']) ) + 'px'//parseInt(computed.borderTopWidth) + 'px'; //  element.offsetTop + parseInt(computed.borderTopWidth) + 'px';
+  style.top = computedParentElement['top'];
+  //style.left = rect.left - (parseInt(computed['marginLeft']) -  parseInt(computed['borderLeftWidth']) ) + 'px'//parseInt(computed.borderLeftWidth) + 'px'   // margin_left+"px";//"400px";
+  style.left =  computedParentElement['left'];
   style.width = rect.width - (parseInt(computed.borderLeftWidth) + parseInt(computed.borderRightWidth)) + 'px'   // margin_left+"px";//"400px";
   style.height = rect.height - (parseInt(computed.borderTopWidth) + parseInt(computed.borderBottomWidth)) + 'px'   // margin_left+"px";//"400px";
   style.visibility ='visible'
@@ -254,11 +259,11 @@ function draw_cursor(json){
               font_size = parseFloat(font_size.substring(0,font_size.length-2));
               let cursor_height = ( (font_size * 112.5) / 100)
               let my_cursor = cursor.querySelector('.cursor')
-              
               cursor.dataset.start = start
               cursor.dataset.end = end
               cursor.dataset.socket_id = socket_id
-              cursor.dataset.user_name = socket_id
+              /*cursor.dataset.user_name = user.name
+              cursor.dataset.user_color = user.color*/
   
               cursor.style["top"] = coordinates.end.top+"px"; 
               
@@ -295,8 +300,9 @@ function draw_cursor(json){
                       selection_user.appendChild(selection_span_by_user)
                 }//end Selections
                 else{
-                  if(selection_user)
+                  if(selection_user){
                     selection_user.remove()
+                  }
                 }
             }
           }//end if document_id
@@ -308,6 +314,7 @@ function refresh_mirror(element){
   if(document_id!=''){
     name = element.getAttribute('name')
     id_mirror = element.dataset['mirror_id']
+    //console.log("Refresh ",id_mirror)
     mi_mirror = document.getElementById(id_mirror)
     CocreateUtilsCursor.print(["refresh_mirror ",mi_mirror],debug)
     selector_element = element.nodeName+"[name='"+name+"'][data-document_id='"+document_id+"']"
@@ -321,6 +328,8 @@ function refresh_mirror(element){
         cursor_container = mi_mirror.querySelectorAll('.cursor-container');
         cursor_container.forEach(function (child_cursor, index, array) {
           //console.log("REdraw cursor")
+        let child = child_cursor.querySelector('.cursor-flag');
+        let dataset_child = child.dataset;
         let dataset = child_cursor.dataset;
           draw_cursor({
                             element:element,
@@ -328,7 +337,7 @@ function refresh_mirror(element){
                             endPositon:dataset.end,
                             clientId : dataset.socket_id,
                             user:{
-                                'color':dataset.user_color,
+                                'color':dataset_child.user_color,
                                 'name':dataset.user_name
                                 },
                         });
@@ -345,7 +354,8 @@ Element.prototype.remove = function() {
 
 function recalculate_local_cursors(element,count){
                       CocreateUtilsCursor.print("count "+count,debug)
-                      let my_start = element.selectionStart;
+                      let my_start = ( ! element.hasAttribute('contenteditable'))  ? element.selectionStart : parseInt(element.getAttribute("selection_start"));
+                      //let my_start   = element.selectionStart
                       let name = element.getAttribute('name') || '';
                       let document_id = element.getAttribute('data-document_id') || '';
                       let collection = element.getAttribute('data-collection') || '';
@@ -354,11 +364,12 @@ function recalculate_local_cursors(element,count){
                       let mirrorDiv = document.getElementById(id_mirror);
                       let cursor_container = (mirrorDiv) ? mirrorDiv.querySelectorAll('.cursor-container') : null;
                       if(cursor_container){
+                          let containers_cursors = [];
                           cursor_container.forEach(function (child_cursor, index, array) {
                               let start = parseInt(child_cursor.getAttribute('data-start'));
                               let user_name = child_cursor.getAttribute('data-user_name');
                                 CocreateUtilsCursor.print(["my_start local",my_start,'start cursor '+user_name+" = ",start],debug)
-                              if(start > my_start ){
+                              if(start > my_start && containers_cursors.indexOf(user_name) == -1 ){
                                 CocreateUtilsCursor.print("Es mayor",debug)
                                 let end = parseInt(child_cursor.getAttribute('data-end'));
                                 let pos_start = start+count;
@@ -378,7 +389,9 @@ function recalculate_local_cursors(element,count){
                                         }
                                 CocreateUtilsCursor.print(["sent Draw Cursor ",json],debug)
                                 draw_cursor(json);
+                                containers_cursors.push(user_name);
                               }
+                              
                             //mirrorDiv.appendChild(child_cursor);
                         })
                       }
@@ -386,10 +399,12 @@ function recalculate_local_cursors(element,count){
 
 function initCursorEl(element){
   let formulario = getParents(element,'form')
-          if( element.getAttribute('data-realtime') =='true' ||  (formulario && formulario.getAttribute('data-realtime') =='true' ) ){
-            if(element.getAttribute('data-realtime') =='false')
+          let realtime = element.hasAttribute('data-realtime') ? element.getAttribute('data-realtime') : 'true';
+          if( realtime =='true' ||  (formulario && formulario.getAttribute('data-realtime') =='true' ) ){
+            if(realtime =='false')
                       return false;
                   CocreateUtilsCursor.print(["Init Events ",element],debug)
+                  /*
                   element.addEventListener('input',function(event){
                       let start = element.selectionStart;
                       let end = element.selectionEnd;
@@ -410,7 +425,9 @@ function initCursorEl(element){
                       if(count)
                         recalculate_local_cursors(this,count)
                   },false)
+                  */
                     element.addEventListener('scroll',function(){
+                      CocreateUtilsCursor.print(["Move Scroll ",element],true)
                       let name = element.getAttribute('name')
                       let document_id = element.getAttribute('data-document_id') || '';
                       let id_mirror = element.dataset['mirror_id'];
@@ -459,7 +476,20 @@ function initCursorEl(element){
                           mi_mirror.scrollTo(element.scrollLeft,element.scrollTop);
                     })
                     
+                    element.addEventListener('keydown',function(event){
+                      //console.log("keydown L,T => ",element.scrollLeft,element.scrollTop)
+                         let name = element.getAttribute('name')
+                         let id_mirror = element.dataset['mirror_id'];
+                          let mi_mirror = document.getElementById(id_mirror)
+                          if(mi_mirror){
+                            mi_mirror.scrollTo(element.scrollLeft,element.scrollTop);  
+                            refresh_mirror(element)
+                          }
+                    });
+                    
+                    
                     element.addEventListener('keyup',function(event){
+                      //console.log("keyup L,T => ",element.scrollLeft,element.scrollTop)
                        let name = element.getAttribute('name')
                        let id_mirror = element.dataset['mirror_id'];
                         let mi_mirror = document.getElementById(id_mirror)
@@ -476,6 +506,24 @@ var initialize_multicursor = function(element_multicursors){
           initCursorEl(element);
       }); // element_multicursors.forEach
 }//end initialize_multicursor 
+
+
+window.addEventListener('resize', function(e){ 
+  //console.log("resize windows")
+  document.querySelectorAll('[data-mirror_id]').forEach(function (element, index, array) {
+          refresh_mirror(element)
+  }); // element_multicursors.forEach
+}, true);
+document.addEventListener('scroll', function(e){ 
+  //console.log("Scroll ")
+  //console.log("scroll windows",document.body.scrollLeft,document.body.scrollTop)
+  //element_multicursors.forEach(function (element, index, array) {
+  document.querySelectorAll('[data-mirror_id]').forEach(function (element, index, array) {
+          refresh_mirror(element)
+  }); // element_multicursors.forEach
+  
+  
+}, true);
 
 function initCursorElements(container) {
   let mainContainer = container || window;
@@ -496,4 +544,13 @@ if(debug)
 initialize_multicursor(element_multicursors);
 
 // CoCreateInit.register_old('[data-realtime=true]',initCursorEl);
-CoCreateInit.register('CoCreateCursor', window, initCursorElements);
+// CoCreateInit.register('CoCreateCursor', window, initCursorElements);
+
+CoCreateObserver.add({ 
+	name: 'CoCreateCursor', 
+	observe: ['subtree', 'childList'],
+	include: '[data-collection][data-document_id][name][data-realtime=true]', 
+	task: function(mutation) {
+		initCursorElements(mutation.target)
+	}
+})
