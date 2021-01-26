@@ -353,48 +353,48 @@ Element.prototype.remove = function() {
 }
 
 function recalculate_local_cursors(element,count){
-                      CocreateUtilsCursor.print("count "+count,debug)
-                      let my_start = ( ! element.hasAttribute('contenteditable'))  ? element.selectionStart : parseInt(element.getAttribute("selection_start"));
-                      //let my_start   = element.selectionStart
-                      let name = element.getAttribute('name') || '';
-                      let document_id = element.getAttribute('data-document_id') || '';
-                      let collection = element.getAttribute('data-collection') || '';
-                      let selector = '[data-collection="'+collection+'"][data-document_id="'+document_id+'"][name="'+name+'"]'
-                      let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
-                      let mirrorDiv = document.getElementById(id_mirror);
-                      let cursor_container = (mirrorDiv) ? mirrorDiv.querySelectorAll('.cursor-container') : null;
-                      if(cursor_container){
-                          let containers_cursors = [];
-                          cursor_container.forEach(function (child_cursor, index, array) {
-                              let start = parseInt(child_cursor.getAttribute('data-start'));
-                              let user_name = child_cursor.getAttribute('data-user_name');
-                                CocreateUtilsCursor.print(["my_start local",my_start,'start cursor '+user_name+" = ",start],debug)
-                              if(start > my_start && containers_cursors.indexOf(user_name) == -1 ){
-                                CocreateUtilsCursor.print("Es mayor",debug)
-                                let end = parseInt(child_cursor.getAttribute('data-end'));
-                                let pos_start = start+count;
-                                let pos_end = end+count;
-                                CocreateUtilsCursor.print(['pos_start',pos_start,'pos_end',pos_end],debug)
-                                let dataset = child_cursor.querySelector('.cursor-flag').dataset
-                                let clientId = dataset.socket_id;
-                                let json = {
-                                            element:element,
-                                            startPosition:pos_start,
-                                            endPositon:pos_end,
-                                            clientId:clientId,
-                                            'user':{
-                                                'color':dataset.user_color,
-                                                'name':dataset.user_name
-                                                },
-                                        }
-                                CocreateUtilsCursor.print(["sent Draw Cursor ",json],debug)
-                                draw_cursor(json);
-                                containers_cursors.push(user_name);
-                              }
-                              
-                            //mirrorDiv.appendChild(child_cursor);
-                        })
-                      }
+          CocreateUtilsCursor.print("count "+count,debug)
+          let my_start = ( ! element.hasAttribute('contenteditable'))  ? element.selectionStart : parseInt(element.getAttribute("selection_start"));
+          //let my_start   = element.selectionStart
+          let name = element.getAttribute('name') || '';
+          let document_id = element.getAttribute('data-document_id') || '';
+          let collection = element.getAttribute('data-collection') || '';
+          let selector = '[data-collection="'+collection+'"][data-document_id="'+document_id+'"][name="'+name+'"]'
+          let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
+          let mirrorDiv = document.getElementById(id_mirror);
+          let cursor_container = (mirrorDiv) ? mirrorDiv.querySelectorAll('.cursor-container') : null;
+          if(cursor_container){
+              let containers_cursors = [];
+              cursor_container.forEach(function (child_cursor, index, array) {
+                  let start = parseInt(child_cursor.getAttribute('data-start'));
+                  let user_name = child_cursor.getAttribute('data-user_name');
+                    CocreateUtilsCursor.print(["my_start local",my_start,'start cursor '+user_name+" = ",start],debug)
+                  if(start > my_start && containers_cursors.indexOf(user_name) == -1 ){
+                    CocreateUtilsCursor.print("Es mayor",debug)
+                    let end = parseInt(child_cursor.getAttribute('data-end'));
+                    let pos_start = start+count;
+                    let pos_end = end+count;
+                    CocreateUtilsCursor.print(['pos_start',pos_start,'pos_end',pos_end],debug)
+                    let dataset = child_cursor.querySelector('.cursor-flag').dataset
+                    let clientId = dataset.socket_id;
+                    let json = {
+                                element:element,
+                                startPosition:pos_start,
+                                endPositon:pos_end,
+                                clientId:clientId,
+                                'user':{
+                                    'color':dataset.user_color,
+                                    'name':dataset.user_name
+                                    },
+                            }
+                    CocreateUtilsCursor.print(["sent Draw Cursor ",json],debug)
+                    draw_cursor(json);
+                    containers_cursors.push(user_name);
+                  }
+                  
+                //mirrorDiv.appendChild(child_cursor);
+            })
+          }
 }
 
 function initCursorEl(element){
@@ -554,3 +554,6 @@ CoCreateObserver.add({
 		initCursorElements(mutation.target)
 	}
 })
+
+// const CoCreateCursors = { getStyle, getDocument, draw_cursor, refresh_mirror, recalculate_local_cursors, initCursorEl, initCursorElements };
+// export default CoCreateCursors;
