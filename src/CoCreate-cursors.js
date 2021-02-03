@@ -108,6 +108,7 @@ var getCaretCoordinates = function (element, position_start, position_end) {
   style.height = rect.height - (parseInt(computed.borderTopWidth) + parseInt(computed.borderBottomWidth)) + 'px'   // margin_left+"px";//"400px";
   style.visibility ='visible'
   properties.forEach(function (prop) {
+    if(['left','top'].indexOf(prop) === -1)
     style[prop] = computed[prop];
   });
   
@@ -176,14 +177,14 @@ function getStyle(el,styleProp)
 
 
 function getDocument(collection,module_id){
-  CoCreate.readDocument({
+  CoCreate.crud.readDocument({
     'collection': collection,
     'document_id': module_id
   })
 }
 
-CoCreateSocket.listen('readDocument', function(data) {
-    cursor = document.querySelector('.cursor-flag[data-document_id="'+data['document_id']+'"]')
+CoCreate.socket.listen('readDocument', function(data) {
+    let cursor = document.querySelector('.cursor-flag[data-document_id="'+data['document_id']+'"]')
     if (cursor)
       cursor.innerHTML = data.result[cursor.getAttribute('name')]
 })
@@ -215,7 +216,7 @@ function draw_cursor(json){
             let user_id = (typeof(json) != 'undefined' && json.hasOwnProperty('user_id') ) ?  user.user_id : false
             if (socket_id){
                //if(data && data.hasOwnProperty('id_mirror')){
-                 cursores_other_elements = document.querySelectorAll('#socket_'+socket_id+identify)
+                 var cursores_other_elements = document.querySelectorAll('#socket_'+socket_id+identify)
                  cursores_other_elements.forEach(function(child_cursor, index, array){
                    if(child_cursor.parentElement.getAttribute('id') != id_mirror){
                      CocreateUtilsCursor.print("remove old cursor others elements",debug)
@@ -245,7 +246,7 @@ function draw_cursor(json){
                     }
                     if(user_id){
                      // si tiene user_id actualiza el nombre del cursor usando crud
-                      CoCreate.readDocument({
+                      CoCreate.crud.readDocument({
                         'collection' : 'users', 
                         'document_id': user_id
                       })
@@ -310,14 +311,18 @@ function draw_cursor(json){
 }//draw_cursor
 
 function refresh_mirror(element){
+  var id_mirror = ''
   let document_id = element.getAttribute('data-document_id') || '';
   if(document_id!=''){
     name = element.getAttribute('name')
-    id_mirror = element.dataset['mirror_id']
+    if(element.dataset['mirror_id'])
+      id_mirror = element.dataset['mirror_id']
+      else 
+      return;
     //console.log("Refresh ",id_mirror)
-    mi_mirror = document.getElementById(id_mirror)
+    var mi_mirror = document.getElementById(id_mirror)
     CocreateUtilsCursor.print(["refresh_mirror ",mi_mirror],debug)
-    selector_element = element.nodeName+"[name='"+name+"'][data-document_id='"+document_id+"']"
+    var selector_element = element.nodeName+"[name='"+name+"'][data-document_id='"+document_id+"']"
     CocreateUtilsCursor.print(["selector -> "+selector_element],debug)
     
       if(mi_mirror){
@@ -325,7 +330,7 @@ function refresh_mirror(element){
         style = mi_mirror.style
         style.width = element.offsetWidth - (parseInt(computed.borderLeftWidth) + parseInt(computed.borderRightWidth)) + 'px'
         style.height = element.offsetHeight - (parseInt(computed.borderTopWidth) + parseInt(computed.borderBottomWidth)) + 'px'
-        cursor_container = mi_mirror.querySelectorAll('.cursor-container');
+        var cursor_container = mi_mirror.querySelectorAll('.cursor-container');
         cursor_container.forEach(function (child_cursor, index, array) {
           //console.log("REdraw cursor")
         let child = child_cursor.querySelector('.cursor-flag');
@@ -553,7 +558,7 @@ CoCreateObserver.add({
 	task: function(mutation) {
 		initCursorElements(mutation.target)
 	}
-})
+});
 
-// const CoCreateCursors = { getStyle, getDocument, draw_cursor, refresh_mirror, recalculate_local_cursors, initCursorEl, initCursorElements };
-// export default CoCreateCursors;
+const CoCreateCursors = { draw_cursor, refresh_mirror, recalculate_local_cursors };
+export default CoCreateCursors;
