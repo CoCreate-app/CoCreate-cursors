@@ -195,7 +195,7 @@ function draw_cursor(json){
         let element = json['element'];
         let activate_cursor = (element.dataset['cursors'])?element.dataset['mirror_id']:true;
         if(activate_cursor){
-          let start = json['startPosition']
+          let start = json['startCocreateUtilsCursorPosition']
           let end = json['endPositon']
           let socket_id = json['clientId']
           let document_id = element.getAttribute('data-document_id') || '';
@@ -551,11 +551,11 @@ initialize_multicursor(element_multicursors);
 // CoCreateInit.register_old('[data-realtime=true]',initCursorEl);
 // CoCreateInit.register('CoCreateCursor', window, initCursorElements);
 
-CoCreateObserver.add({ 
+CoCreate.observer.add({ 
 	name: 'CoCreateCursor', 
 	observe: ['subtree', 'childList'],
 	include: '[data-collection][data-document_id][name][data-realtime=true]', 
-	task: function(mutation) {
+	callback: function(mutation) {
 		initCursorElements(mutation.target)
 	}
 });
