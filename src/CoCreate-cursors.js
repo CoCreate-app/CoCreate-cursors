@@ -551,7 +551,7 @@ initialize_multicursor(element_multicursors);
 // CoCreateInit.register_old('[data-realtime=true]',initCursorEl);
 // CoCreateInit.register('CoCreateCursor', window, initCursorElements);
 
-CoCreate.observer.add({ 
+CoCreate.observer.init({ 
 	name: 'CoCreateCursor', 
 	observe: ['subtree', 'childList'],
 	include: '[data-collection][data-document_id][name][data-realtime=true]', 
