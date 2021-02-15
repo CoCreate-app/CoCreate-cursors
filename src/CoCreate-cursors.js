@@ -108,7 +108,7 @@ var getCaretCoordinates = function (element, position_start, position_end) {
   style.height = rect.height - (parseInt(computed.borderTopWidth) + parseInt(computed.borderBottomWidth)) + 'px'   // margin_left+"px";//"400px";
   style.visibility ='visible'
   properties.forEach(function (prop) {
-    if(['left','top'].indexOf(prop) === -1)
+    if(['left','top'].indexOf(prop.toLowerCase()) === -1)
     style[prop] = computed[prop];
   });
   
@@ -195,7 +195,7 @@ function draw_cursor(json){
         let element = json['element'];
         let activate_cursor = (element.dataset['cursors'])?element.dataset['mirror_id']:true;
         if(activate_cursor){
-          let start = json['startCocreateUtilsCursorPosition']
+          let start = json['startPosition']
           let end = json['endPositon']
           let socket_id = json['clientId']
           let document_id = element.getAttribute('data-document_id') || '';
@@ -296,6 +296,7 @@ function draw_cursor(json){
                       let value_element = (['TEXTAREA','INPUT'].indexOf(element.nodeName)==-1) ?element.innerHTML :element.value;
                       selection_user.textContent = value_element.substring(0, start);
                       let value_span_selection = value_element.substring(start,end) || ''
+                      console.log("Selection ",value_span_selection,start,end)
                       //selection_span_by_user.style.opacity = 0.5;
                       selection_span_by_user.textContent = value_span_selection;
                       selection_user.appendChild(selection_span_by_user)
