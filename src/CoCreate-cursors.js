@@ -101,11 +101,13 @@ var getCaretCoordinates = function (element, position_start, position_end) {
   let scrrollTop_browser = document.documentElement.scrollTop
   
   //style.top = ((rect.top+scrrollTop_browser)-1) - (parseInt(computed['marginTop']) - parseInt(computed['borderTopWidth']) ) + 'px'//parseInt(computed.borderTopWidth) + 'px'; //  element.offsetTop + parseInt(computed.borderTopWidth) + 'px';
-  style.top = computedParentElement['top'];
+  //style.top = computedParentElement['top'];
+  style.top = element.offsetTop+'px';
   //style.left = rect.left - (parseInt(computed['marginLeft']) -  parseInt(computed['borderLeftWidth']) ) + 'px'//parseInt(computed.borderLeftWidth) + 'px'   // margin_left+"px";//"400px";
-  style.left =  computedParentElement['left'];
-  style.width = rect.width - (parseInt(computed.borderLeftWidth) + parseInt(computed.borderRightWidth)) + 'px'   // margin_left+"px";//"400px";
-  style.height = rect.height - (parseInt(computed.borderTopWidth) + parseInt(computed.borderBottomWidth)) + 'px'   // margin_left+"px";//"400px";
+  //style.left =  computedParentElement['left'];
+  style.left = element.offsetLeft+'px';
+  style.width = rect.width+'px';// - (parseInt(computed.borderLeftWidth) + parseInt(computed.borderRightWidth)) + 'px'   // margin_left+"px";//"400px";
+  style.height = rect.height+'px';// - (parseInt(computed.borderTopWidth) + parseInt(computed.borderBottomWidth)) + 'px'   // margin_left+"px";//"400px";
   style.visibility ='visible'
   properties.forEach(function (prop) {
     if(['left','top'].indexOf(prop.toLowerCase()) === -1)
@@ -114,6 +116,10 @@ var getCaretCoordinates = function (element, position_start, position_end) {
   
   style.overflowX ='auto';
   style.overflowY ='hidden';
+  style.margin = '0px'
+  //style.padding = '0px'
+  style.border = computed['border'];
+  style.borderColor = 'transparent';
    /* 
   if(element.nodeName.toLowerCase()=='input'){
     style.overflowX ='auto';
@@ -122,7 +128,7 @@ var getCaretCoordinates = function (element, position_start, position_end) {
     style.overflow="visible"
   }*/
   
-  style.paddingRight = (parseInt(style.paddingRight) + scrollwidth - parseInt(computed.borderRightWidth)) +'px';
+  // style.paddingRight = (parseInt(style.paddingRight) + scrollwidth - parseInt(computed.borderRightWidth)) +'px';
   let cursor_container = mirrorDiv.querySelectorAll('.cursor-container');
   let selectors_by_users = mirrorDiv.querySelectorAll('.selectors_by_users');
   let value_element = (['TEXTAREA','INPUT'].indexOf(element.nodeName)==-1) ?element.innerHTML :element.value;
