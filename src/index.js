@@ -1,3 +1,10 @@
+import observer from '../../CoCreate-observer/src'
+// import utils from '../../../CoCreateJS/src/utils';
+import {socket, crud} from '../../../CoCreateJS/src';
+// import crdt from '../../CoCreate-crdt/src'
+// import input from '../../CoCreate-input/src'
+
+
 /**Uso esta variable para mostrar errores en caso que no este en prod*/
 
 var element_multicursors = document.querySelectorAll('input,textarea,[contenteditable]')
@@ -183,13 +190,13 @@ function getStyle(el,styleProp)
 
 
 function getDocument(collection,module_id){
-  CoCreate.crud.readDocument({
+  crud.readDocument({
     'collection': collection,
     'document_id': module_id
   })
 }
 
-CoCreate.socket.listen('readDocument', function(data) {
+socket.listen('readDocument', function(data) {
     let cursor = document.querySelector('.cursor-flag[data-document_id="'+data['document_id']+'"]')
     if (cursor)
       cursor.innerHTML = data.result[cursor.getAttribute('name')]
@@ -252,7 +259,7 @@ function draw_cursor(json){
                     }
                     if(user_id){
                      // si tiene user_id actualiza el nombre del cursor usando crud
-                      CoCreate.crud.readDocument({
+                      crud.readDocument({
                         'collection' : 'users', 
                         'document_id': user_id
                       })
@@ -558,7 +565,7 @@ initialize_multicursor(element_multicursors);
 // CoCreateInit.register_old('[data-realtime=true]',initCursorEl);
 // CoCreateInit.register('CoCreateCursor', window, initCursorElements);
 
-CoCreate.observer.init({ 
+observer.init({ 
 	name: 'CoCreateCursor', 
 	observe: ['subtree', 'childList'],
 	include: '[data-collection][data-document_id][name][data-realtime=true]', 
