@@ -1,8 +1,9 @@
+/*global Element*/
 import observer from '../../CoCreate-observer/src'
-// import utils from '../../../CoCreateJS/src/utils';
+import utils from '../../../CoCreateJS/src/utils';
 import {socket, crud} from '../../../CoCreateJS/src';
-// import crdt from '../../CoCreate-crdt/src'
-// import input from '../../CoCreate-input/src'
+import crdt from '../../CoCreate-crdt/src'
+import input from '../../CoCreate-input/src'
 
 
 /**Uso esta variable para mostrar errores en caso que no este en prod*/
@@ -48,20 +49,20 @@ class CocreateUtilsCursor{
 
 var getParents = function (elem, selector) {
 
-	if (!Element.prototype.matches) {
-		Element.prototype.matches =
-			Element.prototype.matchesSelector ||
-			Element.prototype.mozMatchesSelector ||
-			Element.prototype.msMatchesSelector ||
-			Element.prototype.oMatchesSelector ||
-			Element.prototype.webkitMatchesSelector ||
-			function(s) {
-				var matches = (this.document || this.ownerDocument).querySelectorAll(s),
-					i = matches.length;
-				while (--i >= 0 && matches.item(i) !== this) {}
-				return i > -1;
-			};
-	}
+// 	if (!Element.prototype.matches) {
+// 		Element.prototype.matches =
+// 			Element.prototype.matchesSelector ||
+// 			Element.prototype.mozMatchesSelector ||
+// 			Element.prototype.msMatchesSelector ||
+// 			Element.prototype.oMatchesSelector ||
+// 			Element.prototype.webkitMatchesSelector ||
+// 			function(s) {
+// 				var matches = (this.document || this.ownerDocument).querySelectorAll(s),
+// 					i = matches.length;
+// 				while (--i >= 0 && matches.item(i) !== this) {}
+// 				return i > -1;
+// 			};
+// 	}
 }
 
 var mirrorDiv, computed, style, computedParentElement;
@@ -127,7 +128,7 @@ var getCaretCoordinates = function (element, position_start, position_end) {
   //style.padding = '0px'
   style.border = computed['border'];
   style.borderColor = 'transparent';
-   /* 
+  /* 
   if(element.nodeName.toLowerCase()=='input'){
     style.overflowX ='auto';
     style.overflowY ='hidden';
@@ -169,7 +170,7 @@ var getCaretCoordinates = function (element, position_start, position_end) {
   var rect = element.getBoundingClientRect(); // get Position from element
   var coordinates = {
     start : {
-         top: span.offsetTop,
+        top: span.offsetTop,
         left:  span.offsetLeft
     },
     end : {
