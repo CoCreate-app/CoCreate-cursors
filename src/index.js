@@ -1,9 +1,9 @@
 /*global Element*/
-import observer from '../../CoCreate-observer/src'
-import utils from '../../../CoCreateJS/src/utils';
+import observer from '@cocreate/observer'
+import utils from '@cocreate/utils';
 import {socket, crud} from '../../../CoCreateJS/src';
-import crdt from '../../CoCreate-crdt/src'
-import input from '../../CoCreate-input/src'
+import crdt from '@cocreate/crdt'
+import input from '@cocreate/input'
 
 
 /**Uso esta variable para mostrar errores en caso que no este en prod*/
