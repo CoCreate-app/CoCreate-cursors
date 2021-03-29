@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.0.0...v1.1.0) (2021-03-29)
+
+
+### Features
+
+* Initial Release ([aaefd3e](https://github.com/CoCreate-app/CoCreate-cursors/commit/aaefd3eff92904eeb7ad388f45ba3ea455427dd5))
+
 # 1.0.0 (2021-03-26)
 
 
