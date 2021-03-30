@@ -1,7 +1,7 @@
 /*global Element*/
 import observer from '@cocreate/observer'
 import utils from '@cocreate/utils';
-import {socket, crud} from '../../../CoCreateJS/src';
+import {socket, crud} from '@cocreate/cocreatejs';
 import crdt from '@cocreate/crdt'
 import input from '@cocreate/input'
 
