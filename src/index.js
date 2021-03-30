@@ -1,8 +1,7 @@
 /*global Element*/
 import observer from '@cocreate/observer'
 import utils from '@cocreate/utils';
-import {socket, crud} from '@cocreate/cocreatejs';
-import crdt from '@cocreate/crdt'
+import crud from '@cocreate/crud';
 import input from '@cocreate/input'
 
 
@@ -197,7 +196,7 @@ function getDocument(collection,module_id){
   })
 }
 
-socket.listen('readDocument', function(data) {
+crud.listen('readDocument', function(data) {
     let cursor = document.querySelector('.cursor-flag[data-document_id="'+data['document_id']+'"]')
     if (cursor)
       cursor.innerHTML = data.result[cursor.getAttribute('name')]
