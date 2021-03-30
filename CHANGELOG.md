@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.0...v1.1.1) (2021-03-30)
+
+
+### Bug Fixes
+
+* path to CoCreate ([f98929c](https://github.com/CoCreate-app/CoCreate-cursors/commit/f98929c86b2d893fe98a029c9f8de80d3c22b70b))
+
 # [1.1.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.0.0...v1.1.0) (2021-03-29)
 
 
