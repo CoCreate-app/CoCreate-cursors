@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.2...v1.1.3) (2021-03-31)
+
+
+### Bug Fixes
+
+* remove yarn.lock and package-lock.json ([711b7d2](https://github.com/CoCreate-app/CoCreate-cursors/commit/711b7d2a5adc27784bc22724dce756c02ceb8689))
+
 ## [1.1.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.1...v1.1.2) (2021-03-30)
 
 
