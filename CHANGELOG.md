@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.3...v1.1.4) (2021-04-04)
+
+
+### Bug Fixes
+
+* update socket to socket-lient and crud to crud client" ([0804a6e](https://github.com/CoCreate-app/CoCreate-cursors/commit/0804a6e173fbdb28fd5ba5bc92f7f7942800ee0a))
+
 ## [1.1.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.2...v1.1.3) (2021-03-31)
 
 
