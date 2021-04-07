@@ -1,4 +1,5 @@
 /*global Element*/
+import './CoCreate-cursors.css';
 import observer from '@cocreate/observer'
 import utils from '@cocreate/utils';
 import crud from '@cocreate/crud-client';
