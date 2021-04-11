@@ -1,10 +1,10 @@
 /*global Element*/
-import './CoCreate-cursors.css';
 import observer from '@cocreate/observer'
 import utils from '@cocreate/utils';
 import crud from '@cocreate/crud-client';
 import input from '@cocreate/input'
 
+import './CoCreate-cursors.css';
 
 /**Uso esta variable para mostrar errores en caso que no este en prod*/
 
