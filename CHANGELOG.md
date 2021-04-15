@@ -1,3 +1,10 @@
+## [1.1.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.5...v1.1.6) (2021-04-15)
+
+
+### Bug Fixes
+
+* crud-client package ([5a0fb7d](https://github.com/CoCreate-app/CoCreate-cursors/commit/5a0fb7deb6d3471a3ad60533bdf3a13fd188743e))
+
 ## [1.1.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.4...v1.1.5) (2021-04-07)
 
 
