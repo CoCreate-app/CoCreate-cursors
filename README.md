@@ -9,7 +9,7 @@ A simple cursors component in vanilla javascript. Easily configured using HTML5 
 
 ![CoCreate-cursors](https://cdn.cocreate.app/docs/CoCreate-cursors.gif)
 
-## [Docs & Demo](https://cocreate.app/docs/clone)
+## [Docs & Demo](https://cocreate.app/docs/cursors)
 
 For a complete guide and working demo refer to the [doumentation](https://cocreate.app/docs/cursors)
 
