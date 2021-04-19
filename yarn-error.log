@@ -1,0 +1,105 @@
+Arguments: 
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add mini-css-extract-plugin
+
+PATH: 
+  /tmp/yarn--1618791054122-0.3949628137653809:/home/ubuntu/environment/public/CoCreate-repositories/node_modules/.bin:/home/ubuntu/.config/yarn/link/node_modules/.bin:/home/ubuntu/.yarn/bin:/usr/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/lib/node_modules/npm/bin/node-gyp-bin:/usr/bin/node_modules/npm/bin/node-gyp-bin:/home/ubuntu/.rvm/gems/ruby-2.6.3/bin:/home/ubuntu/.rvm/gems/ruby-2.6.3@global/bin:/home/ubuntu/.rvm/rubies/ruby-2.6.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/ubuntu/.local/bin:/home/ubuntu/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.local/bin:/home/ubuntu/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.local/bin:/home/ubuntu/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.rvm/bin
+
+Yarn version: 
+  1.22.5
+
+Node version: 
+  14.15.4
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@cocreate%2fcrdt: Not found
+      at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
+      at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (/usr/share/yarn/lib/cli.js:141721:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (/usr/share/yarn/lib/cli.js:141643:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (internal/streams/readable.js:1327:12)
+      at processTicksAndRejections (internal/process/task_queues.js:80:21)
+
+npm manifest: 
+  {
+    "name": "@cocreate/cursors",
+    "version": "1.1.6",
+    "description": "Collaborative user cursor position for inputs, textarea's and contenteditable elements.",
+    "keywords": [
+      "cursors",
+      "collaborative-cursors",
+      "cocreate",
+      "low-code-framework",
+      "no-code-framework",
+      "cocreatejs",
+      "cocreatejs-component",
+      "cocreate-framework",
+      "no-code",
+      "low-code",
+      "collaborative-framework",
+      "realtime",
+      "realtime-framework",
+      "collaboration",
+      "shared-editing",
+      "html5-framework",
+      "javascript-framework"
+    ],
+    "publishConfig": {
+      "access": "restricted"
+    },
+    "scripts": {
+      "start": "npx webpack --config webpack.config.js",
+      "build": "NODE_ENV=production npx webpack --config webpack.config.js",
+      "dev": "npx webpack --config webpack.config.js --watch",
+      "docs": "node ./node_modules/@cocreate/docs/src/index.js"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/CoCreate-app/CoCreate-cursors.git"
+    },
+    "author": "CoCreate LLC",
+    "license": "UNLICENSED",
+    "bugs": {
+      "url": "https://github.com/CoCreate-app/CoCreate-cursors/issues"
+    },
+    "homepage": "https://cocreate.app/docs/cursors",
+    "funding": {
+      "type": "GitHub Sponsors ❤",
+      "url": "https://github.com/sponsors/CoCreate-app"
+    },
+    "main": "./src/index.js",
+    "devDependencies": {
+      "@babel/core": "^7.9.6",
+      "@babel/preset-env": "^7.9.6",
+      "babel-loader": "^8.1.0",
+      "clean-webpack-plugin": "^3.0.0",
+      "file-loader": "^6.2.0",
+      "html-webpack-plugin": "^4.5.0",
+      "style-loader": "^2.0.0",
+      "terser-webpack-plugin": "^5.1.1",
+      "uglifyjs-webpack-plugin": "^2.2.0",
+      "webpack": "^5.24.4",
+      "webpack-cli": "^4.5.0",
+      "webpack-log": "^3.0.1"
+    },
+    "dependencies": {
+      "@cocreate/crdt": "^1.0.10",
+      "@cocreate/crud-client": "^1.0.0",
+      "@cocreate/docs": "^1.0.3",
+      "@cocreate/input": "^1.0.0",
+      "@cocreate/observer": "^1.0.0",
+      "@cocreate/utils": "^1.0.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
