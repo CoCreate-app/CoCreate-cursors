@@ -852,7 +852,15 @@
     y-websocket "^1.2.5"
     yjs "^13.0.0-89"
 
-"@cocreate/crud-client@^1.0.0", "@cocreate/crud-client@^1.0.3", "@cocreate/crud-client@^1.0.4":
+"@cocreate/crud-client@^1.0.0":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@cocreate/crud-client/-/crud-client-1.0.8.tgz#5f19e88d3a5914d5b35d135ae23fc2326ff4bd91"
+  integrity sha512-JMx9Wd6mhHtIPIEihOI9CzwR+wddzR+cA8NWtgcuhrtpELB33RyJXHkWftORLPNU72n/9u7vSdy4OPvF3J3nbA==
+  dependencies:
+    "@cocreate/docs" "^1.0.3"
+    "@cocreate/socket-client" "^1.0.9"
+
+"@cocreate/crud-client@^1.0.3", "@cocreate/crud-client@^1.0.4":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@cocreate/crud-client/-/crud-client-1.0.5.tgz#66c54ae6ebd72fa6dcaf93caf2ffc866294143a0"
   integrity sha512-6WFm6Dh+JHT+Lza5W3dQ4W0Hm35CozYhRdk/dwe/LR+zUQRpUIUxTLkqGntlGk8BmPn+jJdrJFIRRo5jGPzpPg==
@@ -914,10 +922,10 @@
     "@cocreate/docs" "^1.0.3"
     mini-css-extract-plugin "^1.5.0"
 
-"@cocreate/socket-client@^1.0.2":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@cocreate/socket-client/-/socket-client-1.0.4.tgz#375f07f7134f564d6faf83b3d850fd276db19ff2"
-  integrity sha512-ChZIqIqcgozeNPH2w1KoX0f8kFavmudnROi9V5kgUWq9o2qMqW2bPktsachEPFUawxpjkymYHQu4FT1TxLUnWw==
+"@cocreate/socket-client@^1.0.2", "@cocreate/socket-client@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@cocreate/socket-client/-/socket-client-1.0.9.tgz#e9604f906ef50bc6563832c61457d9b136591733"
+  integrity sha512-RWNcqJWkS+Y0nfJvA3dbEy4nV48vX9XGLtzjfXqYwvg9NfnZ+Nfis/+BnV1AK5aU6QC/XrxrSFcuEfrp+lc/mg==
   dependencies:
     "@cocreate/docs" "^1.0.3"
     mini-css-extract-plugin "^1.5.0"
@@ -2502,10 +2510,19 @@ mimic-fn@^2.1.0:
   resolved "https://registry.yarnpkg.com/mimic-fn/-/mimic-fn-2.1.0.tgz#7ed2c2ccccaf84d3ffcb7a69b57711fc2083401b"
   integrity sha512-OqbOk5oEQeAZ8WXWydlu9HJjz9WVdEIvamMCcXmuqUYjTknH/sqsWvhQ3vgwKFRR1HpjvNBKQ37nbJgYzGqGcg==
 
-mini-css-extract-plugin@^1.4.1, mini-css-extract-plugin@^1.5.0:
+mini-css-extract-plugin@^1.4.1:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-1.5.0.tgz#69bee3b273d2d4ee8649a2eb409514b7df744a27"
   integrity sha512-SIbuLMv6jsk1FnLIU5OUG/+VMGUprEjM1+o2trOAx8i5KOKMrhyezb1dJ4Ugsykb8Jgq8/w5NEopy6escV9G7g==
+  dependencies:
+    loader-utils "^2.0.0"
+    schema-utils "^3.0.0"
+    webpack-sources "^1.1.0"
+
+mini-css-extract-plugin@^1.5.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/mini-css-extract-plugin/-/mini-css-extract-plugin-1.6.0.tgz#b4db2525af2624899ed64a23b0016e0036411893"
+  integrity sha512-nPFKI7NSy6uONUo9yn2hIfb9vyYvkFu95qki0e21DQ9uaqNKDP15DGpK0KnV6wDroWxPHtExrdEwx/yDQ8nVRw==
   dependencies:
     loader-utils "^2.0.0"
     schema-utils "^3.0.0"
