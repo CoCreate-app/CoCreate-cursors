@@ -1,3 +1,14 @@
+## [1.1.7](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.6...v1.1.7) (2021-05-08)
+
+
+### Bug Fixes
+
+* add css auto parse and save to docs. ([7df774a](https://github.com/CoCreate-app/CoCreate-cursors/commit/7df774ab54b2dd92a60cc0f809bdb96b734e9706))
+* add missing packages ([e02c1c2](https://github.com/CoCreate-app/CoCreate-cursors/commit/e02c1c245bbfacf4a0c075856967ca6291488a9f))
+* add missing packages ([33a68e3](https://github.com/CoCreate-app/CoCreate-cursors/commit/33a68e3964fc280876f48ab24c81386aca5c4c61))
+* ci and build process ([5234bbb](https://github.com/CoCreate-app/CoCreate-cursors/commit/5234bbb4a818d4b0062af486d9db61882d073597))
+* npm publish and cdn deployment ([5d0d0bc](https://github.com/CoCreate-app/CoCreate-cursors/commit/5d0d0bce5023305213231dd0e463172807b880df))
+
 ## [1.1.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.5...v1.1.6) (2021-04-15)
 
 
