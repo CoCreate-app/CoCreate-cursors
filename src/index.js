@@ -1,6 +1,7 @@
 /*global Element*/
 import observer from '@cocreate/observer'
 import crud from '@cocreate/crud-client';
+import uuid from '@cocreate/uuid';
 
 import './CoCreate-cursors.css';
 
@@ -12,7 +13,6 @@ var element_multicursors = document.querySelectorAll('input,textarea,[contentedi
 var debug = false
 var enviroment_prod = true
 var properties = ['boxSizing','borderTopWidth','borderRightWidth','borderBottomWidth','borderLeftWidth','paddingTop','paddingRight','paddingBottom','paddingLeft','marginTop','marginRight','marginBottom','marginLeft','fontStyle','fontVariant','fontWeight','fontStretch','fontSize','lineHeight','fontFamily','textAlign','textTransform','textIndent','textDecoration','letterSpacing','wordSpacing','textRendering','webkitWritingMode','textTransform','textIndent','overflowWrap'];
-var length_uuid = 30;
 
 
 class CocreateUtilsCursor{
@@ -23,25 +23,6 @@ class CocreateUtilsCursor{
       console.log(message)
   }
   
-  static generateUUID(length=null) {
-    var d = new Date().getTime();
-    var d2 = (performance && performance.now && (performance.now()*1000)) || 0;//Time in microseconds since page-load or 0 if unsupported
-    var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-        var r = Math.random() * 16;
-        if(d > 0){
-            var r = (d + r)%16 | 0;
-            d = Math.floor(d/16);
-        } else {
-            var r = (d2 + r)%16 | 0;
-            d2 = Math.floor(d2/16);
-        }
-        return (c=='x' ? r : (r&0x7|0x8)).toString(16);
-    });
-    if(length!=null){
-      uuid = uuid.substr(0,length)
-    }
-    return uuid;
-  }
   
 }
 
@@ -214,7 +195,7 @@ function draw_cursor(json){
           if(document_id!=''){
             CocreateUtilsCursor.print("action document_id " + document_id,debug)
             if( typeof element.dataset['mirror_id'] == 'undefined' || element.dataset['mirror_id'] == '')
-                element.dataset['mirror_id'] = CocreateUtilsCursor.generateUUID(length_uuid)
+                element.dataset['mirror_id'] = uuid.generate(30)
             let coordinates = getCaretCoordinates(element,start,end);
             if(!coordinates)
               return false;

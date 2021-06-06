@@ -62,6 +62,7 @@
   },
   "dependencies": {
     "@cocreate/crud-client": "^1.0.0",
-    "@cocreate/observer": "^1.0.0"
+    "@cocreate/observer": "^1.0.0",
+    "@cocreate/uuid": "^1.0.6"
   }
 }
