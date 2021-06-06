@@ -1,3 +1,10 @@
+## [1.1.9](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.8...v1.1.9) (2021-06-06)
+
+
+### Bug Fixes
+
+* update packages, add uuid, add data-parse to demos ([56c1090](https://github.com/CoCreate-app/CoCreate-cursors/commit/56c1090a6a81e039562e34ac88f4c000713d4779))
+
 ## [1.1.8](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.7...v1.1.8) (2021-05-10)
 
 
