@@ -21,7 +21,7 @@
 .cursor-flag{
 position:absolute;
 background-color: rgb(236, 212, 68);
-top:-5px;
+top:0px;
 font-size: 0px;
 color:white;
 height:6px;
@@ -32,7 +32,7 @@ pointer-events:auto;
 }
 .cursor-flag:hover{
 height:14px;
-top:-12px;
+/*top:-5px;*/
 width:unset;
 padding: 1px 5px 0px 5px;
 font-size: 12px;
