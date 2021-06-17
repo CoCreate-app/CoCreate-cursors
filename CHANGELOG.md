@@ -1,3 +1,10 @@
+## [1.1.10](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.9...v1.1.10) (2021-06-16)
+
+
+### Bug Fixes
+
+* added header for seo ([3530af4](https://github.com/CoCreate-app/CoCreate-cursors/commit/3530af46b0ca6f89f5a10f0978794e7a84bbf682))
+
 ## [1.1.9](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.8...v1.1.9) (2021-06-06)
 
 
