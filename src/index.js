@@ -3,7 +3,7 @@ import observer from '@cocreate/observer'
 import crud from '@cocreate/crud-client';
 import uuid from '@cocreate/uuid';
 
-import './index.css';
+import './CoCreate-cursors.css';
 
 /**Uso esta variable para mostrar errores en caso que no este en prod*/
 
