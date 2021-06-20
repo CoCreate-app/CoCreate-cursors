@@ -547,9 +547,14 @@ initialize_multicursor(element_multicursors);
 
 observer.init({ 
 	name: 'CoCreateCursor', 
-	observe: ['subtree', 'childList'],
-	include: '[data-collection][data-document_id][name][data-realtime=true]', 
+	observe: ['addedNodes'],
+	attributesFilter: ['data-collection', 'data-document_id', 'name', 'data-realtime'],
 	callback: function(mutation) {
+	  let el = mutation.target;
+	  el.hasAttribute('data-collection') &&
+	  el.hasAttribute('data-document_id') &&
+	  el.hasAttribute('name') &&
+	  el.getAttribute('data-realtime') == 'true' &&
 		initCursorElements(mutation.target)
 	}
 });
