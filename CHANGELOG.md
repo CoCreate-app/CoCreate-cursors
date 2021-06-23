@@ -1,3 +1,10 @@
+## [1.1.13](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.12...v1.1.13) (2021-06-23)
+
+
+### Bug Fixes
+
+* update readme to include license details ([b5c6223](https://github.com/CoCreate-app/CoCreate-cursors/commit/b5c6223bd94bc4d6614410738a842b11e08c129c))
+
 ## [1.1.12](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.11...v1.1.12) (2021-06-23)
 
 
