@@ -1,3 +1,10 @@
+## [1.1.12](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.11...v1.1.12) (2021-06-23)
+
+
+### Bug Fixes
+
+* update to new crud.save and crud.read ([529ce8d](https://github.com/CoCreate-app/CoCreate-cursors/commit/529ce8d09f546597ffc22c9f7403726951a8c2e3))
+
 ## [1.1.11](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.10...v1.1.11) (2021-06-20)
 
 
