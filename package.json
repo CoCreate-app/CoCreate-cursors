@@ -1,6 +1,6 @@
 {
   "name": "@cocreate/cursors",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "description": "Collaborative user cursor position for inputs, textarea's and contenteditable elements.",
   "keywords": [
     "cursors",
@@ -21,7 +21,9 @@
     "html5-framework",
     "javascript-framework"
   ],
-  "publishConfig": { "access": "public" },
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "npx webpack --config webpack.config.js",
     "build": "NODE_ENV=production npx webpack --config webpack.config.js",
@@ -35,7 +37,9 @@
   },
   "author": "CoCreate LLC",
   "license": "SEE LICENSE",
-  "bugs": { "url": "https://github.com/CoCreate-app/CoCreate-cursors/issues" },
+  "bugs": {
+    "url": "https://github.com/CoCreate-app/CoCreate-cursors/issues"
+  },
   "homepage": "https://cocreate.app/docs/cursors",
   "funding": {
     "type": "GitHub Sponsors ❤",
