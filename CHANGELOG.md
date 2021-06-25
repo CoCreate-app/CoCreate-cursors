@@ -1,3 +1,10 @@
+## [1.1.17](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.16...v1.1.17) (2021-06-25)
+
+
+### Bug Fixes
+
+* latest version numbers applied to all cocreate packages ([343aee7](https://github.com/CoCreate-app/CoCreate-cursors/commit/343aee7a6eda91d57c9e0d7628eef0436b582dc5))
+
 ## [1.1.16](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.15...v1.1.16) (2021-06-24)
 
 
