@@ -868,7 +868,7 @@
     "@babel/helper-validator-identifier" "^7.14.5"
     to-fast-properties "^2.0.0"
 
-"@cocreate/crud-client@^1.0.0":
+"@cocreate/crud-client@^1.0.0", "@cocreate/crud-client@^1.1.9":
   version "1.1.9"
   resolved "https://registry.yarnpkg.com/@cocreate/crud-client/-/crud-client-1.1.9.tgz#df1434169dfa5f656d281461bfb2ad3842e9749a"
   integrity sha512-heNbIEwX6i2un+eIQDph7KYt81/9c1VlP0f+VfOA5/7PPNkCA3/Lo5UF76Qzze1JNvvThsQvCXxIA3++YJldKQ==
@@ -898,7 +898,7 @@
     "@cocreate/socket-client" "^1.0.0"
     mime-types "^2.1.30"
 
-"@cocreate/observer@^1.0.0":
+"@cocreate/observer@^1.2.4":
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/@cocreate/observer/-/observer-1.2.4.tgz#d54a364164e2d555e58b7a15223d674353332d1a"
   integrity sha512-90VeQv6B2V2dVlCGrDCTfbJjCnbHx0iRL/ETWKRmrijmkqgrbUTCHVCk8ABg5sCyL6bRPaTPaWzgdMiB24yQuQ==
@@ -914,7 +914,7 @@
     "@cocreate/uuid" "^1.0.0"
     ws "^7.4.4"
 
-"@cocreate/uuid@^1.0.0":
+"@cocreate/uuid@^1.0.0", "@cocreate/uuid@^1.0.9":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@cocreate/uuid/-/uuid-1.0.9.tgz#c97ce6c0909925c5141828d145523d9dcd26be52"
   integrity sha512-e85VF2yiAJdA+T8jyjXX7VsPD/I6AsHov3BEpEnMDw5cMRUOfiiVWfThvLUXai+4YAA0tqmyzydqd3OLerxEsw==
