@@ -1,3 +1,10 @@
+## [1.1.18](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.17...v1.1.18) (2021-06-30)
+
+
+### Bug Fixes
+
+* automated and manual workflows ([4a2f0bc](https://github.com/CoCreate-app/CoCreate-cursors/commit/4a2f0bc251b34a62e996d7cb2299e7e5c87f3831))
+
 ## [1.1.17](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.16...v1.1.17) (2021-06-25)
 
 
