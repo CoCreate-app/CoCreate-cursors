@@ -1,3 +1,10 @@
+## [1.1.21](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.20...v1.1.21) (2021-07-10)
+
+
+### Bug Fixes
+
+* gitignore all logs ([ff89fb0](https://github.com/CoCreate-app/CoCreate-cursors/commit/ff89fb0cc83313e20496b0402645b336595905dc))
+
 ## [1.1.20](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.19...v1.1.20) (2021-07-07)
 
 
