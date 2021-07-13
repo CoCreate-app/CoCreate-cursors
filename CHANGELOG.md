@@ -1,3 +1,11 @@
+## [1.1.22](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.21...v1.1.22) (2021-07-13)
+
+
+### Bug Fixes
+
+* add yarn lockfile to git ignore ([44c8a85](https://github.com/CoCreate-app/CoCreate-cursors/commit/44c8a85a8db72097044bad73af49a55b8871ee5f))
+* remove yarn.lock ([1a5ad21](https://github.com/CoCreate-app/CoCreate-cursors/commit/1a5ad21b5015b733801125cc9918fbc65b9b003f))
+
 ## [1.1.21](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.20...v1.1.21) (2021-07-10)
 
 
