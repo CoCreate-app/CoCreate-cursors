@@ -1,6 +1,6 @@
 {
   "name": "@cocreate/cursors",
-  "version": "1.1.21",
+  "version": "1.1.23",
   "description": "Collaborative user cursor position for inputs, textarea's and contenteditable elements.",
   "keywords": [
     "cursors",
@@ -62,7 +62,7 @@
     "webpack-log": "^3.0.1"
   },
   "dependencies": {
-    "@cocreate/crud-client": "^1.1.12",
+    "@cocreate/crud-client": "^1.1.15",
     "@cocreate/observer": "^1.2.8",
     "@cocreate/uuid": "^1.0.12"
   }

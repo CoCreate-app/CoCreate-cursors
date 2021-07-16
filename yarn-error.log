@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js install
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add -D --non-interactive
 
 PATH: 
-  /tmp/yarn--1618802781734-0.2364040280178077:/home/ubuntu/environment/public/CoCreate-repositories/node_modules/.bin:/home/ubuntu/.config/yarn/link/node_modules/.bin:/home/ubuntu/.yarn/bin:/usr/libexec/lib/node_modules/npm/bin/node-gyp-bin:/usr/lib/node_modules/npm/bin/node-gyp-bin:/usr/bin/node_modules/npm/bin/node-gyp-bin:/home/ubuntu/.rvm/gems/ruby-2.6.3/bin:/home/ubuntu/.rvm/gems/ruby-2.6.3@global/bin:/home/ubuntu/.rvm/rubies/ruby-2.6.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/ubuntu/.local/bin:/home/ubuntu/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.local/bin:/home/ubuntu/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.local/bin:/home/ubuntu/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.rvm/bin
+  /home/ubuntu/.rvm/gems/ruby-2.6.3/bin:/home/ubuntu/.rvm/gems/ruby-2.6.3@global/bin:/home/ubuntu/.rvm/rubies/ruby-2.6.3/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/home/ubuntu/.local/bin:/home/ubuntu/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.local/bin:/home/ubuntu/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.local/bin:/home/ubuntu/bin:/home/ubuntu/.rvm/bin:/home/ubuntu/.rvm/bin
 
 Yarn version: 
   1.22.5
@@ -14,7 +14,7 @@ Platform:
   linux x64
 
 Trace: 
-  Error: https://registry.yarnpkg.com/@cocreate%2fcrdt: Not found
+  Error: https://registry.yarnpkg.com/--: Not found
       at Request.params.callback [as _callback] (/usr/share/yarn/lib/cli.js:66988:18)
       at Request.self.callback (/usr/share/yarn/lib/cli.js:140749:22)
       at Request.emit (events.js:315:20)
@@ -29,7 +29,7 @@ Trace:
 npm manifest: 
   {
     "name": "@cocreate/cursors",
-    "version": "1.1.6",
+    "version": "1.1.22",
     "description": "Collaborative user cursor position for inputs, textarea's and contenteditable elements.",
     "keywords": [
       "cursors",
@@ -51,20 +51,21 @@ npm manifest:
       "javascript-framework"
     ],
     "publishConfig": {
-      "access": "restricted"
+      "access": "public"
     },
     "scripts": {
       "start": "npx webpack --config webpack.config.js",
       "build": "NODE_ENV=production npx webpack --config webpack.config.js",
       "dev": "npx webpack --config webpack.config.js --watch",
-      "docs": "node ./node_modules/@cocreate/docs/src/index.js"
+      "docs": "node ./node_modules/@cocreate/docs/src/index.js",
+      "hosting": "node ./node_modules/@cocreate/hosting/src/index.js"
     },
     "repository": {
       "type": "git",
       "url": "git+https://github.com/CoCreate-app/CoCreate-cursors.git"
     },
     "author": "CoCreate LLC",
-    "license": "UNLICENSED",
+    "license": "SEE LICENSE",
     "bugs": {
       "url": "https://github.com/CoCreate-app/CoCreate-cursors/issues"
     },
@@ -81,6 +82,7 @@ npm manifest:
       "clean-webpack-plugin": "^3.0.0",
       "file-loader": "^6.2.0",
       "html-webpack-plugin": "^4.5.0",
+      "mini-css-extract-plugin": "^1.5.0",
       "style-loader": "^2.0.0",
       "terser-webpack-plugin": "^5.1.1",
       "uglifyjs-webpack-plugin": "^2.2.0",
@@ -89,12 +91,9 @@ npm manifest:
       "webpack-log": "^3.0.1"
     },
     "dependencies": {
-      "@cocreate/crdt": "^1.0.10",
-      "@cocreate/crud-client": "^1.0.0",
-      "@cocreate/docs": "^1.0.3",
-      "@cocreate/input": "^1.0.0",
-      "@cocreate/observer": "^1.0.0",
-      "@cocreate/utils": "^1.0.0"
+      "@cocreate/crud-client": "^1.1.12",
+      "@cocreate/observer": "^1.2.8",
+      "@cocreate/uuid": "^1.0.12"
     }
   }
 
