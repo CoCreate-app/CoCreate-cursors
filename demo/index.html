@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://cdn.cocreate.app/favicon.ico" type="image/ico" sizes="16x16">
+    <title>Cursors | CoCreate</title>
+
+    <!-- CoCreateCSS -->
+    <link rel="stylesheet" href="https://cdn.cocreate.app/latest/CoCreate.min.css" type="text/css" />
+    
+    <!-- CoCreate Cursors -->
+    <link rel="stylesheet" href="./CoCreate-cursors.css" type="text/css" />
+
+       
+  </head>
+
+  <body>
+
+    <form data-collection="module_activities" data-form_id="test_form" class="margin:20px">
+      
+      <input type="text" 
+        data-cursors="true"
+        data-collection="module_activities" 
+        data-document_id="5edda7608d5c7a7d656edecd" 
+        name="name"
+        placeholder="Text"
+        class="floating-label">
+        
+      <textarea
+        data-cursors="true"
+        data-collection="module_activities"
+        data-document_id="5edda7608d5c7a7d656edecd"
+        name="text_area"
+        placeholder="Text Area"
+        class="floating-label">
+      </textarea>
+  
+   	<button class="submitBtn position:fixed bottom:15px right:15px bg-blue grow-hover round"><i class="far fa-save"></i></button>
+  
+    </form>
+
+    <script>
+      var config = {
+        apiKey: 'c2b08663-06e3-440c-ef6f-13978b42883a',
+        organization_Id: '5de0387b12e200ea63204d6c',
+        host: 'ws.cocreate.app'
+      }
+    </script>
+    
+    <!--<script src="../dist/CoCreate-cursor.js"></script>-->
+    <script src="../../../CoCreateJS/dist/CoCreate.js" ></script>
+
+
+  </body>
+</html>

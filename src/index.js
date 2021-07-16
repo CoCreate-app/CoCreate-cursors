@@ -548,7 +548,7 @@ initialize_multicursor(element_multicursors);
 observer.init({ 
 	name: 'CoCreateCursor', 
 	observe: ['addedNodes'],
-	attributesFilter: ['data-collection', 'data-document_id', 'name', 'data-realtime'],
+	target: '[data-collection][data-document_id][name]',
 	callback: function(mutation) {
 	  let el = mutation.target;
 	  el.hasAttribute('data-collection') &&
