@@ -1,3 +1,11 @@
+## [1.1.24](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.23...v1.1.24) (2021-07-17)
+
+
+### Bug Fixes
+
+* init and update demos scripts ([b56536e](https://github.com/CoCreate-app/CoCreate-cursors/commit/b56536e5730f7bc98f467551393dec07a489fdc9))
+* workflows ([7f886e7](https://github.com/CoCreate-app/CoCreate-cursors/commit/7f886e743bb2efae6b5031b6577c67804c28c126))
+
 ## [1.1.23](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.22...v1.1.23) (2021-07-14)
 
 
