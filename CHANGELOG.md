@@ -1,3 +1,11 @@
+## [1.1.25](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.24...v1.1.25) (2021-07-27)
+
+
+### Bug Fixes
+
+* refactor draw cursor ([c8be0ce](https://github.com/CoCreate-app/CoCreate-cursors/commit/c8be0ce1b2cfd2e2039305db8a1594ccf1d91060))
+* refactor init ([9515492](https://github.com/CoCreate-app/CoCreate-cursors/commit/9515492921c27e83e4366c398798aa8a9d2391f1))
+
 ## [1.1.24](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.23...v1.1.24) (2021-07-17)
 
 
