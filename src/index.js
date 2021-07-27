@@ -127,11 +127,11 @@ function getStyle(el, styleProp) {
     return y;
 }
 
-crud.listen('readDocument', function(data) {
-    let cursor = document.querySelector('.cursor-flag[data-document_id="' + data['document_id'] + '"]')
-    if(cursor)
-        cursor.innerHTML = data.result[cursor.getAttribute('name')]
-})
+// crud.listen('readDocument', function(data) {
+//     let cursor = document.querySelector('.cursor-flag[data-document_id="' + data['document_id'] + '"]')
+//     if(cursor)
+//         cursor.innerHTML = data.result[cursor.getAttribute('name')]
+// })
 
 
 function draw_cursor(json) {
@@ -173,24 +173,25 @@ function draw_cursor(json) {
                                                   ><div class="cursor" \
                                                   style="background-color:' + user.color + '"></div>\
                                                   <div class="cursor-flag" data-collection="users" \
-                                                  name="name" \
                                                   data-user_name="' + user.name + '" \
                                                   data-user_color="' + user.color + '" \
                                                   data-socket_id="' + socket_id + '" \
                                                   data-id_mirror="' + id_mirror + '" \
+                                                  data-collection="users" \
                                                   data-document_id="' + user_id + '" \
+                                                  name="name" \
                                                   style="background-color:' + user.color + '" \
                                                   flag>' + user.name + '</div></div>';
                         mi_mirror.innerHTML = cursor_template + mi_mirror.innerHTML;
 
                     }
-                    if(user_id) {
-                        // si tiene user_id actualiza el nombre del cursor usando crud
-                        crud.readDocument({
-                            'collection': 'users',
-                            'document_id': user_id
-                        })
-                    }
+                    // if(user_id) {
+                    //     // si tiene user_id actualiza el nombre del cursor usando crud
+                    //     crud.readDocument({
+                    //         'collection': 'users',
+                    //         'document_id': user_id
+                    //     })
+                    // }
                 }
                 cursor = mi_mirror.querySelector('.cursor-container#socket_' + socket_id + identify);
             }
@@ -208,15 +209,17 @@ function draw_cursor(json) {
                 my_cursor.style["height"] = cursor_height + "px";
                 cursor.style["left"] = coordinates.end.left + "px";
 
+                
                 //add selections
                 selection_user = document.getElementById('sel-' + socket_id + identify);
+                if(selection_user) {
+                    selection_user.remove()
+                }
                 if((start != end) && user) {
-                    selection_user = document.getElementById('sel-' + socket_id + identify)
-                    if(selection_user) {
-                        selection_user.remove()
-                    }
+                    // selection_user = document.getElementById('sel-' + socket_id + identify)
                     var scrollwidth = element.offsetWidth - element.scrollWidth;
                     var padding_right = parseInt(getComputedStyle(element)["paddingRight"])
+                    
                     selection_user = document.createElement('span');
                     selection_user.id = 'sel-' + socket_id + identify;
                     selection_user.className = 'users_selections'
@@ -237,11 +240,11 @@ function draw_cursor(json) {
                     selection_span_by_user.textContent = value_span_selection;
                     selection_user.appendChild(selection_span_by_user)
                 } //end Selections
-                else {
-                    if(selection_user) {
-                        selection_user.remove()
-                    }
-                }
+                // else {
+                //     if(selection_user) {
+                //         selection_user.remove()
+                //     }
+                // }
             }
         } 
     } 
@@ -278,12 +281,6 @@ function refresh_mirror(element) {
         })
     }
 } 
-
-// Element.prototype.remove = function() {
-//     if(this.parentElement) {
-//         this.parentElement.removeChild(this);
-//     }
-// }
 
 function recalculate_local_cursors(element, count) {
     let my_start = (!element.hasAttribute('contenteditable')) ? element.selectionStart : parseInt(element.getAttribute("selection_start"));
