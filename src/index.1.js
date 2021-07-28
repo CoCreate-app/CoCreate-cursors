@@ -49,7 +49,7 @@ var mirrorDiv, computed, style, computedParentElement;
 var getCaretCoordinates = function (element, position_start, position_end) {
   // mirrored div
   let name = element.getAttribute('name')
-  let document_id = element.getAttribute('data-document_id') || '';
+  let document_id = element.getAttribute('document_id') || '';
   if(document_id == ''){
     return false;
   }
@@ -177,7 +177,7 @@ function getDocument(collection,module_id){
 }
 
 crud.listen('readDocument', function(data) {
-    let cursor = document.querySelector('.cursor-flag[data-document_id="'+data['document_id']+'"]')
+    let cursor = document.querySelector('.cursor-flag[document_id="'+data['document_id']+'"]')
     if (cursor)
       cursor.innerHTML = data.result[cursor.getAttribute('name')]
 })
@@ -191,7 +191,7 @@ function draw_cursor(json){
           let start = json['startPosition']
           let end = json['endPositon']
           let socket_id = json['clientId']
-          let document_id = element.getAttribute('data-document_id') || '';
+          let document_id = element.getAttribute('document_id') || '';
           if(document_id!=''){
             CocreateUtilsCursor.print("action document_id " + document_id,debug)
             if( typeof element.dataset['mirror_id'] == 'undefined' || element.dataset['mirror_id'] == '')
@@ -225,13 +225,13 @@ function draw_cursor(json){
                                                   id="socket_'+socket_id+identify+'" \
                                                   ><div class="cursor" \
                                                   style="background-color:'+user.color+'"></div>\
-                                                  <div class="cursor-flag" data-collection="users" \
+                                                  <div class="cursor-flag" collection="users" \
                                                   name="name" \
                                                   data-user_name="'+user.name+'" \
                                                   data-user_color="'+user.color+'" \
                                                   data-socket_id="'+socket_id+'" \
                                                   data-id_mirror="'+id_mirror+'" \
-                                                  data-document_id="'+user_id+'" \
+                                                  document_id="'+user_id+'" \
                                                   style="background-color:'+user.color+'" \
                                                   flag>'+user.name+'</div></div>';
                       mi_mirror.innerHTML = cursor_template + mi_mirror.innerHTML;
@@ -306,7 +306,7 @@ function draw_cursor(json){
 
 function refresh_mirror(element){
   var id_mirror = ''
-  let document_id = element.getAttribute('data-document_id') || '';
+  let document_id = element.getAttribute('document_id') || '';
   if(document_id!=''){
     name = element.getAttribute('name')
     if(element.dataset['mirror_id'])
@@ -316,7 +316,7 @@ function refresh_mirror(element){
     //console.log("Refresh ",id_mirror)
     var mi_mirror = document.getElementById(id_mirror)
     CocreateUtilsCursor.print(["refresh_mirror ",mi_mirror],debug)
-    var selector_element = element.nodeName+"[name='"+name+"'][data-document_id='"+document_id+"']"
+    var selector_element = element.nodeName+"[name='"+name+"'][document_id='"+document_id+"']"
     CocreateUtilsCursor.print(["selector -> "+selector_element],debug)
     
       if(mi_mirror){
@@ -356,9 +356,9 @@ function recalculate_local_cursors(element,count){
           let my_start = ( ! element.hasAttribute('contenteditable'))  ? element.selectionStart : parseInt(element.getAttribute("selection_start"));
           //let my_start   = element.selectionStart
           let name = element.getAttribute('name') || '';
-          let document_id = element.getAttribute('data-document_id') || '';
-          let collection = element.getAttribute('data-collection') || '';
-          let selector = '[data-collection="'+collection+'"][data-document_id="'+document_id+'"][name="'+name+'"]'
+          let document_id = element.getAttribute('document_id') || '';
+          let collection = element.getAttribute('collection') || '';
+          let selector = '[collection="'+collection+'"][document_id="'+document_id+'"][name="'+name+'"]'
           let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
           let mirrorDiv = document.getElementById(id_mirror);
           let cursor_container = (mirrorDiv) ? mirrorDiv.querySelectorAll('.cursor-container') : null;
@@ -398,8 +398,8 @@ function recalculate_local_cursors(element,count){
 
 function initCursorEl(element){
   let formulario = getParents(element,'form')
-          let realtime = element.hasAttribute('data-realtime') ? element.getAttribute('data-realtime') : 'true';
-          if( realtime =='true' ||  (formulario && formulario.getAttribute('data-realtime') =='true' ) ){
+          let realtime = element.hasAttribute('realtime') ? element.getAttribute('realtime') : 'true';
+          if( realtime =='true' ||  (formulario && formulario.getAttribute('realtime') =='true' ) ){
             if(realtime =='false')
                       return false;
                   CocreateUtilsCursor.print(["Init Events ",element],debug)
@@ -428,7 +428,7 @@ function initCursorEl(element){
                     element.addEventListener('scroll',function(){
                       CocreateUtilsCursor.print(["Move Scroll ",element],true)
                       let name = element.getAttribute('name')
-                      let document_id = element.getAttribute('data-document_id') || '';
+                      let document_id = element.getAttribute('document_id') || '';
                       let id_mirror = element.dataset['mirror_id'];
                       let mi_mirror = document.getElementById(id_mirror)
                       if(mi_mirror){
@@ -459,7 +459,7 @@ function initCursorEl(element){
                   //if (element.nodeName == 'INPUT'){
                     element.addEventListener('mousemove',function(event){
                         let name = element.getAttribute('name')
-                        let document_id = element.getAttribute('data-document_id')
+                        let document_id = element.getAttribute('document_id')
                         let id_mirror = element.dataset['mirror_id'];
                         let mi_mirror = document.getElementById(id_mirror)
                         if(mi_mirror)
@@ -468,7 +468,7 @@ function initCursorEl(element){
                     
                     element.addEventListener('focusout',function(event){
                         let name = element.getAttribute('name')
-                        let document_id = element.getAttribute('data-document_id') || '';
+                        let document_id = element.getAttribute('document_id') || '';
                         let id_mirror = element.dataset['mirror_id'];
                         let mi_mirror = document.getElementById(id_mirror)
                         if(mi_mirror)
@@ -531,7 +531,7 @@ function initCursorElements(container) {
     return;
   }
   
-  let elements = mainContainer.querySelectorAll('[data-realtime=true]');
+  let elements = mainContainer.querySelectorAll('[realtime=true]');
   
   elements.forEach(el => {
     initCursorEl(el);
@@ -542,19 +542,19 @@ if(debug)
   console.log("elements to INIT -> ",element_multicursors)
 initialize_multicursor(element_multicursors);
 
-// CoCreateInit.register_old('[data-realtime=true]',initCursorEl);
+// CoCreateInit.register_old('[realtime=true]',initCursorEl);
 // CoCreateInit.register('CoCreateCursor', window, initCursorElements);
 
 observer.init({ 
 	name: 'CoCreateCursor', 
 	observe: ['addedNodes'],
-	target: '[data-collection][data-document_id][name]',
+	target: '[collection][document_id][name]',
 	callback: function(mutation) {
 	  let el = mutation.target;
-	  el.hasAttribute('data-collection') &&
-	  el.hasAttribute('data-document_id') &&
+	  el.hasAttribute('collection') &&
+	  el.hasAttribute('document_id') &&
 	  el.hasAttribute('name') &&
-	  el.getAttribute('data-realtime') == 'true' &&
+	  el.getAttribute('realtime') == 'true' &&
 		initCursorElements(mutation.target)
 	}
 });

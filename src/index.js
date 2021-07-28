@@ -7,7 +7,7 @@ import './index.css';
 let enviroment_prod = true;
 
 let elements; 
-let selector = "[data-collection][data-document_id][name], [data-collection][data-document_id][name][contenteditable]:not([contentEditable='false'])";
+let selector = "[collection][document_id][name], [collection][document_id][name][contenteditable]:not([contentEditable='false'])";
 
 function init() {
     elements = document.querySelectorAll(selector)
@@ -21,7 +21,7 @@ function initElements(elements) {
 }
 
 function initElement(element) {
-    let realtime = element.hasAttribute('data-realtime') ? element.getAttribute('data-realtime') : 'true';
+    let realtime = element.hasAttribute('realtime') ? element.getAttribute('realtime') : 'true';
     if(realtime == 'false') return false;
     _initevents(element)
 }
@@ -128,7 +128,7 @@ function getStyle(el, styleProp) {
 }
 
 // crud.listen('readDocument', function(data) {
-//     let cursor = document.querySelector('.cursor-flag[data-document_id="' + data['document_id'] + '"]')
+//     let cursor = document.querySelector('.cursor-flag[document_id="' + data['document_id'] + '"]')
 //     if(cursor)
 //         cursor.innerHTML = data.result[cursor.getAttribute('name')]
 // })
@@ -141,7 +141,7 @@ function draw_cursor(json) {
         let start = json['startPosition']
         let end = json['endPositon']
         let socket_id = json['clientId']
-        let document_id = element.getAttribute('data-document_id') || '';
+        let document_id = element.getAttribute('document_id') || '';
         if(document_id != '') {
             if(typeof element.dataset['mirror_id'] == 'undefined' || element.dataset['mirror_id'] == '')
                 element.dataset['mirror_id'] = uuid.generate(30)
@@ -172,13 +172,13 @@ function draw_cursor(json) {
                                                   id="socket_' + socket_id + identify + '" \
                                                   ><div class="cursor" \
                                                   style="background-color:' + user.color + '"></div>\
-                                                  <div class="cursor-flag" data-collection="users" \
+                                                  <div class="cursor-flag" collection="users" \
                                                   data-user_name="' + user.name + '" \
                                                   data-user_color="' + user.color + '" \
                                                   data-socket_id="' + socket_id + '" \
                                                   data-id_mirror="' + id_mirror + '" \
-                                                  data-collection="users" \
-                                                  data-document_id="' + user_id + '" \
+                                                  collection="users" \
+                                                  document_id="' + user_id + '" \
                                                   name="name" \
                                                   style="background-color:' + user.color + '" \
                                                   flag>' + user.name + '</div></div>';
@@ -392,7 +392,7 @@ init()
 observer.init({
     name: 'CoCreateCursor',
     observe: ['addedNodes'],
-    target: '[data-collection][data-document_id][name]',
+    target: '[collection][document_id][name]',
     callback: function(mutation) {
         initElement(mutation.target)
     }
