@@ -127,13 +127,6 @@ function getStyle(el, styleProp) {
     return y;
 }
 
-// crud.listen('readDocument', function(data) {
-//     let cursor = document.querySelector('.cursor-flag[document_id="' + data['document_id'] + '"]')
-//     if(cursor)
-//         cursor.innerHTML = data.result[cursor.getAttribute('name')]
-// })
-
-
 function draw_cursor(json) {
     let element = json['element'];
     let activate_cursor = (element.dataset['cursors']) ? element.dataset['mirror_id'] : true;
@@ -185,16 +178,9 @@ function draw_cursor(json) {
                         mi_mirror.innerHTML = cursor_template + mi_mirror.innerHTML;
 
                     }
-                    // if(user_id) {
-                    //     // si tiene user_id actualiza el nombre del cursor usando crud
-                    //     crud.readDocument({
-                    //         'collection': 'users',
-                    //         'document_id': user_id
-                    //     })
-                    // }
                 }
-                cursor = mi_mirror.querySelector('.cursor-container#socket_' + socket_id + identify);
             }
+            cursor = mi_mirror.querySelector('.cursor-container#socket_' + socket_id + identify);
             if(cursor) {
                 let font_size = getStyle(element, 'font-size')
                 font_size = parseFloat(font_size.substring(0, font_size.length - 2));
@@ -236,85 +222,14 @@ function draw_cursor(json) {
                     selection_user.textContent = value_element.substring(0, start);
                     let value_span_selection = value_element.substring(start, end) || ''
                     console.log("Selection ", value_span_selection, start, end)
-                    //selection_span_by_user.style.opacity = 0.5;
                     selection_span_by_user.textContent = value_span_selection;
                     selection_user.appendChild(selection_span_by_user)
-                } //end Selections
-                // else {
-                //     if(selection_user) {
-                //         selection_user.remove()
-                //     }
-                // }
+                } 
             }
         } 
     } 
 } 
 
-
-// Todo: is this same as recalculate cursor
-function refresh_mirror(element) {
-
-    let id_mirror = element.dataset['mirror_id']
-    if(!id_mirror) return;
-   
-    var mi_mirror = document.getElementById(id_mirror)
-    if(mi_mirror) {
-        computed = getComputedStyle(element);
-        style = mi_mirror.style
-        style.width = element.offsetWidth - (parseInt(computed.borderLeftWidth) + parseInt(computed.borderRightWidth)) + 'px'
-        style.height = element.offsetHeight - (parseInt(computed.borderTopWidth) + parseInt(computed.borderBottomWidth)) + 'px'
-        var cursor_container = mi_mirror.querySelectorAll('.cursor-container');
-        cursor_container.forEach(function(child_cursor, index, array) {
-            let child = child_cursor.querySelector('.cursor-flag');
-            let dataset_child = child.dataset;
-            let dataset = child_cursor.dataset;
-            draw_cursor({
-                element: element,
-                startPosition: dataset.start,
-                endPositon: dataset.end,
-                clientId: dataset.socket_id,
-                user: {
-                    'color': dataset_child.user_color,
-                    'name': dataset.user_name
-                },
-            });
-        })
-    }
-} 
-
-function recalculate_local_cursors(element, count) {
-    let my_start = (!element.hasAttribute('contenteditable')) ? element.selectionStart : parseInt(element.getAttribute("selection_start"));
-    let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
-    let mirrorDiv = document.getElementById(id_mirror);
-    let cursor_container = (mirrorDiv) ? mirrorDiv.querySelectorAll('.cursor-container') : null;
-    if(cursor_container) {
-        let containers_cursors = [];
-        cursor_container.forEach(function(child_cursor, index, array) {
-            let start = parseInt(child_cursor.getAttribute('data-start'));
-            let user_name = child_cursor.getAttribute('data-user_name');
-            if(start > my_start && containers_cursors.indexOf(user_name) == -1) {
-                let end = parseInt(child_cursor.getAttribute('data-end'));
-                let pos_start = start + count;
-                let pos_end = end + count;
-                let dataset = child_cursor.querySelector('.cursor-flag').dataset
-                let clientId = dataset.socket_id;
-                let json = {
-                    element: element,
-                    startPosition: pos_start,
-                    endPositon: pos_end,
-                    clientId: clientId,
-                    'user': {
-                        'color': dataset.user_color,
-                        'name': dataset.user_name
-                    },
-                }
-                draw_cursor(json);
-                containers_cursors.push(user_name);
-            }
-
-        })
-    }
-}
 
 
 function _initevents(element) {
@@ -329,13 +244,6 @@ function _initevents(element) {
 
     element.addEventListener('keydown', function(event) {
         scrollMirror(element)
-        // let name = element.getAttribute('name')
-        // let id_mirror = element.dataset['mirror_id'];
-        // let mi_mirror = document.getElementById(id_mirror)
-        // if(mi_mirror) {
-        //     mi_mirror.scrollTo(element.scrollLeft, element.scrollTop);
-        //     refresh_mirror(element)
-        // }
     });
 
     element.addEventListener('keyup', function(event) {
@@ -398,5 +306,5 @@ observer.init({
     }
 });
 
-const CoCreateCursors = { draw_cursor, refresh_mirror, recalculate_local_cursors };
+const CoCreateCursors = { draw_cursor };
 export default CoCreateCursors;
