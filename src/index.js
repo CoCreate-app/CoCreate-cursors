@@ -1,8 +1,6 @@
-import observer from '@cocreate/observer'
-import crud from '@cocreate/crud-client';
+import observer from '@cocreate/observer';
 import uuid from '@cocreate/uuid';
 import './index.css';
-
 
 let enviroment_prod = true;
 
@@ -10,7 +8,7 @@ let elements;
 let selector = "[collection][document_id][name], [collection][document_id][name][contenteditable]:not([contentEditable='false'])";
 
 function init() {
-    elements = document.querySelectorAll(selector)
+    elements = document.querySelectorAll(selector);
     initElements(elements);
 }  
 
@@ -23,12 +21,11 @@ function initElements(elements) {
 function initElement(element) {
     let realtime = element.hasAttribute('realtime') ? element.getAttribute('realtime') : 'true';
     if(realtime == 'false') return false;
-    _initevents(element)
+    _initEvents(element);
 }
 
-var mirrorDiv, computed, style;
-
 var getCaretCoordinates = function(element, position_start, position_end) {
+    var mirrorDiv;
     let ID_MIRROR = element.dataset['mirror_id']; //document_id + name +  '--mirror-div';
     mirrorDiv = document.getElementById(ID_MIRROR);
 
@@ -39,7 +36,6 @@ var getCaretCoordinates = function(element, position_start, position_end) {
         element.insertAdjacentElement('afterend', mirrorDiv);
     }
 
-
     let computed = getComputedStyle(element);
     let rect = element.getBoundingClientRect();
     let style = mirrorDiv.style;
@@ -49,10 +45,10 @@ var getCaretCoordinates = function(element, position_start, position_end) {
     style.left = element.offsetLeft + 'px';
     style.width = rect.width + 'px'; 
     style.height = rect.height + 'px';
-    style.visibility = 'visible'
+    style.visibility = 'visible';
     style.overflowX = 'auto';
     style.overflowY = 'hidden';
-    style.margin = '0px'
+    style.margin = '0px';
     style.border = computed['border'];
     style.borderColor = 'transparent';
     
@@ -84,20 +80,20 @@ var getCaretCoordinates = function(element, position_start, position_end) {
         
     var span = document.createElement('span');
     span.id = element.nodeName + 'span_selections';
-    let value_span = value_element.substring(position_start, position_end) || ''
+    let value_span = value_element.substring(position_start, position_end) || '';
     span.textContent = value_span; 
     mirrorDiv.appendChild(span);
 
     if(cursor_container) {
         cursor_container.forEach(function(child_cursor, index, array) {
             mirrorDiv.appendChild(child_cursor);
-        })
+        });
     }
 
     if(users_selections) {
         users_selections.forEach(function(child_selection, index, array) {
             mirrorDiv.appendChild(child_selection);
-        })
+        });
     }
 
     // create mirror text end
@@ -119,7 +115,7 @@ var getCaretCoordinates = function(element, position_start, position_end) {
     };
 
     return coordinates;
-}
+};
 
 function getStyle(el, styleProp) {
     if(window.getComputedStyle)
@@ -131,32 +127,31 @@ function draw_cursor(json) {
     let element = json['element'];
     let activate_cursor = (element.dataset['cursors']) ? element.dataset['mirror_id'] : true;
     if(activate_cursor) {
-        let start = json['startPosition']
-        let end = json['endPositon']
-        let socket_id = json['clientId']
+        let start = json['startPosition'];
+        let end = json['endPositon'];
+        let socket_id = json['clientId'];
         let document_id = element.getAttribute('document_id') || '';
         if(document_id != '') {
             if(typeof element.dataset['mirror_id'] == 'undefined' || element.dataset['mirror_id'] == '')
-                element.dataset['mirror_id'] = uuid.generate(30)
+                element.dataset['mirror_id'] = uuid.generate(30);
             let coordinates = getCaretCoordinates(element, start, end);
             if(!coordinates)
                 return false;
-            let name = element.getAttribute('name')
             let id_mirror = element.dataset['mirror_id']; //document_id+name+'--mirror-div'
-            let mi_mirror = document.getElementById(id_mirror)
+            let mi_mirror = document.getElementById(id_mirror);
             let cursor = false;
             let selection_user = false;
             let identify = '_' + id_mirror;
-            let user = (typeof(json) != 'undefined' && json.hasOwnProperty('user')) ? json.user : false
-            let user_id = (typeof(json) != 'undefined' && json.hasOwnProperty('user_id')) ? user.user_id : false
+            let user = (typeof(json) != 'undefined' && json.hasOwnProperty('user')) ? json.user : false;
+            let user_id = (typeof(json) != 'undefined' && json.hasOwnProperty('user_id')) ? user.user_id : false;
             if(socket_id) {
                 //if(data && data.hasOwnProperty('id_mirror')){
-                var cursores_other_elements = document.querySelectorAll('#socket_' + socket_id + identify)
+                var cursores_other_elements = document.querySelectorAll('#socket_' + socket_id + identify);
                 cursores_other_elements.forEach(function(child_cursor, index, array) {
                     if(child_cursor.parentElement.getAttribute('id') != id_mirror) {
-                        child_cursor.remove()
+                        child_cursor.remove();
                     }
-                })
+                });
                 //}
                 cursor = mi_mirror.querySelector('.cursor-container#socket_' + socket_id + identify);
                 if(!cursor && json.hasOwnProperty('user')) {
@@ -182,34 +177,32 @@ function draw_cursor(json) {
             }
             cursor = mi_mirror.querySelector('.cursor-container#socket_' + socket_id + identify);
             if(cursor) {
-                let font_size = getStyle(element, 'font-size')
+                let font_size = getStyle(element, 'font-size');
                 font_size = parseFloat(font_size.substring(0, font_size.length - 2));
-                let cursor_height = ((font_size * 112.5) / 100)
-                let my_cursor = cursor.querySelector('.cursor')
-                cursor.dataset.start = start
-                cursor.dataset.end = end
-                cursor.dataset.socket_id = socket_id
+                let cursor_height = ((font_size * 112.5) / 100);
+                let my_cursor = cursor.querySelector('.cursor');
+                cursor.dataset.start = start;
+                cursor.dataset.end = end;
+                cursor.dataset.socket_id = socket_id;
 
                 cursor.style["top"] = coordinates.end.top + "px";
                 cursor.style["width"] = "2px"; //2px
                 my_cursor.style["height"] = cursor_height + "px";
                 cursor.style["left"] = coordinates.end.left + "px";
 
-                
-                //add selections
                 selection_user = document.getElementById('sel-' + socket_id + identify);
                 if(selection_user) {
-                    selection_user.remove()
+                    selection_user.remove();
                 }
                 if((start != end) && user) {
                     // selection_user = document.getElementById('sel-' + socket_id + identify)
                     var scrollwidth = element.offsetWidth - element.scrollWidth;
-                    var padding_right = parseInt(getComputedStyle(element)["paddingRight"])
+                    var padding_right = parseInt(getComputedStyle(element)["paddingRight"]);
                     
                     selection_user = document.createElement('span');
                     selection_user.id = 'sel-' + socket_id + identify;
-                    selection_user.className = 'users_selections'
-                    let style_mirror = getComputedStyle(mi_mirror)
+                    selection_user.className = 'users_selections';
+                    let style_mirror = getComputedStyle(mi_mirror);
                     selection_user.style["position"] = "absolute";
                     selection_user.style["top"] = style_mirror.paddingTop;
                     selection_user.style["left"] = style_mirror.paddingLeft;
@@ -220,10 +213,10 @@ function draw_cursor(json) {
                     selection_span_by_user.style.backgroundColor = user.color;
                     let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
                     selection_user.textContent = value_element.substring(0, start);
-                    let value_span_selection = value_element.substring(start, end) || ''
-                    console.log("Selection ", value_span_selection, start, end)
+                    let value_span_selection = value_element.substring(start, end) || '';
+                    console.log("Selection ", value_span_selection, start, end);
                     selection_span_by_user.textContent = value_span_selection;
-                    selection_user.appendChild(selection_span_by_user)
+                    selection_user.appendChild(selection_span_by_user);
                 } 
             }
         } 
@@ -231,78 +224,49 @@ function draw_cursor(json) {
 } 
 
 
-
-function _initevents(element) {
-
-    element.addEventListener('mousemove', function(event) {
-        scrollMirror(element)
-    });
-
-    element.addEventListener('focusout', function(event) {
-        scrollMirror(element)
-    })
+function _initEvents(element) {
 
     element.addEventListener('keydown', function(event) {
-        scrollMirror(element)
+        scrollMirror(element);
     });
 
-    element.addEventListener('keyup', function(event) {
-        scrollMirror(element)
-    })
-    
     element.addEventListener('scroll', function() {
-        scrollMirror(element)
-    })
+        scrollMirror(element);
+    });
 
     function scrollMirror(element) {
-        let name = element.getAttribute('name')
         let id_mirror = element.dataset['mirror_id'];
-        let mi_mirror = document.getElementById(id_mirror)
+        let mi_mirror = document.getElementById(id_mirror);
         if(mi_mirror)
             mi_mirror.scrollTo(element.scrollLeft, element.scrollTop);
     }
     
     function outputsize() {
         elements.forEach(function(element_for, index, array) {
-            let name = element_for.getAttribute('name')
             let id_mirror = element.dataset['mirror_id'];
-            let mi_mirror = document.getElementById(id_mirror)
+            let mi_mirror = document.getElementById(id_mirror);
             if(mi_mirror) {
                 mi_mirror.style["width"] = element_for.offsetWidth + "px";
                 mi_mirror.style["height"] = element_for.offsetHeight + "px";
                 var isFocused = (document.activeElement === element);
                 if(isFocused)
-                    getCaretCoordinates(element, element.selectionStart, element.selectionEnd)
-                    refresh_mirror(element)
+                    getCaretCoordinates(element, element.selectionStart, element.selectionEnd);
             }
-        })
+        });
     }
     
     new ResizeObserver(outputsize).observe(element)
 
 }
 
-window.addEventListener('resize', function(e) {
-    document.querySelectorAll('[data-mirror_id]').forEach(function(element, index, array) {
-        refresh_mirror(element)
-    }); 
-}, true);
-
-document.addEventListener('scroll', function(e) {
-    document.querySelectorAll('[data-mirror_id]').forEach(function(element, index, array) {
-        refresh_mirror(element)
-    }); 
-}, true);
-
-
-init()
+init();
 
 observer.init({
     name: 'CoCreateCursor',
     observe: ['addedNodes'],
     target: '[collection][document_id][name]',
     callback: function(mutation) {
-        initElement(mutation.target)
+        initElement(mutation.target);
     }
 });
 
