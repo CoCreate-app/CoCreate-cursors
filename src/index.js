@@ -315,5 +315,5 @@ observer.init({
     }
 });
 
-const CoCreateCursors = { draw_cursor };
+const CoCreateCursors = { draw_cursor, removeCursor };
 export default CoCreateCursors;
