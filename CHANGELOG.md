@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.2.0...v1.2.1) (2021-08-02)
+
+
+### Bug Fixes
+
+* remove data- from attributes ([df75c39](https://github.com/CoCreate-app/CoCreate-cursors/commit/df75c3924acb4b0e7e40004034655d0a70e88c5e))
+* remove data- from fetch, pass and filter ([3183ce2](https://github.com/CoCreate-app/CoCreate-cursors/commit/3183ce24d2873d5a45b2917307ace0c4e84e773c))
+* remove refresh and recalculate functions ([561a3f2](https://github.com/CoCreate-app/CoCreate-cursors/commit/561a3f2033f1998e90546575e4131dab8781a535))
+
 # [1.2.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.1.25...v1.2.0) (2021-07-28)
 
 
