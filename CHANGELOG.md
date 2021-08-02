@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.3.0...v1.3.1) (2021-08-02)
+
+
+### Bug Fixes
+
+* refactor drawCursors ([a073200](https://github.com/CoCreate-app/CoCreate-cursors/commit/a073200dbd4945cc3e8b10d6e403916eb4d1ae3b))
+
 # [1.3.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.2.1...v1.3.0) (2021-08-02)
 
 
