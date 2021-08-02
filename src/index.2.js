@@ -173,8 +173,8 @@ function draw_cursor(json) {
                                                   ><div class="cursor" \
                                                   style="background-color:' + user.color + '"></div>\
                                                   <div class="cursor-flag" collection="users" \
-                                                  data-user_name="' + user.name + '" \
-                                                  data-user_color="' + user.color + '" \
+                                                  user-name="' + user.name + '" \
+                                                  user-color="' + user.color + '" \
                                                   data-socket_id="' + socket_id + '" \
                                                   data-id_mirror="' + id_mirror + '" \
                                                   collection="users" \
@@ -291,7 +291,7 @@ function recalculate_local_cursors(element, count) {
         let containers_cursors = [];
         cursor_container.forEach(function(child_cursor, index, array) {
             let start = parseInt(child_cursor.getAttribute('data-start'));
-            let user_name = child_cursor.getAttribute('data-user_name');
+            let user_name = child_cursor.getAttribute('user-name');
             if(start > my_start && containers_cursors.indexOf(user_name) == -1) {
                 let end = parseInt(child_cursor.getAttribute('data-end'));
                 let pos_start = start + count;

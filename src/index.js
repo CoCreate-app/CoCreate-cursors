@@ -127,8 +127,8 @@ function draw_cursor(json) {
     let element = json['element'];
     let activate_cursor = (element.dataset['cursors']) ? element.dataset['mirror_id'] : true;
     if(activate_cursor) {
-        let start = json['startPosition'];
-        let end = json['endPositon'];
+        let start = json['start'];
+        let end = json['end'];
         let socket_id = json['clientId'];
         let document_id = element.getAttribute('document_id') || '';
         if(document_id != '') {
@@ -161,8 +161,8 @@ function draw_cursor(json) {
                                                   ><div class="cursor" \
                                                   style="background-color:' + user.color + '"></div>\
                                                   <div class="cursor-flag" collection="users" \
-                                                  data-user_name="' + user.name + '" \
-                                                  data-user_color="' + user.color + '" \
+                                                  user-name="' + user.name + '" \
+                                                  user-color="' + user.color + '" \
                                                   data-socket_id="' + socket_id + '" \
                                                   data-id_mirror="' + id_mirror + '" \
                                                   collection="users" \
@@ -220,9 +220,54 @@ function draw_cursor(json) {
                 } 
             }
         } 
-    } 
-} 
+    }
+}
 
+function recalculateCursors(element, count) {
+    let my_start = (!element.hasAttribute('contenteditable')) ? element.selectionStart : parseInt(element.getAttribute("selection_start"));
+    let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
+    let mirrorDiv = document.getElementById(id_mirror);
+    let cursor_container = (mirrorDiv) ? mirrorDiv.querySelectorAll('.cursor-container') : null;
+    if(cursor_container) {
+        let containers_cursors = [];
+        cursor_container.forEach(function(child_cursor, index, array) {
+            let start = parseInt(child_cursor.getAttribute('data-start'));
+            let user_name = child_cursor.getAttribute('user-name');
+            if(start > my_start && containers_cursors.indexOf(user_name) == -1) {
+                let end = parseInt(child_cursor.getAttribute('data-end'));
+                let pos_start = start + count;
+                let pos_end = end + count;
+                let dataset = child_cursor.querySelector('.cursor-flag').dataset
+                let clientId = dataset.socket_id;
+                let json = {
+                    element: element,
+                    startPosition: pos_start,
+                    endPositon: pos_end,
+                    clientId: clientId,
+                    'user': {
+                        'color': dataset.user_color,
+                        'name': dataset.user_name
+                    },
+                }
+                draw_cursor(json);
+                containers_cursors.push(user_name);
+            }
+
+        })
+    }
+}
+
+function removeCursor(clientId){
+   let elements = document.querySelectorAll('[id*="socket_'+clientId+'"]');
+	elements.forEach(function (element, index, array) {
+		element.parentNode.removeChild(element);
+	})
+	
+	let sel_elements = document.querySelectorAll('[id*="sel-'+clientId+'"]');
+	  sel_elements.forEach(function (sel_element, index, array) {
+		sel_element.parentNode.removeChild(sel_element);
+	})
+}
 
 function _initEvents(element) {
 
