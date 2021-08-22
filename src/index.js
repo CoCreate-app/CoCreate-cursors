@@ -5,7 +5,7 @@ import './index.css';
 let enviroment_prod = true;
 
 let elements; 
-let selector = "[collection][document_id][name], [collection][document_id][name][contenteditable]:not([contentEditable='false'])";
+let selector = "[collection][document_id][name]:not([contentEditable='false'])";
 
 function init() {
     elements = document.querySelectorAll(selector);
@@ -21,7 +21,7 @@ function initElements(elements) {
 function initElement(element) {
     let realtime = element.getAttribute('realtime');
     let cursors = element.getAttribute('cursors');
-    if (realtime == 'false' || cursors == 'false') return false;
+    if (realtime == 'false' || cursors == 'false') return;
     _initEvents(element);
 }
 
@@ -133,7 +133,7 @@ function drawCursors(selection) {
     const socket_id = selection['clientId'];	
 	
 	let selector = '[collection="'+collection+'"][document_id="'+document_id+'"][name="'+name+'"]';
-	selector += ':not(.codemirror):not(.quill):not(.monaco)';
+	selector += ':not(iframe, .codemirror, .quill, .monaco)';
 	let elements = document.querySelectorAll(selector);
     for(let element of elements) {
         let realtime = element.getAttribute('realtime');
