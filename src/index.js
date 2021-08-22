@@ -19,8 +19,9 @@ function initElements(elements) {
 }
 
 function initElement(element) {
-    let realtime = element.hasAttribute('realtime') ? element.getAttribute('realtime') : 'true';
-    if(realtime == 'false') return false;
+    let realtime = element.getAttribute('realtime');
+    let cursors = element.getAttribute('cursors');
+    if (realtime == 'false' || cursors == 'false') return false;
     _initEvents(element);
 }
 
@@ -135,7 +136,9 @@ function drawCursors(selection) {
 	selector += ':not(.codemirror):not(.quill):not(.monaco)';
 	let elements = document.querySelectorAll(selector);
     for(let element of elements) {
-
+        let realtime = element.getAttribute('realtime');
+        let cursors = element.getAttribute('cursors');
+        if (realtime == 'false' || cursors == 'false') continue;
         if(typeof element.dataset['mirror_id'] == 'undefined' || element.dataset['mirror_id'] == '')
             element.dataset['mirror_id'] = uuid.generate(30);
         let coordinates = getCaretCoordinates(element, start, end);
