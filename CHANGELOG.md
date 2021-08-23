@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.3.3...v1.4.0) (2021-08-23)
+
+
+### Bug Fixes
+
+* selector not(iframe) ([7af4b22](https://github.com/CoCreate-app/CoCreate-cursors/commit/7af4b22cfb8f7387ea65d21c6f48d2b1b7f7065c))
+
+
+### Features
+
+* cusrsors will not display for elements with attribbute cursors=flase defined ([2271532](https://github.com/CoCreate-app/CoCreate-cursors/commit/22715324187004b251601cae98cf14d59e3a35a6))
+
 ## [1.3.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.3.2...v1.3.3) (2021-08-22)
 
 
