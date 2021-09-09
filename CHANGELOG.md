@@ -1,3 +1,10 @@
+## [1.4.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.4.5...v1.4.6) (2021-09-09)
+
+
+### Bug Fixes
+
+* CoCreate.config directory, path, name and  public ([1c8c03a](https://github.com/CoCreate-app/CoCreate-cursors/commit/1c8c03a0115714bc6310573d623c206fc77fdfff))
+
 ## [1.4.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.4.4...v1.4.5) (2021-09-08)
 
 
