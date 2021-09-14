@@ -1,3 +1,10 @@
+## [1.4.11](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.4.10...v1.4.11) (2021-09-14)
+
+
+### Bug Fixes
+
+* add cocreate.app to domains ([0b97692](https://github.com/CoCreate-app/CoCreate-cursors/commit/0b976925f998c727d2b77348f807ec71a595a326))
+
 ## [1.4.10](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.4.9...v1.4.10) (2021-09-13)
 
 
