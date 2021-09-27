@@ -22,12 +22,15 @@ function initElement(element) {
     let realtime = element.getAttribute('realtime');
     let cursors = element.getAttribute('cursors');
     if (realtime == 'false' || cursors == 'false') return;
+    if(element.cursor) return;
     _initEvents(element);
+    element.cursor = true;
 }
 
 var getCaretCoordinates = function(element, position_start, position_end) {
     var mirrorDiv;
     let ID_MIRROR = element.dataset['mirror_id']; //document_id + name +  '--mirror-div';
+    let document = element.ownerDocument;
     mirrorDiv = document.getElementById(ID_MIRROR);
 
     if(!mirrorDiv) {
@@ -47,8 +50,10 @@ var getCaretCoordinates = function(element, position_start, position_end) {
     style.width = rect.width + 'px'; 
     style.height = rect.height + 'px';
     style.visibility = 'visible';
-    style.overflowX = 'auto';
-    style.overflowY = 'hidden';
+    // style.overflowX = 'auto';
+    style.overflowX = computed['overflowX'];
+    style.overflowY = computed['overflowY'];
+    // style.overflowY = 'hidden';
     style.margin = '0px';
     style.border = computed['border'];
     style.borderColor = 'transparent';
@@ -125,17 +130,25 @@ function getStyle(el, styleProp) {
 }
 
 function drawCursors(selection) {
+	const socket_id = selection['clientId'];	
 	const collection = selection['collection'];
 	const document_id = selection['document_id'];
 	const name = selection['name'];
-    const start = selection['start'];
-    const end = selection['end'];
-    const socket_id = selection['clientId'];	
+    let start = selection['start'];
+    let end = selection['end'];
 	
 	let selector = '[collection="'+collection+'"][document_id="'+document_id+'"][name="'+name+'"]';
-	selector += ':not(iframe, .codemirror, .quill, .monaco)';
+	selector += ':not(.codemirror, .quill, .monaco)';
 	let elements = document.querySelectorAll(selector);
     for(let element of elements) {
+        if (element.tagName == 'IFRAME') {
+            let domTextEditor = element.contentDocument.documentElement;
+            let {target, tagStClAfPos} = CoCreate.text.findElByPos(domTextEditor, start)
+        	element = domTextEditor.querySelector(`[element_id="${target}"]`);
+        	start = start - tagStClAfPos;
+    	    end = end - tagStClAfPos;
+        }
+        let document = element.ownerDocument;
         let realtime = element.getAttribute('realtime');
         let cursors = element.getAttribute('cursors');
         if (realtime == 'false' || cursors == 'false') continue;
@@ -226,41 +239,6 @@ function drawCursors(selection) {
     } 
 }
 
-function updateCursors(element, count) {
-    // let {collection, document_id, name} = crud.getAttr(element)
-    let my_start = (!element.hasAttribute('contenteditable')) ? element.selectionStart : parseInt(element.getAttribute("selection_start"));
-    let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
-    let mirrorDiv = document.getElementById(id_mirror);
-    let cursor_container = (mirrorDiv) ? mirrorDiv.querySelectorAll('.cursor-container') : null;
-    if(cursor_container) {
-        let containers_cursors = [];
-        cursor_container.forEach(function(child_cursor, index, array) {
-            let start = parseInt(child_cursor.getAttribute('data-start'));
-            let user_name = child_cursor.getAttribute('user-name');
-            if(start > my_start && containers_cursors.indexOf(user_name) == -1) {
-                let end = parseInt(child_cursor.getAttribute('data-end'));
-                let pos_start = start + count;
-                let pos_end = end + count;
-                let dataset = child_cursor.querySelector('.cursor-flag').dataset;
-                let clientId = dataset.socket_id;
-                let selection = {
-                    element: element,
-                    startn: pos_start,
-                    end: pos_end,
-                    clientId: clientId,
-                    'user': {
-                        'color': dataset.user_color,
-                        'name': dataset.user_name
-                    },
-                };
-                drawCursors(selection);
-                containers_cursors.push(user_name);
-            }
-
-        });
-    }
-}
-
 function removeCursor(clientId){
    let elements = document.querySelectorAll('[id*="socket_'+clientId+'"]');
 	elements.forEach(function (element, index, array) {
@@ -319,5 +297,14 @@ observer.init({
     }
 });
 
-const CoCreateCursors = { drawCursors, updateCursors, removeCursor };
+observer.init({
+    name: 'CoCreateCursorAtt',
+	observe: ['attributes'],
+	attributeName: ['collection', 'document_id', 'name'],
+    callback: function(mutation) {
+        initElement(mutation.target);
+    }
+});
+
+const CoCreateCursors = { drawCursors, removeCursor };
 export default CoCreateCursors;
