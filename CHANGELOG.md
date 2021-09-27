@@ -1,3 +1,10 @@
+# [1.5.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.4.12...v1.5.0) (2021-09-27)
+
+
+### Features
+
+* send and display shared cursor position between text and dom ([9cf69c1](https://github.com/CoCreate-app/CoCreate-cursors/commit/9cf69c1c8c3f21df29f34e26b3ddbd652e31180c))
+
 ## [1.4.12](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.4.11...v1.4.12) (2021-09-16)
 
 
