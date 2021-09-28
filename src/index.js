@@ -1,3 +1,4 @@
+/*globals ResizeObserver*/
 import observer from '@cocreate/observer';
 import uuid from '@cocreate/uuid';
 import text from '@cocreate/text';
@@ -144,7 +145,7 @@ function drawCursors(selection) {
     for(let element of elements) {
         if (element.tagName == 'IFRAME') {
             let domTextEditor = element.contentDocument.documentElement;
-            let {target, tagStClAfPos} = text.findElByPos(domTextEditor, start)
+            let {target, tagStClAfPos} = text.findElByPos(domTextEditor, start);
         	element = domTextEditor.querySelector(`[element_id="${target}"]`);
         	start = start - tagStClAfPos;
     	    end = end - tagStClAfPos;
@@ -240,6 +241,35 @@ function drawCursors(selection) {
     } 
 }
 
+function updateCursors(element) {
+    let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
+    let mirrorDiv = document.getElementById(id_mirror);
+    let cursor_containers = (mirrorDiv) ? mirrorDiv.querySelectorAll('.cursor-container') : null;
+    
+    if(cursor_containers) {
+        // let containers_cursors = [];
+        cursor_containers.forEach(function(child_cursor, index, array) {
+            let clientId = dataset.socket_id;
+            // let user_name = child_cursor.getAttribute('user-name');
+            let start = parseInt(child_cursor.getAttribute('data-start'));
+            let end = parseInt(child_cursor.getAttribute('data-end'));
+            let dataset = child_cursor.querySelector('.cursor-flag').dataset;
+            let selection = {
+                element: element,
+                startn: start,
+                end: end,
+                clientId: clientId,
+                'user': {
+                    'color': dataset.user_color,
+                    'name': dataset.user_name
+                },
+            };
+            drawCursors(selection);
+            // containers_cursors.push(user_name);
+        });
+    }
+}
+
 function removeCursor(clientId){
    let elements = document.querySelectorAll('[id*="socket_'+clientId+'"]');
 	elements.forEach(function (element, index, array) {
@@ -269,22 +299,8 @@ function _initEvents(element) {
             elementMirror.scrollTo(element.scrollLeft, element.scrollTop);
     }
     
-    function outputsize() {
-        elements.forEach(function(element_for, index, array) {
-            let id_mirror = element.dataset['mirror_id'];
-            let elementMirror = document.getElementById(id_mirror);
-            if(elementMirror) {
-                elementMirror.style["width"] = element_for.offsetWidth + "px";
-                elementMirror.style["height"] = element_for.offsetHeight + "px";
-                var isFocused = (document.activeElement === element);
-                if(isFocused)
-                    getCaretCoordinates(element, element.selectionStart, element.selectionEnd);
-            }
-        });
-    }
-    
-    new ResizeObserver(outputsize).observe(element)
-
+    const watch = new ResizeObserver(() => updateCursors(element));
+    watch.observe(element);
 }
 
 init();
@@ -307,5 +323,5 @@ observer.init({
     }
 });
 
-const CoCreateCursors = { drawCursors, removeCursor };
-export default CoCreateCursors;
+// const CoCreateCursors = ;
+export default { drawCursors, removeCursor };
