@@ -5,6 +5,7 @@ import text from '@cocreate/text';
 import './index.css';
 
 let enviroment_prod = true;
+let documents = new Map();
 
 let elements; 
 let selector = "[collection][document_id][name]:not([contentEditable='false'])";
@@ -25,21 +26,30 @@ function initElement(element) {
     let cursors = element.getAttribute('cursors');
     if (realtime == 'false' || cursors == 'false') return;
     if(element.cursor) return;
-    _initEvents(element);
     element.cursor = true;
 }
 
-var getCaretCoordinates = function(element, position_start, position_end) {
+function initDocument(doc){
+	if(!documents.has(doc.window)) {
+		initResizeObserver(doc.documentElement);
+    	documents.set(doc);
+	}
+}
+
+var getCoordinates = function(element, position_start, position_end) {
     var mirrorDiv;
-    let ID_MIRROR = element.dataset['mirror_id']; //document_id + name +  '--mirror-div';
+    let ID_MIRROR = element.getAttribute('mirror_id'); 
     let document = element.ownerDocument;
     mirrorDiv = document.getElementById(ID_MIRROR);
 
     if(!mirrorDiv) {
         mirrorDiv = document.createElement('div');
-        mirrorDiv.id = ID_MIRROR; //document_id +name+ '--mirror-div';
-        mirrorDiv.className = (enviroment_prod) ? 'mirror_color mirror_scroll mirror-width-scroll' : 'mirror-width-scroll';
+        mirrorDiv.id = ID_MIRROR; 
+        mirrorDiv.className = (enviroment_prod) ? 'mirror mirror_scroll mirror_color' : 'mirror mirror_scroll';
+        mirrorDiv.element = element; 
         element.insertAdjacentElement('afterend', mirrorDiv);
+        _initEvents(element);
+        initDocument(document);
     }
 
     let computed = getComputedStyle(element);
@@ -52,10 +62,8 @@ var getCaretCoordinates = function(element, position_start, position_end) {
     style.width = rect.width + 'px'; 
     style.height = rect.height + 'px';
     style.visibility = 'visible';
-    // style.overflowX = 'auto';
     style.overflowX = computed['overflowX'];
     style.overflowY = computed['overflowY'];
-    // style.overflowY = 'hidden';
     style.margin = '0px';
     style.border = computed['border'];
     style.borderColor = 'transparent';
@@ -138,10 +146,12 @@ function drawCursors(selection) {
 	const name = selection['name'];
     let start = selection['start'];
     let end = selection['end'];
-	
-	let selector = '[collection="'+collection+'"][document_id="'+document_id+'"][name="'+name+'"]';
-	selector += ':not(.codemirror, .quill, .monaco)';
-	let elements = document.querySelectorAll(selector);
+	let elements = selection.element;
+	if (!elements) {
+    	let selector = '[collection="'+collection+'"][document_id="'+document_id+'"][name="'+name+'"]';
+    	selector += ':not(.codemirror, .quill, .monaco)';
+    	elements = document.querySelectorAll(selector);
+	}
     for(let element of elements) {
         if (element.tagName == 'IFRAME') {
             let domTextEditor = element.contentDocument.documentElement;
@@ -154,37 +164,33 @@ function drawCursors(selection) {
         let realtime = element.getAttribute('realtime');
         let cursors = element.getAttribute('cursors');
         if (realtime == 'false' || cursors == 'false') continue;
-        if(typeof element.dataset['mirror_id'] == 'undefined' || element.dataset['mirror_id'] == '')
-            element.dataset['mirror_id'] = uuid.generate(30);
-        let coordinates = getCaretCoordinates(element, start, end);
-        if(!coordinates)
-            return false;
-        let id_mirror = element.dataset['mirror_id']; //document_id+name+'--mirror-div'
+        let id_mirror = element.getAttribute('mirror_id');
+        if(!id_mirror)
+            element.setAttribute('mirror_id', uuid.generate(8));
+            id_mirror = element.getAttribute('mirror_id');
+        let coordinates = getCoordinates(element, start, end);
+        if(!coordinates) return false;
+        
         let elementMirror = document.getElementById(id_mirror);
-        let cursor = false;
-        let selection_user = false;
-        let identify = '_' + id_mirror;
+        let cursor;
+        // let selection_user = false;
         let user = (typeof(selection) != 'undefined' && selection.hasOwnProperty('user')) ? selection.user : false;
         let user_id = (typeof(selection) != 'undefined' && selection.hasOwnProperty('user_id')) ? user.user_id : false;
         if(socket_id) {
-            var cursores_other_elements = document.querySelectorAll('#socket_' + socket_id + identify);
+            var cursores_other_elements = document.querySelectorAll('#socket_' + socket_id);
             cursores_other_elements.forEach(function(child_cursor, index, array) {
                 if(child_cursor.parentElement.getAttribute('id') != id_mirror) {
                     child_cursor.remove();
                 }
             });
-            cursor = elementMirror.querySelector('.cursor-container#socket_' + socket_id + identify);
+            cursor = elementMirror.querySelector('.cursor-container#socket_' + socket_id);
             if(!cursor && selection.hasOwnProperty('user')) {
                 if(user) {
                     let cursor_template = '<div style="color:blue;" class="cursor-container" \
-                                            id="socket_' + socket_id + identify + '" \
+                                            id="socket_' + socket_id + '" \
                                               ><div class="cursor" \
                                               style="background-color:' + user.color + '"></div>\
-                                              <div class="cursor-flag" collection="users" \
-                                              user-name="' + user.name + '" \
-                                              user-color="' + user.color + '" \
-                                              data-socket_id="' + socket_id + '" \
-                                              data-id_mirror="' + id_mirror + '" \
+                                              <div class="cursor-flag" \
                                               collection="users" \
                                               document_id="' + user_id + '" \
                                               name="name" \
@@ -194,7 +200,7 @@ function drawCursors(selection) {
                 }
             }
         }
-        cursor = elementMirror.querySelector('.cursor-container#socket_' + socket_id + identify);
+        cursor = elementMirror.querySelector('.cursor-container#socket_' + socket_id);
         if(cursor) {
             let font_size = getStyle(element, 'font-size');
             font_size = parseFloat(font_size.substring(0, font_size.length - 2));
@@ -202,24 +208,23 @@ function drawCursors(selection) {
             let my_cursor = cursor.querySelector('.cursor');
             cursor.dataset.start = start;
             cursor.dataset.end = end;
-            cursor.dataset.socket_id = socket_id;
-
-            cursor.style["top"] = coordinates.end.top + "px";
+            cursor.setAttribute('socket_id', socket_id);
+            cursor.setAttribute('user-name', user.name);
+            cursor.setAttribute('user-color', user.color);
             cursor.style["width"] = "2px"; //2px
             my_cursor.style["height"] = cursor_height + "px";
             cursor.style["left"] = coordinates.end.left + "px";
 
-            selection_user = document.getElementById('sel-' + socket_id + identify);
+            let selection_user = document.getElementById('sel-' + socket_id);
             if(selection_user) {
                 selection_user.remove();
             }
             if((start != end) && user) {
-                // selection_user = document.getElementById('sel-' + socket_id + identify)
                 var scrollwidth = element.offsetWidth - element.scrollWidth;
                 var padding_right = parseInt(getComputedStyle(element)["paddingRight"]);
                 
                 selection_user = document.createElement('span');
-                selection_user.id = 'sel-' + socket_id + identify;
+                selection_user.id = 'sel-' + socket_id;
                 selection_user.className = 'users_selections';
                 let style_mirror = getComputedStyle(elementMirror);
                 selection_user.style["position"] = "absolute";
@@ -228,7 +233,7 @@ function drawCursors(selection) {
                 selection_user.style["padding-right"] = scrollwidth + padding_right + "px";
                 elementMirror.insertBefore(selection_user, elementMirror.firstChild);
                 let selection_span_by_user = document.createElement('span');
-                selection_span_by_user.id = 'selection-' + socket_id + identify;
+                selection_span_by_user.id = 'selection-' + socket_id;
                 selection_span_by_user.style.backgroundColor = user.color;
                 let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
                 selection_user.textContent = value_element.substring(0, start);
@@ -242,30 +247,36 @@ function drawCursors(selection) {
 }
 
 function updateCursors(element) {
-    let id_mirror = element.dataset['mirror_id']; //let id_mirror = document_id+name+'--mirror-div';
-    let mirrorDiv = document.getElementById(id_mirror);
-    let cursor_containers = (mirrorDiv) ? mirrorDiv.querySelectorAll('.cursor-container') : null;
+    let mirrorDivs;
+    let id_mirror = element.getAttribute('mirror_id');
+    if (id_mirror){
+        let mirrorDiv = element.ownerDocument.getElementById(id_mirror);
+        if (mirrorDiv)
+            mirrorDivs = [mirrorDiv];
+    } else {
+        mirrorDivs = element.querySelectorAll('.mirror');
+    }
+    for ( let mirrorDiv of mirrorDivs){
+        element = mirrorDiv.element;
+        let cursor_containers = mirrorDiv.querySelectorAll('.cursor-container');
     
-    if(cursor_containers) {
-        // let containers_cursors = [];
         cursor_containers.forEach(function(child_cursor, index, array) {
-            let clientId = dataset.socket_id;
-            // let user_name = child_cursor.getAttribute('user-name');
-            let start = parseInt(child_cursor.getAttribute('data-start'));
-            let end = parseInt(child_cursor.getAttribute('data-end'));
-            let dataset = child_cursor.querySelector('.cursor-flag').dataset;
+            let clientId = child_cursor.getAttribute('socket_id');
+            let user_name = child_cursor.getAttribute('user-name');
+            let user_color = child_cursor.getAttribute('user-color');
+            let start = child_cursor.getAttribute('data-start');
+            let end = child_cursor.getAttribute('data-end');
             let selection = {
-                element: element,
-                startn: start,
+                element: [element],
+                start: start,
                 end: end,
                 clientId: clientId,
-                'user': {
-                    'color': dataset.user_color,
-                    'name': dataset.user_name
+                user: {
+                    'color': user_color,
+                    'name': user_name
                 },
             };
             drawCursors(selection);
-            // containers_cursors.push(user_name);
         });
     }
 }
@@ -293,12 +304,15 @@ function _initEvents(element) {
     });
 
     function scrollMirror(element) {
-        let id_mirror = element.dataset['mirror_id'];
+        let id_mirror = element.getAttribute('mirror_id');
         let elementMirror = document.getElementById(id_mirror);
         if(elementMirror)
             elementMirror.scrollTo(element.scrollLeft, element.scrollTop);
     }
-    
+    initResizeObserver(element);
+}
+
+function initResizeObserver(element){
     const watch = new ResizeObserver(() => updateCursors(element));
     watch.observe(element);
 }
@@ -323,5 +337,4 @@ observer.init({
     }
 });
 
-// const CoCreateCursors = ;
 export default { drawCursors, removeCursor };

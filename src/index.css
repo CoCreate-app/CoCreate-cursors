@@ -1,12 +1,10 @@
-/*Textarea and Input Cursor*/
 .cursor-container{
     position:absolute;
+    display: inline-block;
     width:2px;
     z-index:10;
 }
-/*.cursor:hover ~ .cursor-flag{*/
-/*  display:block;*/
-/*}*/
+
 .cursor{
     position:absolute;
     background-color: red;
@@ -14,10 +12,7 @@
     height:15px;
     width:100%;
 }
-/*.cursor-flag:hover{*/
-/* height:none;*/
-/* width:none;*/
-/*}*/
+
 .cursor-flag{
 position:absolute;
 background-color: rgb(236, 212, 68);
@@ -41,6 +36,7 @@ white-space: nowrap;
 /*bottom: 1rem;*/
 
 }
+
 .selection{
  background-color: #30bced33;
  opacity: 0.6;
@@ -59,23 +55,23 @@ background-color: transparent;
 /*border-color:black;*/
 z-index:5;
 }
+
 input{
     position:relative;
     background-color: transparent;
     z-index:5;
 }
+
 .mirror_color{
     color : transparent;
     pointer-events:none;  
-    overflow:auto;
-}
-.mirror_scroll::-webkit-scrollbar {
-   background: rgba(0, 0, 0, 0.00);
-}
-.mirror-width-scroll::-webkit-scrollbar {
-    width: 0px;
+    /*overflow:auto;*/
 }
 
+.mirror_scroll::-webkit-scrollbar {
+   background: rgba(0, 0, 0, 0.00);
+   width: 0px;
+}
 
 
 /*Codemirror Cusor*/
