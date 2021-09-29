@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.5.3...v1.6.0) (2021-09-29)
+
+
+### Features
+
+* resizing element or document will recalculate cursor position ([93a8892](https://github.com/CoCreate-app/CoCreate-cursors/commit/93a88929183968b14feb1cd6564dec5fae00f7a5))
+
 ## [1.5.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.5.2...v1.5.3) (2021-09-28)
 
 
