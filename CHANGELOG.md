@@ -1,3 +1,10 @@
+## [1.6.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.6.0...v1.6.1) (2021-10-01)
+
+
+### Bug Fixes
+
+* cursor alignemet was off due to scrollbar width ([a720e04](https://github.com/CoCreate-app/CoCreate-cursors/commit/a720e04490fd464ac52d79e9c7401304dc99985a))
+
 # [1.6.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.5.3...v1.6.0) (2021-09-29)
 
 
