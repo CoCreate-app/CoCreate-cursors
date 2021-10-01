@@ -62,6 +62,10 @@ input{
     z-index:5;
 }
 
+.mirror{
+    pointer-events:none;  
+}
+
 .mirror_color{
     color : transparent;
     pointer-events:none;  

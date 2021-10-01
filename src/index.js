@@ -46,6 +46,7 @@ var getCoordinates = function(element, position_start, position_end) {
         mirrorDiv = document.createElement('div');
         mirrorDiv.id = ID_MIRROR; 
         mirrorDiv.className = (enviroment_prod) ? 'mirror mirror_scroll mirror_color' : 'mirror mirror_scroll';
+        mirrorDiv.contentEditable = false; 
         mirrorDiv.element = element; 
         element.insertAdjacentElement('afterend', mirrorDiv);
         _initEvents(element);
@@ -54,6 +55,7 @@ var getCoordinates = function(element, position_start, position_end) {
 
     let computed = getComputedStyle(element);
     let rect = element.getBoundingClientRect();
+    let scrollBarWidth = element.offsetWidth - element.clientWidth;
     let style = mirrorDiv.style;
 
     style.position = 'absolute';
@@ -65,6 +67,7 @@ var getCoordinates = function(element, position_start, position_end) {
     style.overflowX = computed['overflowX'];
     style.overflowY = computed['overflowY'];
     style.margin = '0px';
+    style.paddingRight = parseInt(computed['paddingRight']) + scrollBarWidth + 'px';
     style.border = computed['border'];
     style.borderColor = 'transparent';
     
@@ -76,7 +79,7 @@ var getCoordinates = function(element, position_start, position_end) {
         style.whiteSpace = 'pre';
     }
     
-    let properties = ['boxSizing', 'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft', 'fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize', 'lineHeight', 'fontFamily', 'textAlign', 'textTransform', 'textIndent', 'textDecoration', 'letterSpacing', 'wordSpacing', 'textRendering', 'webkitWritingMode', 'textTransform', 'textIndent', 'overflowWrap'];
+    let properties = ['boxSizing', 'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth', 'paddingTop', 'paddingBottom', 'paddingLeft', 'fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize', 'lineHeight', 'fontFamily', 'textAlign', 'textTransform', 'textIndent', 'textDecoration', 'letterSpacing', 'wordSpacing', 'textRendering', 'webkitWritingMode', 'textTransform', 'textIndent', 'overflowWrap'];
     
     properties.forEach(function(prop) {
         if(['left', 'top'].indexOf(prop.toLowerCase()) === -1)
