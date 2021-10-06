@@ -1,3 +1,10 @@
+## [1.6.8](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.6.7...v1.6.8) (2021-10-06)
+
+
+### Bug Fixes
+
+* add @cocreate/selection ([9b75c75](https://github.com/CoCreate-app/CoCreate-cursors/commit/9b75c75dfd0900f0057ea21fe325e1533efab921))
+
 ## [1.6.7](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.6.6...v1.6.7) (2021-10-06)
 
 
