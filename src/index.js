@@ -15,7 +15,6 @@ function init() {
     initElements(elements);
 }  
 
-
 function initElements(elements) {
     for(let element of elements)
         initElement(element);
@@ -25,6 +24,7 @@ function initElement(element) {
     let realtime = element.getAttribute('realtime');
     let cursors = element.getAttribute('cursors');
     if (realtime == 'false' || cursors == 'false') return;
+    if(element.hasAttribute('actions')) return;
     if(element.cursor) return;
     element.cursor = true;
 }
@@ -55,7 +55,9 @@ var getCoordinates = function(element, position_start, position_end) {
 
     let computed = getComputedStyle(element);
     let rect = element.getBoundingClientRect();
-    let scrollBarWidth = element.offsetWidth - element.clientWidth;
+    let scrollBarWidth = 0;
+    if(element.clientWidth != 0)
+        scrollBarWidth = element.offsetWidth - element.clientWidth;
     let style = mirrorDiv.style;
 
     style.position = 'absolute';
@@ -152,7 +154,7 @@ function drawCursors(selection) {
 	let elements = selection.element;
 	if (!elements) {
     	let selector = '[collection="'+collection+'"][document_id="'+document_id+'"][name="'+name+'"]';
-    	selector += ':not(.codemirror, .quill, .monaco)';
+    	selector += ':not(.codemirror, .quill, .monaco, [actions])';
     	elements = document.querySelectorAll(selector);
 	}
     for(let element of elements) {
@@ -214,7 +216,6 @@ function drawCursors(selection) {
             cursor.setAttribute('socket_id', socket_id);
             cursor.setAttribute('user-name', user.name);
             cursor.setAttribute('user-color', user.color);
-            cursor.style["width"] = "2px"; //2px
             my_cursor.style["height"] = cursor_height + "px";
             cursor.style["left"] = coordinates.end.left + "px";
 

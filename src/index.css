@@ -1,96 +1,97 @@
-.cursor-container{
-    position:absolute;
+.cursor-container {
+    position: absolute;
     display: inline-block;
-    width:2px;
-    z-index:10;
+    width: 2px;
+    /*z-index:10;*/
 }
 
-.cursor{
-    position:absolute;
+.cursor {
+    position: absolute;
     background-color: red;
     opacity: 0.9;
-    height:15px;
-    width:100%;
+    height: 15px;
+    width: 100%;
 }
 
-.cursor-flag{
-position:absolute;
-background-color: rgb(236, 212, 68);
-top:0px;
-font-size: 0px;
-color:white;
-height:6px;
-width: 6px;
-left: -2px;
-/*z-index:999;*/
-pointer-events:auto;
-}
-.cursor-flag:hover{
-height:14px;
-/*top:-5px;*/
-width:unset;
-padding: 1px 5px 0px 5px;
-font-size: 12px;
-line-height:1;
-white-space: nowrap;
-/*bottom: 1rem;*/
-
+.cursor-flag {
+    position: absolute;
+    background-color: rgb(236, 212, 68);
+    top: 0px;
+    font-size: 0px;
+    color: white;
+    height: 6px;
+    width: 6px;
+    left: -2px;
+    pointer-events: auto;
 }
 
-.selection{
- background-color: #30bced33;
- opacity: 0.6;
-
-}
-.cursor-selection{
- position: absolute;
-}
-
-textarea{
-position: relative;
-background-color: transparent;
-/*padding: 20px;*/
-/*margin : 40px;*/
-/*border-width:10px;*/
-/*border-color:black;*/
-z-index:5;
+.cursor-flag:hover {
+    height: 14px;
+    /*top:-5px;*/
+    width: unset;
+    padding: 1px 5px 0px 5px;
+    font-size: 12px;
+    line-height: 1;
+    white-space: nowrap;
+    /*bottom: 1rem;*/
 }
 
-input{
-    position:relative;
+.selection {
+    background-color: #30bced33;
+    opacity: 0.6;
+}
+
+.cursor-selection {
+    position: absolute;
+}
+
+textarea {
+    position: relative;
     background-color: transparent;
-    z-index:5;
+    /*padding: 20px;*/
+    /*margin : 40px;*/
+    /*border-width:10px;*/
+    /*border-color:black;*/
+    z-index: 5;
 }
 
-.mirror{
-    pointer-events:none;  
+input {
+    position: relative;
+    background-color: transparent;
+    z-index: 5;
 }
 
-.mirror_color{
-    color : transparent;
-    pointer-events:none;  
+.mirror {
+    pointer-events: none;
+}
+
+.mirror_color {
+    color: transparent;
+    pointer-events: none;
     /*overflow:auto;*/
 }
 
 .mirror_scroll::-webkit-scrollbar {
-   background: rgba(0, 0, 0, 0.00);
-   width: 0px;
+    background: rgba(0, 0, 0, 0.00);
+    width: 0px;
 }
 
 
 /*Codemirror Cusor*/
-  .remote-caret {
+
+.remote-caret {
     position: absolute;
     border-left: black;
     border-left-style: solid;
     border-left-width: 2px;
     height: 1.2em;
-  }
-  .remote-caret > div {
+}
+
+.remote-caret>div {
     position: relative;
     /*top: -1.05em;*/
     bottom: .3em;
-    left:-4px;
+    left: -4px;
     font-size: 13px;
     background-color: rgb(250, 129, 0);
     font-family: serif;
@@ -100,45 +101,48 @@ input{
     user-select: none;
     color: transparent;
     z-index: 3;
-    height:6px;
+    height: 6px;
     width: 6px;
     overflow: hidden;
-  }
-  
-.remote-caret > div:hover{
- height:unset;
- width:unset;
- padding-left: 2px;
- padding-right: 2px;
- font-size: 13px;
- bottom: 1em;
- color: white;
+}
 
- }
- 
- 
+.remote-caret>div:hover {
+    height: unset;
+    width: unset;
+    padding-left: 2px;
+    padding-right: 2px;
+    font-size: 13px;
+    bottom: 1em;
+    color: white;
+
+}
+
+
 /*Quill Cursor */
-  .ql-cursor .ql-cursor-flag{
+
+.ql-cursor .ql-cursor-flag {
     opacity: 1;
     visibility: visible;
 
-  }
-  
-  .ql-cursor-flag {
-    width:6px;
-    height:6px;
+}
+
+.ql-cursor-flag {
+    width: 6px;
+    height: 6px;
     margin-top: 2px;
     margin-left: -2px;
     opacity: 1!important;
     visibility: visible!important;
     transition: none;
-    overflow:hidden;
-  }
-  .ql-cursor-flag:hover {
-    width:unset;
-    height:unset;
+    overflow: hidden;
+}
 
-  }
-  .users_selections{
-      opacity:0.4;
-  }
+.ql-cursor-flag:hover {
+    width: unset;
+    height: unset;
+
+}
+
+.users_selections {
+    opacity: 0.4;
+}
