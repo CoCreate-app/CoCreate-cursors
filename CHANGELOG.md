@@ -1,3 +1,10 @@
+## [1.6.7](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.6.6...v1.6.7) (2021-10-06)
+
+
+### Bug Fixes
+
+* clientwidth sometimes returned 0 creating a large padding and causing cursor position to be off ([fbf85ad](https://github.com/CoCreate-app/CoCreate-cursors/commit/fbf85adfd6aeea252fc62a26a7bc350762961126))
+
 ## [1.6.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.6.5...v1.6.6) (2021-10-05)
 
 
