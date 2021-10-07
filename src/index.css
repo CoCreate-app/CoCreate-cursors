@@ -45,21 +45,21 @@
     position: absolute;
 }
 
-textarea {
-    position: relative;
-    background-color: transparent;
+/*textarea {*/
+/*    position: relative;*/
+/*    background-color: transparent;*/
     /*padding: 20px;*/
     /*margin : 40px;*/
     /*border-width:10px;*/
     /*border-color:black;*/
-    z-index: 5;
-}
+/*    z-index: 5;*/
+/*}*/
 
-input {
-    position: relative;
-    background-color: transparent;
-    z-index: 5;
-}
+/*input {*/
+/*    position: relative;*/
+/*    background-color: transparent;*/
+/*    z-index: 5;*/
+/*}*/
 
 .mirror {
     pointer-events: none;
