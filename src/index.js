@@ -14,6 +14,13 @@ let selector = "[collection][document_id][name]:not([contentEditable='false'])";
 function init() {
     elements = document.querySelectorAll(selector);
     initElements(elements);
+    window.addEventListener('updateCursor', function(event) {
+        drawCursors(event.detail.selection);
+    });
+    
+    window.addEventListener('removeCursor', function(event) {
+        removeCursor(event.detail.clientId);
+    });
 }  
 
 function initElements(elements) {
@@ -299,7 +306,6 @@ function removeCursor(clientId){
 }
 
 function _initEvents(element) {
-
     element.addEventListener('keydown', function(event) {
         scrollMirror(element);
     });
@@ -342,4 +348,4 @@ observer.init({
     }
 });
 
-export default { drawCursors, removeCursor };
+export default { drawCursors, updateCursors, removeCursor };
