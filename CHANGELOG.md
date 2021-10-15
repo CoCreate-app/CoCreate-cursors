@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.6.15...v1.7.0) (2021-10-15)
+
+
+### Features
+
+* listen to crdt updateCursor and removeCursor events ([53ef600](https://github.com/CoCreate-app/CoCreate-cursors/commit/53ef6006c8ded465cf80d9726033ce1cf8c0d72f))
+
 ## [1.6.15](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.6.14...v1.6.15) (2021-10-15)
 
 
