@@ -1,3 +1,10 @@
+## [1.7.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.7.1...v1.7.2) (2021-10-16)
+
+
+### Bug Fixes
+
+* update socket package to fix bug in docs ([aae5c8f](https://github.com/CoCreate-app/CoCreate-cursors/commit/aae5c8fb094740945adcf68297c42dba00387ba5))
+
 ## [1.7.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.7.0...v1.7.1) (2021-10-15)
 
 
