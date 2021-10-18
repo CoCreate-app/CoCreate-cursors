@@ -7,7 +7,7 @@
 
 .cursor {
     position: absolute;
-    background-color: red;
+    background-color: rgb(236, 212, 68);
     opacity: 0.9;
     height: 15px;
     width: 100%;
