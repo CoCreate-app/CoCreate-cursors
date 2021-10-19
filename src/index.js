@@ -250,11 +250,11 @@ function drawCursors(selection) {
                 let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
                 selection_user.textContent = value_element.substring(0, start);
                 let value_span_selection = value_element.substring(start, end) || '';
-                console.log("Selection ", value_span_selection, start, end);
                 selection_span_by_user.textContent = value_span_selection;
                 selection_user.appendChild(selection_span_by_user);
             } 
         }
+        scrollMirror(element);
     } 
 }
 
@@ -314,14 +314,16 @@ function _initEvents(element) {
         scrollMirror(element);
     });
 
-    function scrollMirror(element) {
-        let id_mirror = element.getAttribute('mirror_id');
-        let elementMirror = document.getElementById(id_mirror);
-        if(elementMirror)
-            elementMirror.scrollTo(element.scrollLeft, element.scrollTop);
-    }
     initResizeObserver(element);
 }
+
+function scrollMirror(element) {
+    let id_mirror = element.getAttribute('mirror_id');
+    let elementMirror = document.getElementById(id_mirror);
+    if(elementMirror)
+        elementMirror.scrollTo(element.scrollLeft, element.scrollTop);
+}
+
 
 function initResizeObserver(element){
     const watch = new ResizeObserver(() => updateCursors(element));
