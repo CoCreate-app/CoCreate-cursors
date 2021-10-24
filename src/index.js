@@ -1,7 +1,7 @@
 /*globals ResizeObserver*/
 import observer from '@cocreate/observer';
 import uuid from '@cocreate/uuid';
-import {findElByPos} from '@cocreate/selection';
+import {getStringPosition} from '@cocreate/selection';
 
 import './index.css';
 
@@ -168,10 +168,14 @@ function drawCursors(selection) {
     for(let element of elements) {
         if (element.tagName == 'IFRAME') {
             let domTextEditor = element.contentDocument.documentElement;
-            let {target, tagStClAfPos} = findElByPos(domTextEditor, start);
-        	element = domTextEditor.querySelector(`[element_id="${target}"]`);
-        	start = start - tagStClAfPos;
-    	    end = end - tagStClAfPos;
+            let pos = getStringPosition(domTextEditor.htmlString, start, end);
+        	element = domTextEditor.querySelector(pos.path);
+    	    let endPos = end - start;
+    	    if (endPos > 0)
+    	        end = pos.start + endPos;
+    	    else
+    	        end = pos.start;
+        	start = pos.start;
         }
         let document = element.ownerDocument;
         let realtime = element.getAttribute('realtime');
