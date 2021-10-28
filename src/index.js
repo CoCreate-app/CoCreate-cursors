@@ -1,7 +1,7 @@
 /*globals ResizeObserver*/
 import observer from '@cocreate/observer';
 import uuid from '@cocreate/uuid';
-import {getStringPosition} from '@cocreate/selection';
+import {getElementPosition} from '@cocreate/selection';
 
 import './index.css';
 
@@ -168,7 +168,7 @@ function drawCursors(selection) {
     for(let element of elements) {
         if (element.tagName == 'IFRAME') {
             let domTextEditor = element.contentDocument.documentElement;
-            let pos = getStringPosition(domTextEditor.htmlString, start, end);
+            let pos = getElementPosition(domTextEditor.htmlString, start, end);
         	element = domTextEditor.querySelector(pos.path);
     	    let endPos = end - start;
     	    if (endPos > 0)
@@ -191,8 +191,8 @@ function drawCursors(selection) {
         let elementMirror = document.getElementById(id_mirror);
         let cursor;
         // let selection_user = false;
-        let user = (typeof(selection) != 'undefined' && selection.hasOwnProperty('user')) ? selection.user : false;
-        let user_id = (typeof(selection) != 'undefined' && selection.hasOwnProperty('user_id')) ? user.user_id : false;
+        // let user = (typeof(selection) != 'undefined' && selection.hasOwnProperty('user')) ? selection.user : false;
+        // let user_id = (typeof(selection) != 'undefined' && selection.hasOwnProperty('user_id')) ? user.user_id : false;
         if(socket_id) {
             var cursores_other_elements = document.querySelectorAll('#socket_' + socket_id);
             cursores_other_elements.forEach(function(child_cursor, index, array) {
@@ -201,20 +201,20 @@ function drawCursors(selection) {
                 }
             });
             cursor = elementMirror.querySelector('.cursor-container#socket_' + socket_id);
-            if(!cursor && selection.hasOwnProperty('user')) {
-                if(user) {
+            if(!cursor) {
+                // if(user) {
                     let cursor_template = '<div style="color:blue;" class="cursor-container" \
                                             id="socket_' + socket_id + '" \
                                               ><div class="cursor" \
-                                              style="background-color:' + user.color + '"></div>\
+                                              style="background-color:' + selection.background + '"></div>\
                                               <div class="cursor-flag" \
                                               collection="users" \
-                                              document_id="' + user_id + '" \
+                                              document_id="' + selection.user_id + '" \
                                               name="name" \
-                                              style="background-color:' + user.color + '" \
-                                              >' + user.name + '</div></div>';
+                                              style="background-color:' + selection.background + '" \
+                                              >' + selection.userName + '</div></div>';
                     elementMirror.innerHTML = cursor_template + elementMirror.innerHTML;
-                }
+                // }
             }
         }
         cursor = elementMirror.querySelector('.cursor-container#socket_' + socket_id);
@@ -223,19 +223,24 @@ function drawCursors(selection) {
             font_size = parseFloat(font_size.substring(0, font_size.length - 2));
             let cursor_height = ((font_size * 112.5) / 100);
             let my_cursor = cursor.querySelector('.cursor');
+            let cursorFlag = cursor.querySelector('.cursor-flag');
             cursor.dataset.start = start;
             cursor.dataset.end = end;
             cursor.setAttribute('socket_id', socket_id);
-            cursor.setAttribute('user-name', user.name);
-            cursor.setAttribute('user-color', user.color);
+            cursor.setAttribute('user-name', selection.userName);
+            cursor.setAttribute('user-background', selection.background);
+            cursor.setAttribute('user-color', selection.color);
             my_cursor.style["height"] = cursor_height + "px";
+            my_cursor.style["background"] = selection.background;
+            cursorFlag.style["background"] = selection.background;
+            cursorFlag.innerHTML = selection.userName;
             cursor.style["left"] = coordinates.end.left + "px";
 
             let selection_user = document.getElementById('sel-' + socket_id);
             if(selection_user) {
                 selection_user.remove();
             }
-            if((start != end) && user) {
+            if((start != end)) {
                 var scrollwidth = element.offsetWidth - element.scrollWidth;
                 var padding_right = parseInt(getComputedStyle(element)["paddingRight"]);
                 
@@ -250,7 +255,7 @@ function drawCursors(selection) {
                 elementMirror.insertBefore(selection_user, elementMirror.firstChild);
                 let selection_span_by_user = document.createElement('span');
                 selection_span_by_user.id = 'selection-' + socket_id;
-                selection_span_by_user.style.backgroundColor = user.color;
+                selection_span_by_user.style.backgroundColor = selection.background;
                 let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
                 selection_user.textContent = value_element.substring(0, start);
                 let value_span_selection = value_element.substring(start, end) || '';
@@ -278,19 +283,19 @@ function updateCursors(element) {
     
         cursor_containers.forEach(function(child_cursor, index, array) {
             let clientId = child_cursor.getAttribute('socket_id');
-            let user_name = child_cursor.getAttribute('user-name');
-            let user_color = child_cursor.getAttribute('user-color');
+            let userName = child_cursor.getAttribute('user-name');
+            let background = child_cursor.getAttribute('user-background');
+            let color = child_cursor.getAttribute('user-color');
             let start = child_cursor.getAttribute('data-start');
             let end = child_cursor.getAttribute('data-end');
             let selection = {
                 element: [element],
-                start: start,
-                end: end,
-                clientId: clientId,
-                user: {
-                    'color': user_color,
-                    'name': user_name
-                },
+                start,
+                end,
+                clientId,
+                userName,
+                background,
+                color
             };
             drawCursors(selection);
         });

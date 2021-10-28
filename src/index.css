@@ -7,7 +7,7 @@
 
 .cursor {
     position: absolute;
-    background-color: rgb(236, 212, 68);
+    background-color: #ecd44;
     opacity: 0.9;
     height: 15px;
     width: 100%;
@@ -15,7 +15,7 @@
 
 .cursor-flag {
     position: absolute;
-    background-color: rgb(236, 212, 68);
+    background-color: #ecd44;
     top: 0px;
     font-size: 0px;
     color: white;
@@ -37,7 +37,7 @@
 }
 
 .selection {
-    background-color: #30bced33;
+    background-color: #ecd44;
     opacity: 0.6;
 }
 
