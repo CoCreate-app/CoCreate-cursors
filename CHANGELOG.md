@@ -1,3 +1,17 @@
+# [1.8.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.7.3...v1.8.0) (2021-10-29)
+
+
+### Bug Fixes
+
+* css background color ([764bba4](https://github.com/CoCreate-app/CoCreate-cursors/commit/764bba4ff6f3eb9545183674ee91604f83f628e1))
+* if element is already scrolled when cursor is created mirror will also scroll to positiion ([8d4d63e](https://github.com/CoCreate-app/CoCreate-cursors/commit/8d4d63ef37e85366658c4a096b5650821534b77c))
+* update to use new selecction object from new crdt ([c6c2d41](https://github.com/CoCreate-app/CoCreate-cursors/commit/c6c2d41db5043a41eea7bd97591c4f7ac222cc03))
+
+
+### Features
+
+* updated to use new selection.js which removes the need of element_id ([04d570d](https://github.com/CoCreate-app/CoCreate-cursors/commit/04d570d947aff2fa8a5bde2794d823b012e083fc))
+
 ## [1.7.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.7.2...v1.7.3) (2021-10-17)
 
 
