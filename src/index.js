@@ -166,6 +166,9 @@ function drawCursors(selection) {
     	elements = document.querySelectorAll(selector);
 	}
     for(let element of elements) {
+        let realtime = element.getAttribute('realtime');
+        let cursors = element.getAttribute('cursors');
+        if (realtime == 'false' || cursors == 'false') continue;
         if (element.tagName == 'IFRAME') {
             let domTextEditor = element.contentDocument.documentElement;
             let pos = getElementPosition(domTextEditor.htmlString, start, end);
@@ -178,9 +181,6 @@ function drawCursors(selection) {
         	start = pos.start;
         }
         let document = element.ownerDocument;
-        let realtime = element.getAttribute('realtime');
-        let cursors = element.getAttribute('cursors');
-        if (realtime == 'false' || cursors == 'false') continue;
         let id_mirror = element.getAttribute('mirror_id');
         if(!id_mirror)
             element.setAttribute('mirror_id', uuid.generate(8));
