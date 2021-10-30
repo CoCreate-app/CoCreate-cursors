@@ -1,3 +1,10 @@
+## [1.8.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.8.1...v1.8.2) (2021-10-30)
+
+
+### Bug Fixes
+
+* iframe contenteditable should show cursors unless iframe is realtime false or cursors false ([ae69d54](https://github.com/CoCreate-app/CoCreate-cursors/commit/ae69d54e4164100a5a388df4364ff4008badfde8))
+
 ## [1.8.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.8.0...v1.8.1) (2021-10-29)
 
 
