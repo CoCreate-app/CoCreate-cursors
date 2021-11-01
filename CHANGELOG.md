@@ -1,3 +1,10 @@
+# [1.9.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.8.3...v1.9.0) (2021-11-01)
+
+
+### Features
+
+* added @cocreate/message to broadcast cursor positions ([6719465](https://github.com/CoCreate-app/CoCreate-cursors/commit/6719465f11bd4afe2975d8ac0dd70a8a07677d5f))
+
 ## [1.8.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.8.2...v1.8.3) (2021-11-01)
 
 
