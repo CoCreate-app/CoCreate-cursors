@@ -1,9 +1,11 @@
-/*globals ResizeObserver*/
+/*globals config, localStorage, ResizeObserver*/
 import observer from '@cocreate/observer';
+import message from '@cocreate/message-client';
 import uuid from '@cocreate/uuid';
 import {getElementPosition} from '@cocreate/selection';
-
 import './index.css';
+
+const clientId = config.clientId || uuid.generate(12);
 
 let enviroment_prod = true;
 let documents = new Map();
@@ -14,13 +16,6 @@ let selector = "[collection][document_id][name]:not([contentEditable='false'])";
 function init() {
     elements = document.querySelectorAll(selector);
     initElements(elements);
-    window.addEventListener('updateCursor', function(event) {
-        drawCursors(event.detail.selection);
-    });
-    
-    window.addEventListener('removeCursor', function(event) {
-        removeCursor(event.detail.clientId);
-    });
 }  
 
 function initElements(elements) {
@@ -339,6 +334,41 @@ function initResizeObserver(element){
     watch.observe(element);
 }
 
+
+function sendPosition(info) {
+	try {
+		message.send({
+			room: "",
+			emit: {
+				message: "cursor",
+				data: {
+					collection: info.collection,
+					document_id: info.document_id,
+					name: info.name,
+					start: info.start,
+					end: info.end,
+					clientId: clientId,
+					color: info.color || localStorage.getItem("cursorColor"),
+					background: info.background || localStorage.getItem("cursorBackground"),
+					userName: info.userName || localStorage.getItem("userName") || clientId,
+					user_id: info.user_id || localStorage.getItem("user_id") || clientId
+				}
+			},
+		});
+	}
+	catch (e) {
+		console.error(e);
+	}
+}
+
+message.listen('cursor', function(selection) {
+	if (selection.clientId == clientId) return;
+	if (selection.start != null && selection.end != null)
+		drawCursors(selection);
+	else
+		removeCursor(selection.clientId);
+});
+
 init();
 
 observer.init({
@@ -359,4 +389,4 @@ observer.init({
     }
 });
 
-export default { drawCursors, updateCursors, removeCursor };
+export default { drawCursors, updateCursors, removeCursor, sendPosition};
