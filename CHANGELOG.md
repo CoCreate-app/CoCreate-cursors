@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.9.0...v1.9.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* get client id from window.CoCreateSockets.clientId ([cc19f2d](https://github.com/CoCreate-app/CoCreate-cursors/commit/cc19f2d981e487073590a7fa190b7c850b75c970))
+
 # [1.9.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.8.3...v1.9.0) (2021-11-01)
 
 
