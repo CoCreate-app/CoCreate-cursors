@@ -5,7 +5,7 @@ import uuid from '@cocreate/uuid';
 import {getElementPosition} from '@cocreate/selection';
 import './index.css';
 
-const clientId = config.clientId || uuid.generate(12);
+const clientId = window.CoCreateSockets.clientId || uuid.generate(12);
 
 let enviroment_prod = true;
 let documents = new Map();
