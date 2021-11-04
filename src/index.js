@@ -176,6 +176,7 @@ function drawCursors(selection) {
                 end = pos.start;
             start = pos.start;
         }
+        if(!element) return;
         let document = element.ownerDocument;
         let id_mirror = element.getAttribute('mirror_id');
         if (!id_mirror)
