@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.0...v1.10.1) (2021-11-04)
+
+
+### Bug Fixes
+
+* cleaned cursor css of quill and codemirror, cleaned html and updated random-color dependency ([d43d925](https://github.com/CoCreate-app/CoCreate-cursors/commit/d43d9251345207a67b3a6b398bf45eb4e4716a32))
+
 # [1.10.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.9.3...v1.10.0) (2021-11-04)
 
 
