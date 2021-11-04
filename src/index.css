@@ -6,14 +6,6 @@
     /*z-index:10;*/
 }
 
-/*.cursor {*/
-/*    position: absolute;*/
-/*    background-color: inherit;*/
-/*    opacity: 0.9;*/
-/*    height: 15px;*/
-/*    width: 100%;*/
-/*}*/
-
 .cursor-flag {
     position: absolute;
     background-color: inherit;
@@ -28,13 +20,11 @@
 
 .cursor-flag:hover {
     height: 14px;
-    /*top:-5px;*/
     width: unset;
     padding: 1px 5px 0px 5px;
     font-size: 12px;
     line-height: 1;
     white-space: nowrap;
-    /*bottom: 1rem;*/
 }
 
 .selection {
@@ -46,22 +36,6 @@
     position: absolute;
 }
 
-/*textarea {*/
-/*    position: relative;*/
-/*    background-color: transparent;*/
-    /*padding: 20px;*/
-    /*margin : 40px;*/
-    /*border-width:10px;*/
-    /*border-color:black;*/
-/*    z-index: 5;*/
-/*}*/
-
-/*input {*/
-/*    position: relative;*/
-/*    background-color: transparent;*/
-/*    z-index: 5;*/
-/*}*/
-
 .mirror {
     pointer-events: none;
 }
@@ -69,79 +43,11 @@
 .mirror_color {
     color: transparent;
     pointer-events: none;
-    /*overflow:auto;*/
 }
 
 .mirror_scroll::-webkit-scrollbar {
     background: rgba(0, 0, 0, 0.00);
     width: 0px;
-}
-
-
-/*Codemirror Cusor*/
-
-.remote-caret {
-    position: absolute;
-    border-left: black;
-    border-left-style: solid;
-    border-left-width: 2px;
-    height: 1.2em;
-}
-
-.remote-caret>div {
-    position: relative;
-    /*top: -1.05em;*/
-    bottom: .3em;
-    left: -4px;
-    font-size: 13px;
-    background-color: rgb(250, 129, 0);
-    font-family: serif;
-    font-style: normal;
-    font-weight: normal;
-    line-height: normal;
-    user-select: none;
-    color: transparent;
-    z-index: 3;
-    height: 6px;
-    width: 6px;
-    overflow: hidden;
-}
-
-.remote-caret>div:hover {
-    height: unset;
-    width: unset;
-    padding-left: 2px;
-    padding-right: 2px;
-    font-size: 13px;
-    bottom: 1em;
-    color: white;
-
-}
-
-
-/*Quill Cursor */
-
-.ql-cursor .ql-cursor-flag {
-    opacity: 1;
-    visibility: visible;
-
-}
-
-.ql-cursor-flag {
-    width: 6px;
-    height: 6px;
-    margin-top: 2px;
-    margin-left: -2px;
-    opacity: 1!important;
-    visibility: visible!important;
-    transition: none;
-    overflow: hidden;
-}
-
-.ql-cursor-flag:hover {
-    width: unset;
-    height: unset;
-
 }
 
 .users_selections {

@@ -1,4 +1,4 @@
-/*globals config, localStorage, ResizeObserver*/
+/*globals localStorage, ResizeObserver*/
 import observer from '@cocreate/observer';
 import message from '@cocreate/message-client';
 import uuid from '@cocreate/uuid';
