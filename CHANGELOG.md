@@ -1,3 +1,10 @@
+## [1.10.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.1...v1.10.2) (2021-11-04)
+
+
+### Bug Fixes
+
+* return if element could not be found ([bb68748](https://github.com/CoCreate-app/CoCreate-cursors/commit/bb68748672825d6461defb7bb6986a209f597ccd))
+
 ## [1.10.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.0...v1.10.1) (2021-11-04)
 
 
