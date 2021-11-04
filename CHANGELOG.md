@@ -1,3 +1,10 @@
+# [1.10.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.9.3...v1.10.0) (2021-11-04)
+
+
+### Features
+
+* add random background color if background is nt defined, using dependency cocreate/random-color ([785acfe](https://github.com/CoCreate-app/CoCreate-cursors/commit/785acfee684a4d90f85a31a83edd831271ff8a83))
+
 ## [1.9.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.9.2...v1.9.3) (2021-11-04)
 
 
