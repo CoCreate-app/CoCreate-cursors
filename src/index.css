@@ -2,20 +2,21 @@
     position: absolute;
     display: inline-block;
     width: 2px;
+    background-color: dodgerblue;
     /*z-index:10;*/
 }
 
-.cursor {
-    position: absolute;
-    background-color: #ecd44;
-    opacity: 0.9;
-    height: 15px;
-    width: 100%;
-}
+/*.cursor {*/
+/*    position: absolute;*/
+/*    background-color: inherit;*/
+/*    opacity: 0.9;*/
+/*    height: 15px;*/
+/*    width: 100%;*/
+/*}*/
 
 .cursor-flag {
     position: absolute;
-    background-color: #ecd44;
+    background-color: inherit;
     top: 0px;
     font-size: 0px;
     color: white;
