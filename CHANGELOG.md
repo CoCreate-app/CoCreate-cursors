@@ -1,3 +1,10 @@
+## [1.10.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.3...v1.10.4) (2021-11-07)
+
+
+### Bug Fixes
+
+* add init() directly above export default to fix bug in firefox ([6f4462c](https://github.com/CoCreate-app/CoCreate-cursors/commit/6f4462c0b3c8d261d3038dfb5582f72848c77cc3))
+
 ## [1.10.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.2...v1.10.3) (2021-11-06)
 
 
