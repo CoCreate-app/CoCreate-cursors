@@ -368,8 +368,6 @@ message.listen('cursor', function(selection) {
         removeCursor(selection.clientId);
 });
 
-init();
-
 observer.init({
     name: 'CoCreateCursor',
     observe: ['addedNodes'],
@@ -387,5 +385,7 @@ observer.init({
         initElement(mutation.target);
     }
 });
+
+init();
 
 export default { drawCursors, updateCursors, removeCursor, sendPosition };
