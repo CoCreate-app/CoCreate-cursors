@@ -1,3 +1,10 @@
+## [1.10.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.4...v1.10.5) (2021-11-11)
+
+
+### Bug Fixes
+
+* licensing information ([09c7efe](https://github.com/CoCreate-app/CoCreate-cursors/commit/09c7efe064309cbd1327c85b15c0b3651ab93a7b))
+
 ## [1.10.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.3...v1.10.4) (2021-11-07)
 
 
