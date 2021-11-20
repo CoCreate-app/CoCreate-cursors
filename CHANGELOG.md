@@ -1,3 +1,10 @@
+## [1.10.11](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.10...v1.10.11) (2021-11-20)
+
+
+### Bug Fixes
+
+* updated script tags and link tags ([07df4b5](https://github.com/CoCreate-app/CoCreate-cursors/commit/07df4b5102896fe1d99399f03d33b3e3819e33a7))
+
 ## [1.10.10](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.9...v1.10.10) (2021-11-20)
 
 
