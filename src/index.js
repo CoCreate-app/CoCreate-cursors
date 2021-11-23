@@ -187,20 +187,26 @@ function drawCursors(selection) {
 
         let elementMirror = document.getElementById(id_mirror);
         let cursor;
+        let details = {collection, document_id, name};
         // let selection_user = false;
         // let user = (typeof(selection) != 'undefined' && selection.hasOwnProperty('user')) ? selection.user : false;
         // let user_id = (typeof(selection) != 'undefined' && selection.hasOwnProperty('user_id')) ? user.user_id : false;
         if (socket_id) {
-            var cursores_other_elements = document.querySelectorAll('#socket_' + socket_id);
-            cursores_other_elements.forEach(function(child_cursor, index, array) {
-                if (child_cursor.parentElement.getAttribute('id') != id_mirror) {
-                    child_cursor.remove();
+            let cursores_other_elements = document.querySelectorAll(`.cursor-container[socket_id="${socket_id}"]`);
+            // cursores_other_elements.forEach(function(child_cursor, index, array) {
+            //     if (child_cursor.parentElement.getAttribute('id') != id_mirror) {
+            //         child_cursor.remove();
+            //     }
+            // });
+            if (cursores_other_elements) {
+                for (cursor of cursores_other_elements){
+                    // if (cursor.details != details)
+                        cursor.remove();
                 }
-            });
-            cursor = elementMirror.querySelector('.cursor-container#socket_' + socket_id);
+            }
+            cursor = elementMirror.querySelector(`.cursor-container[socket_id="${socket_id}"]`);
             if (!cursor) {
                 let cursor_template = '<div class="cursor-container" \
-                                        id="socket_' + socket_id + '"  \
                                         style="background-color:' + selection.background + '"> \
                                           <div class="cursor-flag" \
                                               collection="users" \
@@ -210,7 +216,7 @@ function drawCursors(selection) {
                 elementMirror.innerHTML = cursor_template + elementMirror.innerHTML;
             }
         }
-        cursor = elementMirror.querySelector('.cursor-container#socket_' + socket_id);
+        cursor = elementMirror.querySelector(`.cursor-container[socket_id="${socket_id}"]`);
         if (cursor) {
             let font_size = getStyle(element, 'font-size');
             font_size = parseFloat(font_size.substring(0, font_size.length - 2));
@@ -228,26 +234,34 @@ function drawCursors(selection) {
             cursorFlag.style["background"] = selection.background;
             cursorFlag.innerHTML = selection.userName;
             cursor.style["left"] = coordinates.end.left + "px";
+            cursor.details = {collection, document_id, name};
 
-            let selection_user = document.getElementById('sel-' + socket_id);
-            if (selection_user) {
-                selection_user.remove();
+            let userSelections = document.querySelectorAll(`.users_selections[socket_id="${socket_id}"]`);
+            if (userSelections) {
+                for (selection of userSelections){
+                    // if (selection.details != details)
+                        selection.remove();
+                }
             }
             if ((start != end)) {
                 var scrollwidth = element.offsetWidth - element.scrollWidth;
                 var padding_right = parseInt(getComputedStyle(element)["paddingRight"]);
 
-                selection_user = document.createElement('span');
+                let selection_user = document.createElement('span');
                 selection_user.id = 'sel-' + socket_id;
+                selection_user.setAttribute('socket_id', socket_id);
                 selection_user.className = 'users_selections';
                 let style_mirror = getComputedStyle(elementMirror);
                 selection_user.style["position"] = "absolute";
                 selection_user.style["top"] = style_mirror.paddingTop;
                 selection_user.style["left"] = style_mirror.paddingLeft;
                 selection_user.style["padding-right"] = scrollwidth + padding_right + "px";
+                selection_user.details = {collection, document_id, name};
                 elementMirror.insertBefore(selection_user, elementMirror.firstChild);
+                
                 let selection_span_by_user = document.createElement('span');
-                selection_span_by_user.id = 'selection-' + socket_id;
+                // selection_span_by_user.id = 'selection-' + socket_id;
+                selection_span_by_user.className = 'client-selection';
                 selection_span_by_user.style.backgroundColor = selection.background;
                 let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
                 selection_user.textContent = value_element.substring(0, start);
@@ -297,7 +311,7 @@ function updateCursors(element) {
 }
 
 function removeCursor(clientId) {
-    let elements = document.querySelectorAll('[id*="socket_' + clientId + '"]');
+    let elements = document.querySelectorAll(`.cursor-container[socket_id="${clientId}"]`);
     elements.forEach(function(element, index, array) {
         element.parentNode.removeChild(element);
     });
