@@ -1,3 +1,10 @@
+## [1.10.12](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.11...v1.10.12) (2021-11-23)
+
+
+### Bug Fixes
+
+* update dependencies ([9136e45](https://github.com/CoCreate-app/CoCreate-cursors/commit/9136e4571aedf3e8e007524ead00d828f8dd8ee5))
+
 ## [1.10.11](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.10...v1.10.11) (2021-11-20)
 
 
