@@ -1,3 +1,10 @@
+## [1.10.14](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.13...v1.10.14) (2021-11-26)
+
+
+### Bug Fixes
+
+* add nav and sidenav to docs ([56d064a](https://github.com/CoCreate-app/CoCreate-cursors/commit/56d064ad51ff1bd5d8037f4a61f1b2d3c832d075))
+
 ## [1.10.13](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.12...v1.10.13) (2021-11-26)
 
 
