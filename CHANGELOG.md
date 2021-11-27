@@ -1,3 +1,10 @@
+## [1.10.15](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.14...v1.10.15) (2021-11-27)
+
+
+### Bug Fixes
+
+* update docs api and cocreateJS script ([1c4984e](https://github.com/CoCreate-app/CoCreate-cursors/commit/1c4984eaf2288b7261181a98fb540bff3a85e0c8))
+
 ## [1.10.14](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.13...v1.10.14) (2021-11-26)
 
 
