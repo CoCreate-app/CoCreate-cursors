@@ -165,8 +165,10 @@ function drawCursors(selection) {
         let realtime = element.getAttribute('realtime');
         let cursors = element.getAttribute('cursors');
         if (realtime == 'false' || cursors == 'false') continue;
-        if (element.tagName == 'IFRAME') {
-            let domTextEditor = element.contentDocument.documentElement;
+        if (element.hasAttribute('contenteditable')) {
+            let domTextEditor = element;
+            if (element.tagName == 'IFRAME')
+                domTextEditor = element.contentDocument.documentElement;
             let pos = getElementPosition(domTextEditor.htmlString, start, end);
             element = domTextEditor.querySelector(pos.path);
             let endPos = end - start;
