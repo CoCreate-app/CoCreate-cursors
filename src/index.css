@@ -27,13 +27,9 @@
     white-space: nowrap;
 }
 
-.selection {
-    background-color: #ecd44;
-    opacity: 0.6;
-}
-
 .cursor-selection {
     position: absolute;
+    opacity: 0.4;
 }
 
 .mirror {
@@ -48,8 +44,4 @@
 .mirror_scroll::-webkit-scrollbar {
     background: rgba(0, 0, 0, 0.00);
     width: 0px;
-}
-
-.users_selections {
-    opacity: 0.4;
 }
