@@ -1,3 +1,11 @@
+## [1.10.18](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.17...v1.10.18) (2021-12-08)
+
+
+### Bug Fixes
+
+* check contenteditable element then iframe ([29bd7b4](https://github.com/CoCreate-app/CoCreate-cursors/commit/29bd7b4e7460c478cec37916fe9bb7439d2b8805))
+* use attribute for socket_id instead of id ([db901da](https://github.com/CoCreate-app/CoCreate-cursors/commit/db901daa270551cd6b1b6b95124d785ed81643c9))
+
 ## [1.10.17](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.16...v1.10.17) (2021-11-27)
 
 
