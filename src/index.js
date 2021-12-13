@@ -226,6 +226,7 @@ function drawCursors(selection) {
             cursorFlag.style["background"] = selection.background;
             cursorFlag.innerHTML = selection.userName;
             cursor.style["left"] = coordinates.end.left + "px";
+            cursor.style["top"] = coordinates.end.top + "px";
             cursor.details = {collection, document_id, name};
 
             let userSelections = document.querySelectorAll(`.cursor-selection[socket_id="${socket_id}"]`);
