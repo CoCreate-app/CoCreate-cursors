@@ -1,3 +1,17 @@
+# [1.11.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.18...v1.11.0) (2021-12-14)
+
+
+### Bug Fixes
+
+* add style top to cursor ([1e6d26c](https://github.com/CoCreate-app/CoCreate-cursors/commit/1e6d26c31919700399b3473a938f49f3cc2978b0))
+* update dependencies ([9895f14](https://github.com/CoCreate-app/CoCreate-cursors/commit/9895f14bf1de1c133f0477134ccb654fb31f79d0))
+* update dependencies ([2307656](https://github.com/CoCreate-app/CoCreate-cursors/commit/2307656877e1936cb8b5d978414df898a1de0b27))
+
+
+### Features
+
+* multi cursor support between many elements in window.top ([3b2dab9](https://github.com/CoCreate-app/CoCreate-cursors/commit/3b2dab9e1a6886026b7976eed44180d89a70ad83))
+
 ## [1.10.18](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.10.17...v1.10.18) (2021-12-08)
 
 
