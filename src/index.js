@@ -73,13 +73,16 @@ function drawCursors(selection) {
                 domTextEditor = element.contentDocument.documentElement;
             }
             let pos = getElementPosition(domTextEditor.htmlString, start, end);
-            element = domTextEditor.querySelector(pos.path);
-            let endPos = end - start;
-            if (endPos > 0)
-                end = pos.start + endPos;
-            else
-                end = pos.start;
-            start = pos.start;
+            if (pos.start){
+                if(pos.path)
+                    element = domTextEditor.querySelector(pos.path);
+                let endPos = end - start;
+                if (endPos > 0)
+                    end = pos.start + endPos;
+                else
+                    end = pos.start;
+                start = pos.start;
+            }
         }
         if(!element) continue;
         let document = element.ownerDocument;
@@ -310,6 +313,7 @@ function sendPosition(info) {
 
 
 message.listen('cursor', function(selection) {
+    // if (selection.clientId == clientId) return;
     if (selection.start != null && selection.end != null)
         drawCursors(selection);
     else
