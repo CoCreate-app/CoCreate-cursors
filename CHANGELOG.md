@@ -1,3 +1,10 @@
+## [1.11.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.1...v1.11.2) (2021-12-19)
+
+
+### Bug Fixes
+
+* if pos.start and if pos.path case ([fdf7372](https://github.com/CoCreate-app/CoCreate-cursors/commit/fdf7372a59963548c421edfb080184de61e60e00))
+
 ## [1.11.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.0...v1.11.1) (2021-12-15)
 
 
