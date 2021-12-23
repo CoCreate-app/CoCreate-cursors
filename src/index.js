@@ -58,8 +58,8 @@ function drawCursors(selection) {
         elements = document.querySelectorAll(selector);
     }
     for (let element of elements) {
-        if (element.activeElement) {
-            element.activeElement = '';
+        if (element.activeElement && selection.clientId == clientId) {
+            // element.activeElement = '';
             continue;
         }
         let realtime = element.getAttribute('realtime');
