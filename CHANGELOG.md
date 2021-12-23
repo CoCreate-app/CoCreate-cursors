@@ -1,3 +1,10 @@
+## [1.11.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.2...v1.11.3) (2021-12-23)
+
+
+### Bug Fixes
+
+* if elementActive and clientId is self return ([170ee7a](https://github.com/CoCreate-app/CoCreate-cursors/commit/170ee7a233f32e4fda9010e1ae18b9328489c6ed))
+
 ## [1.11.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.1...v1.11.2) (2021-12-19)
 
 
