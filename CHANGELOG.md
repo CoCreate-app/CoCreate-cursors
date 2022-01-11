@@ -1,3 +1,10 @@
+## [1.11.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.4...v1.11.5) (2022-01-11)
+
+
+### Bug Fixes
+
+* if parent position is static add relative to contain cursor-container ([76f23c1](https://github.com/CoCreate-app/CoCreate-cursors/commit/76f23c1520fdc270f325885332ccf67bab6787ed))
+
 ## [1.11.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.3...v1.11.4) (2022-01-01)
 
 
