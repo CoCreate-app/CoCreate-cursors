@@ -100,7 +100,6 @@ function drawCursors(selection) {
             element.insertAdjacentElement('afterend', mirrorDiv);
             let parent = element.parentElement;
             let parentComputed = getComputedStyle(parent);
-            // let parentStylePosition = parent.style.position;
             let parentStylePosition = parentComputed['position'];
             if (parentStylePosition == 'static')
                 parent.style.position = 'relative';
