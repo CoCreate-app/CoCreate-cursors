@@ -98,11 +98,14 @@ function drawCursors(selection) {
             mirrorDiv.contentEditable = false;
             mirrorDiv.element = element;
             element.insertAdjacentElement('afterend', mirrorDiv);
-            let parent = element.parentElement;
-            let parentComputed = getComputedStyle(parent);
-            let parentStylePosition = parentComputed['position'];
-            if (parentStylePosition == 'static')
-                parent.style.position = 'relative';
+            // let parent = element.parentElement;
+            // let parentComputed = getComputedStyle(parent);
+            // let parentStylePosition = parentComputed['position'];
+            // if (parentStylePosition == 'static')
+            //     parent.style.position = 'relative';
+            // let parentStyleDisplay = parentComputed['display'];
+            // if (parentStyleDisplay == 'inline')
+            //     parent.style.display = 'inline';
 
             _initEvents(element);
             initDocument(document);
@@ -117,10 +120,8 @@ function drawCursors(selection) {
         if (element.clientWidth != 0)
             scrollBarWidth = element.offsetWidth - element.clientWidth - borderWidth;
         let style = mirrorDiv.style;
-    
+        
         style.position = 'absolute';
-        style.top = element.offsetTop + 'px';
-        style.left = element.offsetLeft + 'px';
         style.width = rect.width + 'px';
         style.height = rect.height + 'px';
         style.visibility = 'visible';
@@ -130,7 +131,16 @@ function drawCursors(selection) {
         style.paddingRight = parseInt(computed['paddingRight']) + scrollBarWidth + 'px';
         style.border = computed['border'];
         style.borderColor = 'transparent';
-    
+        
+        if (element.parentElement.style['display'] == 'inline') {
+            style.top = element.clientTop + 'px';
+            style.left = element.clientLeft + 'px';
+        }
+        else {
+            style.top = element.offsetTop + 'px';
+            style.left = element.offsetLeft + 'px';
+        }
+        
         if (element.nodeName !== 'INPUT') {
             style.wordWrap = 'break-word';
             style.whiteSpace = 'pre-wrap';
