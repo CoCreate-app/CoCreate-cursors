@@ -1,3 +1,10 @@
+## [1.11.7](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.6...v1.11.7) (2022-01-13)
+
+
+### Bug Fixes
+
+* commented parentElement.style postion:relative and display:inline ([b2123b6](https://github.com/CoCreate-app/CoCreate-cursors/commit/b2123b6ffe9e197f2f071b36c1c3419d9db71619))
+
 ## [1.11.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.5...v1.11.6) (2022-01-11)
 
 
