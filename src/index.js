@@ -54,13 +54,18 @@ function drawCursors(selection) {
     let elements = selection.element;
     if (!elements) {
         let selector = '[collection="' + collection + '"][document_id="' + document_id + '"][name="' + name + '"]';
-        selector += ':not(.codemirror, .quill, .monaco, [actions])';
+        selector += ':not(.codemirror, .monaco, [actions])';
         elements = document.querySelectorAll(selector);
     }
     for (let element of elements) {
         if (element.activeElement && selection.clientId == clientId) {
             // element.activeElement = '';
             continue;
+        }
+        if (element.tagName != 'INPUT' || element.tagName != 'TEXTAREA'){
+            if (!element.hasAttribute('contenteditable') && element.getAttribute('cursors') != 'true') {
+                return;
+            }
         }
         let realtime = element.getAttribute('realtime');
         let cursors = element.getAttribute('cursors');
