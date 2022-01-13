@@ -1,3 +1,10 @@
+## [1.11.8](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.7...v1.11.8) (2022-01-13)
+
+
+### Bug Fixes
+
+* If element is not contenteditable do not display cursors unless cursors=true ([be7d653](https://github.com/CoCreate-app/CoCreate-cursors/commit/be7d65339d73234f95bbec4400d6ead0adfec9ef))
+
 ## [1.11.7](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.6...v1.11.7) (2022-01-13)
 
 
