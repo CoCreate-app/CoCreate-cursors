@@ -1,3 +1,10 @@
+## [1.11.9](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.8...v1.11.9) (2022-01-15)
+
+
+### Bug Fixes
+
+* cursor was not displaying on inputs ([d608657](https://github.com/CoCreate-app/CoCreate-cursors/commit/d608657598178c16bae66b715f1b79fc4610b1c1))
+
 ## [1.11.8](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.7...v1.11.8) (2022-01-13)
 
 
