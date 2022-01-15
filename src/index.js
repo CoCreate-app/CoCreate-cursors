@@ -62,14 +62,14 @@ function drawCursors(selection) {
             // element.activeElement = '';
             continue;
         }
-        if (element.tagName != 'INPUT' || element.tagName != 'TEXTAREA'){
-            if (!element.hasAttribute('contenteditable') && element.getAttribute('cursors') != 'true') {
-                return;
-            }
-        }
         let realtime = element.getAttribute('realtime');
         let cursors = element.getAttribute('cursors');
+        let contenteditable = element.getAttribute('contenteditable');
         if (realtime == 'false' || cursors == 'false') continue;
+        if (element.tagName != 'INPUT' && element.tagName != 'TEXTAREA')
+            if (contenteditable == 'false' || contenteditable == null)
+                if (cursors != 'true') continue;
+        
         if (element.hasAttribute('contenteditable')) {
             let domTextEditor = element;
             if (element.tagName == 'IFRAME'){
@@ -89,6 +89,7 @@ function drawCursors(selection) {
                 start = pos.start;
             }
         }
+
         if(!element) continue;
         let document = element.ownerDocument;
         let mirrorDiv;
