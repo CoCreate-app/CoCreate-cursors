@@ -1,3 +1,10 @@
+## [1.11.11](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.10...v1.11.11) (2022-02-03)
+
+
+### Bug Fixes
+
+* replaced show and hide class hidden with attribute hidden ([c93182d](https://github.com/CoCreate-app/CoCreate-cursors/commit/c93182d850410c9ad3aea6b133f2df56e5694769))
+
 ## [1.11.10](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.9...v1.11.10) (2022-02-01)
 
 
