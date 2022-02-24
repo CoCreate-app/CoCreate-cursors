@@ -1,3 +1,11 @@
+## [1.11.15](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.14...v1.11.15) (2022-02-24)
+
+
+### Bug Fixes
+
+* CoCreate.config replace CoCreate.app with * ([b35233f](https://github.com/CoCreate-app/CoCreate-cursors/commit/b35233f7fd94378bd75af295e78ec82d5794e4fe))
+* typo enviroment to environment ([572e06b](https://github.com/CoCreate-app/CoCreate-cursors/commit/572e06b9e0db5ea698bfbc7027ef331d95263df1))
+
 ## [1.11.14](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.13...v1.11.14) (2022-02-16)
 
 
