@@ -9,7 +9,7 @@ import './index.css';
 const clientId = window.CoCreateSockets.clientId || uuid.generate(12);
 const cursorBackground = randomColor();
 
-let enviroment_prod = true;
+let environment_prod = true;
 
 let selector = "[collection][document_id][name]:not([contentEditable='false'])";
 
@@ -100,7 +100,7 @@ function drawCursors(selection) {
             
             mirrorDiv = document.createElement('cursor-container');
             mirrorDiv.id = id_mirror;
-            mirrorDiv.className = (enviroment_prod) ? 'mirror mirror_scroll mirror_color' : 'mirror mirror_scroll';
+            mirrorDiv.className = (environment_prod) ? 'mirror mirror_scroll mirror_color' : 'mirror mirror_scroll';
             mirrorDiv.contentEditable = false;
             mirrorDiv.element = element;
             element.insertAdjacentElement('afterend', mirrorDiv);
