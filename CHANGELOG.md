@@ -1,3 +1,10 @@
+## [1.11.16](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.15...v1.11.16) (2022-03-22)
+
+
+### Bug Fixes
+
+* removed emit from message.send and message.listen ([344cb05](https://github.com/CoCreate-app/CoCreate-cursors/commit/344cb0599ae4d50706c9e9fe48cb55a5b678740e))
+
 ## [1.11.15](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.14...v1.11.15) (2022-02-24)
 
 
