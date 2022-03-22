@@ -311,21 +311,19 @@ function sendPosition(info) {
     try {
         message.send({
             room: "",
-            emit: {
-                message: "cursor",
-                data: {
-                    collection: info.collection,
-                    document_id: info.document_id,
-                    name: info.name,
-                    start: info.start,
-                    end: info.end,
-                    clientId: clientId,
-                    color: info.color || localStorage.getItem("cursorColor"),
-                    background: info.background || localStorage.getItem("cursorBackground") || cursorBackground,
-                    userName: info.userName || localStorage.getItem("userName") || clientId,
-                    user_id: info.user_id || localStorage.getItem("user_id") || clientId
-                }
-            },
+            message: "cursor",
+            data: {
+                collection: info.collection,
+                document_id: info.document_id,
+                name: info.name,
+                start: info.start,
+                end: info.end,
+                clientId: clientId,
+                color: info.color || localStorage.getItem("cursorColor"),
+                background: info.background || localStorage.getItem("cursorBackground") || cursorBackground,
+                userName: info.userName || localStorage.getItem("userName") || clientId,
+                user_id: info.user_id || localStorage.getItem("user_id") || clientId
+            }
         });
     }
     catch (e) {
@@ -334,8 +332,9 @@ function sendPosition(info) {
 }
 
 
-message.listen('cursor', function(selection) {
+message.listen('cursor', function(response) {
     // if (selection.clientId == clientId) return;
+    let selection = response.data
     if (selection.start != null && selection.end != null)
         drawCursors(selection);
     else
