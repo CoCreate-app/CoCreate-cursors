@@ -58,8 +58,7 @@ function drawCursors(selection) {
         elements = document.querySelectorAll(selector);
     }
     for (let element of elements) {
-        if (element.activeElement && selection.clientId == clientId) {
-            // element.activeElement = '';
+        if (window.activeElement == element && selection.clientId == clientId) {
             continue;
         }
         let realtime = element.getAttribute('realtime');
@@ -73,8 +72,8 @@ function drawCursors(selection) {
         if (element.hasAttribute('contenteditable')) {
             let domTextEditor = element;
             if (element.tagName == 'IFRAME'){
-                let frameClientId = element.contentDocument.defaultView.CoCreateSockets.clientId;
-                if (frameClientId == selection.clientId) continue;
+                // let frameClientId = element.contentDocument.defaultView.CoCreateSockets.clientId;
+                // if (frameClientId == selection.clientId) continue;
                 domTextEditor = element.contentDocument.documentElement;
             }
             let pos = getElementPosition(domTextEditor.htmlString, start, end);
