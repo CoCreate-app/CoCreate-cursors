@@ -1,3 +1,10 @@
+## [1.11.18](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.17...v1.11.18) (2022-05-06)
+
+
+### Bug Fixes
+
+* update config organization_Id to organization_id ([aea8b14](https://github.com/CoCreate-app/CoCreate-cursors/commit/aea8b146bafde0c2c181db5cdc30a31b4b0fcea9))
+
 ## [1.11.17](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.16...v1.11.17) (2022-04-30)
 
 
