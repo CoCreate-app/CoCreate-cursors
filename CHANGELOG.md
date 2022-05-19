@@ -1,3 +1,10 @@
+## [1.11.19](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.18...v1.11.19) (2022-05-19)
+
+
+### Bug Fixes
+
+* update document_id on link index.css ([f12a7a7](https://github.com/CoCreate-app/CoCreate-cursors/commit/f12a7a7247ebbfaf75ca044a8a063b91c2bafc2a))
+
 ## [1.11.18](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.17...v1.11.18) (2022-05-06)
 
 
