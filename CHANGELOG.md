@@ -1,3 +1,11 @@
+## [1.11.21](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.20...v1.11.21) (2022-06-12)
+
+
+### Bug Fixes
+
+* update dependencies ([b1429dd](https://github.com/CoCreate-app/CoCreate-cursors/commit/b1429dd946eeb3909724141beec742eea59064b1))
+* update docs css document_id ([afd83f4](https://github.com/CoCreate-app/CoCreate-cursors/commit/afd83f465c13a94ae6f4cb1165ea8a65e1b20add))
+
 ## [1.11.20](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.19...v1.11.20) (2022-05-23)
 
 
