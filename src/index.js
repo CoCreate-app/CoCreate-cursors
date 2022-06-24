@@ -234,7 +234,7 @@ function drawCursors(selection) {
 }
 
 function updateCursors(element) {
-    let mirrorDivs;
+    let mirrorDivs = [];
     let id_mirror = element.getAttribute('mirror_id');
     if (id_mirror) {
         let mirrorDiv = element.ownerDocument.getElementById(id_mirror);
