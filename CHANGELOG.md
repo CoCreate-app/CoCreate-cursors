@@ -1,3 +1,10 @@
+## [1.11.23](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.22...v1.11.23) (2022-06-24)
+
+
+### Bug Fixes
+
+* update mirrorDivs variable to type array ([2dc7e24](https://github.com/CoCreate-app/CoCreate-cursors/commit/2dc7e243a29da90822a41864f4e121ebf345ef8c))
+
 ## [1.11.22](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.21...v1.11.22) (2022-06-18)
 
 
