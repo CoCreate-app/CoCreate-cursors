@@ -6,7 +6,7 @@ import { getElementPosition } from '@cocreate/selection';
 import {randomColor} from '@cocreate/random-color';
 import './index.css';
 
-const clientId = window.CoCreateSockets.clientId || uuid.generate(12);
+const clientId = window.CoCreateSocket.clientId || uuid.generate(12);
 const cursorBackground = randomColor();
 
 let environment_prod = true;
