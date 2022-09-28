@@ -1,3 +1,11 @@
+## [1.11.25](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.24...v1.11.25) (2022-09-28)
+
+
+### Bug Fixes
+
+* access clientId from message.socket ([77b8330](https://github.com/CoCreate-app/CoCreate-cursors/commit/77b833066642aaacb88cb3177635a57fd39f5c8a))
+* renamed CoCreateSockets to CoCreateSocket ([29c0b2a](https://github.com/CoCreate-app/CoCreate-cursors/commit/29c0b2a674c9d1767dac234d7114238d947fc9b1))
+
 ## [1.11.24](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.23...v1.11.24) (2022-09-01)
 
 
