@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.34...v1.12.0) (2022-11-21)
+
+
+### Features
+
+* added crud.getAttributeNames to observer attributeName param, this will allow observing custom attributes ([cf37758](https://github.com/CoCreate-app/CoCreate-cursors/commit/cf377581c3f086f4a4edf5fc37cf1d7c20ae05d7))
+
 ## [1.11.34](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.11.33...v1.11.34) (2022-10-02)
 
 
