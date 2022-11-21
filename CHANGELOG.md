@@ -1,3 +1,10 @@
+## [1.12.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.2...v1.12.3) (2022-11-21)
+
+
+### Bug Fixes
+
+* replaced document_id with document._id ([b452fcb](https://github.com/CoCreate-app/CoCreate-cursors/commit/b452fcb6cdabd1cba01aa6edb67b93ac2df729c9))
+
 ## [1.12.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.1...v1.12.2) (2022-11-21)
 
 
