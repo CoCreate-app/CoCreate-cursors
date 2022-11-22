@@ -1,3 +1,11 @@
+## [1.12.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.4...v1.12.5) (2022-11-22)
+
+
+### Bug Fixes
+
+* apply src: {{source}} to CoCreate.config ([cd8d036](https://github.com/CoCreate-app/CoCreate-cursors/commit/cd8d03670f9f8f83dd9fa7c58f8770470db99eab))
+* workflow docs ([49d1833](https://github.com/CoCreate-app/CoCreate-cursors/commit/49d1833b01718d9f142716b17d665c89efdcd43c))
+
 ## [1.12.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.3...v1.12.4) (2022-11-21)
 
 
