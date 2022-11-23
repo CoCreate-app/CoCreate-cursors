@@ -8,7 +8,7 @@ import {randomColor} from '@cocreate/random-color';
 import './index.css';
 
 let crud
-if(CRUD && CRUD.default)
+if (CRUD && CRUD.default)
 	crud = CRUD.default
 else
 	crud = CRUD
@@ -85,7 +85,7 @@ function drawCursors(selection) {
             }
             let pos = getElementPosition(domTextEditor.htmlString, start, end);
             if (pos.start){
-                if(pos.path)
+                if (pos.path)
                     element = domTextEditor.querySelector(pos.path);
                 let endPos = end - start;
                 if (endPos > 0)
@@ -96,7 +96,7 @@ function drawCursors(selection) {
             }
         }
 
-        if(!element) continue;
+        if (!element) continue;
         let document = element.ownerDocument;
         let mirrorDiv;
         let id_mirror = element.getAttribute('mirror_id');
