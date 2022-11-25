@@ -1,3 +1,11 @@
+## [1.12.8](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.7...v1.12.8) (2022-11-25)
+
+
+### Bug Fixes
+
+* bump dependencies ([c616935](https://github.com/CoCreate-app/CoCreate-cursors/commit/c616935f6a247aa18f1f8667b31ba5dc8a3d19e1))
+* CoCreate.crud.default removed bug causing default object ([6c456ba](https://github.com/CoCreate-app/CoCreate-cursors/commit/6c456bafb8c3d64f6ceef5b0824adc52f865660d))
+
 ## [1.12.7](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.6...v1.12.7) (2022-11-24)
 
 
