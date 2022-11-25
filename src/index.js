@@ -1,17 +1,11 @@
 /*globals localStorage, ResizeObserver*/
 import observer from '@cocreate/observer';
-import CRUD from '@cocreate/crud-client';
+import crud from '@cocreate/crud-client';
 import message from '@cocreate/message-client';
 import uuid from '@cocreate/uuid';
 import { getElementPosition } from '@cocreate/selection';
 import {randomColor} from '@cocreate/random-color';
 import './index.css';
-
-let crud
-if (CRUD && CRUD.default)
-	crud = CRUD.default
-else
-	crud = CRUD
 
 const clientId = message.socket.clientId || uuid.generate(12);
 const cursorBackground = randomColor();
