@@ -1,3 +1,10 @@
+## [1.12.22](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.21...v1.12.22) (2022-12-13)
+
+
+### Bug Fixes
+
+* removed un used devDependencies ([085b358](https://github.com/CoCreate-app/CoCreate-cursors/commit/085b358d49fb6b21ead558ded0509b3a55749dcb))
+
 ## [1.12.21](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.20...v1.12.21) (2022-12-13)
 
 
