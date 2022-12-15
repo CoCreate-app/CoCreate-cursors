@@ -1,3 +1,10 @@
+## [1.12.23](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.22...v1.12.23) (2022-12-15)
+
+
+### Bug Fixes
+
+* add missing dev dependency style-loader ([ece7b2c](https://github.com/CoCreate-app/CoCreate-cursors/commit/ece7b2cabe7548629661ea206dc688a333a95eff))
+
 ## [1.12.22](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.21...v1.12.22) (2022-12-13)
 
 
