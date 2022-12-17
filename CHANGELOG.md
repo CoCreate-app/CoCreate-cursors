@@ -1,3 +1,10 @@
+# [1.13.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.23...v1.13.0) (2022-12-17)
+
+
+### Features
+
+* improved cursor mirror accuracy ([184e1f4](https://github.com/CoCreate-app/CoCreate-cursors/commit/184e1f452dfc23cadd642e415f2d6b7397031a7e))
+
 ## [1.12.23](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.12.22...v1.12.23) (2022-12-15)
 
 
