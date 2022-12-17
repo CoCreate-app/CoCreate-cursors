@@ -121,28 +121,31 @@ function drawCursors(selection) {
         
         let computed = getComputedStyle(element);
         let rect = element.getBoundingClientRect();
+        
         let borderWidth = parseInt(computed['border-width']) * 2;
         let scrollBarWidth = 0;
         if (element.clientWidth != 0)
             scrollBarWidth = element.offsetWidth - element.clientWidth - borderWidth;
-        let style = mirrorDiv.style;
         
+        let style = mirrorDiv.style; 
         style.position = 'absolute';
         style.width = rect.width + 'px';
         style.height = rect.height + 'px';
-        style.visibility = 'visible';
         style.overflowX = computed['overflowX'];
         style.overflowY = computed['overflowY'];
         style.margin = '0px';
-        style.paddingRight = parseInt(computed['paddingRight']) + scrollBarWidth + 'px';
+        style.padding = computed['padding'];
         style.border = computed['border'];
         style.borderColor = 'transparent';
-        
+        style.outline = computed['outline'];
+        style.outlineColor = 'transparent';
+        style.boxSizing = computed['boxSizing'];
+        style.lineHeight = computed['lineHeight'];
+            
         if (element.parentElement.style['display'] == 'inline') {
             style.top = element.clientTop + 'px';
             style.left = element.clientLeft + 'px';
-        }
-        else {
+        } else {
             style.top = element.offsetTop + 'px';
             style.left = element.offsetLeft + 'px';
         }
@@ -150,12 +153,11 @@ function drawCursors(selection) {
         if (element.nodeName !== 'INPUT') {
             style.wordWrap = 'break-word';
             style.whiteSpace = 'pre-wrap';
-        }
-        else {
+        } else {
             style.whiteSpace = 'pre';
         }
     
-        let properties = ['boxSizing', 'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth', 'paddingTop', 'paddingBottom', 'paddingLeft', 'fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize', 'lineHeight', 'fontFamily', 'textAlign', 'textTransform', 'textIndent', 'textDecoration', 'letterSpacing', 'wordSpacing', 'textRendering', 'webkitWritingMode', 'textTransform', 'textIndent', 'overflowWrap'];
+        let properties = ['fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize', 'fontFamily', 'letterSpacing', 'lineHeight', 'textAlign', 'textTransform', 'textIndent', 'textDecoration', 'textRendering', 'textTransform', 'textIndent', 'overflowWrap', 'tabSize', 'webkitWritingMode', 'wordSpacing'];
     
         properties.forEach(function(prop) {
             if (['left', 'top'].indexOf(prop.toLowerCase()) === -1)
