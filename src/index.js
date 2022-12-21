@@ -177,13 +177,9 @@ function drawCursors(selection) {
         let cursor, cursorFlag;
         let details = {collection, document_id, name};
         if (socket_id) {
-            let userSelections = document.querySelectorAll(`selection[socket_id="${socket_id}"]`);
-            if (userSelections) {
-                for (let userSelection of userSelections){
-                    if (userSelection.details != details)
-                        userSelection.remove();
-                }
-            }
+            let userSelection = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
+            if (userSelection && userSelection.details != details)
+                userSelection.remove();
             let selection_user = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
             if (!selection_user){
                 selection_user = document.createElement('selection');
@@ -325,7 +321,8 @@ function sendPosition(info) {
                 background: info.background || localStorage.getItem("cursorBackground") || cursorBackground,
                 userName: info.userName || localStorage.getItem("userName") || clientId,
                 user_id: info.user_id || localStorage.getItem("user_id") || clientId
-            }
+            },
+            broadcastBrowser: 'once'
         });
     }
     catch (e) {
