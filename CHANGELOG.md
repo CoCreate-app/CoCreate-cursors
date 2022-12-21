@@ -1,3 +1,11 @@
+## [1.13.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.1...v1.13.2) (2022-12-21)
+
+
+### Bug Fixes
+
+* bump dependencies ([7ed9e9a](https://github.com/CoCreate-app/CoCreate-cursors/commit/7ed9e9aea038886149b94d851c6ab45c1ab5f03f))
+* remove cursor per mirror and add broadvastBrowser to message ([9df4402](https://github.com/CoCreate-app/CoCreate-cursors/commit/9df4402d595c3a4eeb98f5924f9c8631893425a8))
+
 ## [1.13.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.0...v1.13.1) (2022-12-20)
 
 
