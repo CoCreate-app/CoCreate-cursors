@@ -1,3 +1,10 @@
+## [1.13.9](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.8...v1.13.9) (2022-12-30)
+
+
+### Bug Fixes
+
+* update config sources to use template  braces with entry on src ([1bf2853](https://github.com/CoCreate-app/CoCreate-cursors/commit/1bf2853f7d300d6411b7d2a8d1a96d80e5324465))
+
 ## [1.13.8](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.7...v1.13.8) (2022-12-29)
 
 
