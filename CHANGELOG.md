@@ -1,3 +1,10 @@
+## [1.13.11](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.10...v1.13.11) (2023-01-01)
+
+
+### Bug Fixes
+
+* docs sanbox overflow ([3b6e769](https://github.com/CoCreate-app/CoCreate-cursors/commit/3b6e7697b33a4dea0ed1fd7b46f29f203f4ea27e))
+
 ## [1.13.10](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.9...v1.13.10) (2022-12-31)
 
 
