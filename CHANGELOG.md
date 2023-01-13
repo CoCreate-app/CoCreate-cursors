@@ -1,3 +1,11 @@
+## [1.13.17](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.16...v1.13.17) (2023-01-13)
+
+
+### Bug Fixes
+
+* bump dependencies ([9339d26](https://github.com/CoCreate-app/CoCreate-cursors/commit/9339d2615d4ef07d49f709b07b6a1db58270e94a))
+* if domTextEditor && !domtextEditor.htmlString return ([3e940a9](https://github.com/CoCreate-app/CoCreate-cursors/commit/3e940a91e4d97ae9c146959fb50af1cb2d23cb5b))
+
 ## [1.13.16](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.15...v1.13.16) (2023-01-10)
 
 
