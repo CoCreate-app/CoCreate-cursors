@@ -77,8 +77,10 @@ function drawCursors(selection) {
                 // if (frameClientId == selection.clientId) continue;
                 domTextEditor = element.contentDocument.documentElement;
             }
+            if (!domTextEditor.htmlString)
+                continue
             let pos = getElementPosition(domTextEditor.htmlString, start, end);
-            if (pos.start){
+            if (pos.start) {
                 if (pos.path)
                     element = domTextEditor.querySelector(pos.path);
                 let endPos = end - start;
