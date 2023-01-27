@@ -21,9 +21,7 @@
     "html5-framework",
     "javascript-framework"
   ],
-  "publishConfig": {
-    "access": "public"
-  },
+  "publishConfig": { "access": "public" },
   "scripts": {
     "start": "npx webpack --config webpack.config.js",
     "build": "NODE_ENV=production npx webpack --config webpack.config.js",
@@ -37,9 +35,7 @@
   },
   "author": "CoCreate LLC",
   "license": "SEE LICENSE",
-  "bugs": {
-    "url": "https://github.com/CoCreate-app/CoCreate-cursors/issues"
-  },
+  "bugs": { "url": "https://github.com/CoCreate-app/CoCreate-cursors/issues" },
   "homepage": "https://cocreate.app/docs/cursors",
   "funding": {
     "type": "GitHub Sponsors ❤",
@@ -61,12 +57,12 @@
     "webpack-log": "^3.0.1"
   },
   "dependencies": {
-    "@cocreate/crud-client": "^1.17.17",
-    "@cocreate/docs": "^1.5.7",
-    "@cocreate/message-client": "^1.1.126",
-    "@cocreate/observer": "^1.5.57",
-    "@cocreate/random-color": "^1.2.74",
-    "@cocreate/selection": "^1.4.62",
-    "@cocreate/uuid": "^1.2.56"
+    "@cocreate/crud-client": "^1.17.19",
+    "@cocreate/docs": "^1.5.8",
+    "@cocreate/message-client": "^1.1.127",
+    "@cocreate/observer": "^1.5.58",
+    "@cocreate/random-color": "^1.2.75",
+    "@cocreate/selection": "^1.4.63",
+    "@cocreate/uuid": "^1.2.57"
   }
 }
