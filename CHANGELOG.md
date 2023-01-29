@@ -1,3 +1,10 @@
+# [1.14.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.18...v1.14.0) (2023-01-29)
+
+
+### Features
+
+* import @cocreate/local-storage ([df4bd2d](https://github.com/CoCreate-app/CoCreate-cursors/commit/df4bd2d9bf72e3d23db6c8ca056b7a26e59a2a20))
+
 ## [1.13.18](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.13.17...v1.13.18) (2023-01-27)
 
 
