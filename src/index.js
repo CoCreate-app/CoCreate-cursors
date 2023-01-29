@@ -1,8 +1,9 @@
-/*globals localStorage, ResizeObserver*/
+/*globals ResizeObserver*/
 import observer from '@cocreate/observer';
 import crud from '@cocreate/crud-client';
 import message from '@cocreate/message-client';
 import uuid from '@cocreate/uuid';
+import localStorage from '@cocreate/local-storage';
 import { getElementPosition } from '@cocreate/selection';
 import {randomColor} from '@cocreate/random-color';
 import './index.css';
