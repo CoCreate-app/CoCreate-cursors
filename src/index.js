@@ -35,10 +35,20 @@ function initElement(element) {
 }
 
 function initDocument(doc) {
-    let documents = window.top.cursorDocuments;
+    let documents;
+    try {
+        documents = window.top.cursorDocuments;
+    } catch(e) {
+        console.log('cross-origin failed')
+    }
+
     if (!documents){
         documents = new Map();
-        window.top.cursorDocuments = documents;
+        try {
+            window.top.cursorDocuments = documents;  
+        } catch(e) {
+            console.log('cross-origin failed')
+        }
     }
     if (!documents.has(doc)) {
         initResizeObserver(doc.documentElement);
