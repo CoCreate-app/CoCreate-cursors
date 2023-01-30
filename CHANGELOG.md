@@ -1,3 +1,10 @@
+## [1.14.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.14.2...v1.14.3) (2023-01-30)
+
+
+### Bug Fixes
+
+* catch cross-origin error when accessing window.top ([1c8db27](https://github.com/CoCreate-app/CoCreate-cursors/commit/1c8db27e0b100971ac9e5ad2a707c920fdf2b0f3))
+
 ## [1.14.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.14.1...v1.14.2) (2023-01-29)
 
 
