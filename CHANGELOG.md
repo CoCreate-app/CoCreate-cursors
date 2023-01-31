@@ -1,3 +1,10 @@
+## [1.14.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.14.4...v1.14.5) (2023-01-31)
+
+
+### Bug Fixes
+
+* bump dependencies ([98838a6](https://github.com/CoCreate-app/CoCreate-cursors/commit/98838a66b2d8f1fddbe3c6d190ece6fddd7cbc23))
+
 ## [1.14.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.14.3...v1.14.4) (2023-01-30)
 
 
