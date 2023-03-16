@@ -1,3 +1,10 @@
+# [1.15.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.14.6...v1.15.0) (2023-03-16)
+
+
+### Features
+
+* replaced get-value and set-value with a super charged version of CoCreate-events ([f2335e3](https://github.com/CoCreate-app/CoCreate-cursors/commit/f2335e3a612ac01dcd78a05b7c7cccdc8b974ff5))
+
 ## [1.14.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.14.5...v1.14.6) (2023-02-01)
 
 
