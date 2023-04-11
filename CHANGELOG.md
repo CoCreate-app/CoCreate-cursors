@@ -1,3 +1,10 @@
+## [1.15.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.15.3...v1.15.4) (2023-04-11)
+
+
+### Bug Fixes
+
+* renamed domains to hosts ([ba6dc58](https://github.com/CoCreate-app/CoCreate-cursors/commit/ba6dc585152e9734a530d282163403749002d87e))
+
 ## [1.15.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.15.2...v1.15.3) (2023-03-30)
 
 
