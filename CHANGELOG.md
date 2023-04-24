@@ -1,3 +1,10 @@
+## [1.16.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.0...v1.16.1) (2023-04-24)
+
+
+### Bug Fixes
+
+* removed uglifyjs-webpack-plugin ([e8149e8](https://github.com/CoCreate-app/CoCreate-cursors/commit/e8149e862ca309964f764968f818dffe91092f06))
+
 # [1.16.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.15.6...v1.16.0) (2023-04-24)
 
 
