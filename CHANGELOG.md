@@ -1,3 +1,10 @@
+## [1.16.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.2...v1.16.3) (2023-04-24)
+
+
+### Bug Fixes
+
+* workflow node version updated  16 ([f248c39](https://github.com/CoCreate-app/CoCreate-cursors/commit/f248c39e1e739bd9683a66141d9ad20e996f5abd))
+
 ## [1.16.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.1...v1.16.2) (2023-04-24)
 
 
