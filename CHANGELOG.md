@@ -1,3 +1,10 @@
+# [1.16.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.15.6...v1.16.0) (2023-04-24)
+
+
+### Features
+
+* added pwa manifest ([3c5ee7c](https://github.com/CoCreate-app/CoCreate-cursors/commit/3c5ee7cb1f21ddcaeb5678af8420d02ece5edf66))
+
 ## [1.15.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.15.5...v1.15.6) (2023-04-11)
 
 
