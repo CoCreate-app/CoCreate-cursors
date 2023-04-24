@@ -1,3 +1,10 @@
+## [1.16.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.3...v1.16.4) (2023-04-24)
+
+
+### Bug Fixes
+
+* updated worrkflows to v3 and node version 16 ([b1d76d9](https://github.com/CoCreate-app/CoCreate-cursors/commit/b1d76d9c01a86f5aedab61b35210ec12633b4701))
+
 ## [1.16.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.2...v1.16.3) (2023-04-24)
 
 
