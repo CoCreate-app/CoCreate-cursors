@@ -1,3 +1,10 @@
+## [1.16.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.5...v1.16.6) (2023-05-01)
+
+
+### Bug Fixes
+
+* replace fontawesome with svg ([d8188f8](https://github.com/CoCreate-app/CoCreate-cursors/commit/d8188f881eaec9ebc757fe0f32f359bbeeb3ab8a))
+
 ## [1.16.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.4...v1.16.5) (2023-04-30)
 
 
