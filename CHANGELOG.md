@@ -1,3 +1,10 @@
+## [1.16.7](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.6...v1.16.7) (2023-05-01)
+
+
+### Bug Fixes
+
+* update manifest.json to manifest.webmanifest ([06e18cb](https://github.com/CoCreate-app/CoCreate-cursors/commit/06e18cb75b8bf34027cb163e12c06ac21803c66c))
+
 ## [1.16.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.5...v1.16.6) (2023-05-01)
 
 

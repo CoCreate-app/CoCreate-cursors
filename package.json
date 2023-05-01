@@ -1,6 +1,6 @@
 {
   "name": "@cocreate/cursors",
-  "version": "1.16.6",
+  "version": "1.16.7",
   "description": "Collaborative user cursor position for inputs, textarea's and contenteditable elements.",
   "keywords": [
     "cursors",
