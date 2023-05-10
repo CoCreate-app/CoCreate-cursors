@@ -1,3 +1,10 @@
+## [1.16.9](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.8...v1.16.9) (2023-05-10)
+
+
+### Bug Fixes
+
+* apikey renamed to key ([4f20a33](https://github.com/CoCreate-app/CoCreate-cursors/commit/4f20a33812f212bcb6ace235eade3436e386e8e3))
+
 ## [1.16.8](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.7...v1.16.8) (2023-05-06)
 
 
