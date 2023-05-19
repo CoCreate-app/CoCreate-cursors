@@ -1,3 +1,10 @@
+## [1.16.10](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.9...v1.16.10) (2023-05-19)
+
+
+### Bug Fixes
+
+* update packages to latest version. This commit updates various packages in the dependencies section of the package.json file to their latest published versions, thereby fixing multiple bugs and improving overall performance. ([1db2377](https://github.com/CoCreate-app/CoCreate-cursors/commit/1db23772c547a07df2ca6096f277e6889e63269a))
+
 ## [1.16.9](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.8...v1.16.9) (2023-05-10)
 
 
