@@ -1,52 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+            rel="icon"
+            href="https://cdn.cocreate.app/favicon.ico"
+            type="image/ico"
+            sizes="16x16" />
+        <title>Cursors | CoCreate</title>
 
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="https://cdn.cocreate.app/favicon.ico" type="image/ico" sizes="16x16">
-    <title>Cursors | CoCreate</title>
+        <!-- CoCreateCSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdn.cocreate.app/latest/CoCreate.min.css"
+            type="text/css" />
 
-    <!-- CoCreateCSS -->
-    <link rel="stylesheet" href="https://cdn.cocreate.app/latest/CoCreate.min.css" type="text/css" />
-    
-    <!-- CoCreate Cursors -->
-    <link rel="stylesheet" href="./CoCreate-cursors.css" type="text/css" />
+        <!-- CoCreate Cursors -->
+        <link rel="stylesheet" href="./CoCreate-cursors.css" type="text/css" />
 
-       
-    <link rel="manifest" href="/manifest.webmanifest">
-  </head>
+        <link rel="manifest" href="/manifest.webmanifest" />
+    </head>
 
-  <body>
+    <body>
+        <form collection="module_activities" class="margin:20px">
+            <input
+                type="text"
+                cursors="true"
+                collection="module_activities"
+                document_id="5edda7608d5c7a7d656edecd"
+                name="name"
+                placeholder="Text"
+                class="floating-label" />
 
-    <form collection="module_activities" class="margin:20px">
-      
-      <input type="text" 
-        cursors="true"
-        collection="module_activities" 
-        document_id="5edda7608d5c7a7d656edecd" 
-        name="name"
-        placeholder="Text"
-        class="floating-label">
-        
-      <textarea
-        cursors="true"
-        collection="module_activities"
-        document_id="5edda7608d5c7a7d656edecd"
-        name="text_area"
-        placeholder="Text Area"
-        class="floating-label">
-      </textarea>
-  
-   	<button class="submitBtn position:fixed bottom:15px right:15px bg-blue grow-hover round"><i class="height:20px fill:#505050" src="/assets/svg/save.svg"></i></button>
-  
-    </form>
+            <textarea
+                cursors="true"
+                collection="module_activities"
+                document_id="5edda7608d5c7a7d656edecd"
+                name="text_area"
+                placeholder="Text Area"
+                class="floating-label">
+            </textarea>
 
-    
-    <!--<script src="../dist/CoCreate-cursor.js"></script>-->
-    <script src="https://cdn.cocreate.app/latest/CoCreate.min.js" ></script>
+            <button
+                class="submitBtn position:fixed bottom:15px right:15px bg-blue grow-hover round">
+                <i
+                    class="height:20px fill:#505050"
+                    src="/assets/svg/save.svg"></i>
+            </button>
+        </form>
 
-
-  </body>
+        <!--<script src="../dist/CoCreate-cursor.js"></script>-->
+        <script src="https://cdn.cocreate.app/latest/CoCreate.min.js"></script>
+    </body>
 </html>
