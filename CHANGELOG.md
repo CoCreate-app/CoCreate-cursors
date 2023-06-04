@@ -1,3 +1,10 @@
+## [1.16.13](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.12...v1.16.13) (2023-06-04)
+
+
+### Bug Fixes
+
+* **semantic-release:** worklow error solved by running node version 14 ([d3d53ca](https://github.com/CoCreate-app/CoCreate-cursors/commit/d3d53cabbfa99e1711aed7caa33834d6d5ef90c4))
+
 ## [1.16.12](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.11...v1.16.12) (2023-06-02)
 
 
