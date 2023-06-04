@@ -1,3 +1,11 @@
+## [1.16.14](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.13...v1.16.14) (2023-06-04)
+
+
+### Bug Fixes
+
+* replaced secert GITHUB_TOKEN with GITHUB ([d95338b](https://github.com/CoCreate-app/CoCreate-cursors/commit/d95338b6dac8cd4aa7e06b8f5aee9bbf93c5a476))
+* Update dependencies versions for [@cocreate](https://github.com/cocreate) libraries ([cc1feda](https://github.com/CoCreate-app/CoCreate-cursors/commit/cc1feda5668c412b2ebe96005f8c45c4d445111c))
+
 ## [1.16.13](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.12...v1.16.13) (2023-06-04)
 
 
