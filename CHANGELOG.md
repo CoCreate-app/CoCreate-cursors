@@ -1,3 +1,10 @@
+## [1.16.15](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.14...v1.16.15) (2023-06-04)
+
+
+### Bug Fixes
+
+* Refactor CoCreate.config.js to remove hard-coded credentials ([8ebecf6](https://github.com/CoCreate-app/CoCreate-cursors/commit/8ebecf60c0bac30009a1eb7fc648ebb9cf9b5911))
+
 ## [1.16.14](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.13...v1.16.14) (2023-06-04)
 
 
