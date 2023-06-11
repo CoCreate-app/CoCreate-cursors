@@ -1,3 +1,10 @@
+## [1.16.21](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.20...v1.16.21) (2023-06-11)
+
+
+### Bug Fixes
+
+* postintall error ([db74dc5](https://github.com/CoCreate-app/CoCreate-cursors/commit/db74dc565efdaf34fbd1a102acd3f0b412ae8690))
+
 ## [1.16.20](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.19...v1.16.20) (2023-06-11)
 
 
