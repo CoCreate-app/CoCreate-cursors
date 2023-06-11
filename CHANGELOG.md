@@ -1,3 +1,10 @@
+## [1.16.25](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.24...v1.16.25) (2023-06-11)
+
+
+### Bug Fixes
+
+* testing workflow ([5e71a18](https://github.com/CoCreate-app/CoCreate-cursors/commit/5e71a18935d1f86305e56c1296b35a759a6aabd4))
+
 ## [1.16.24](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.23...v1.16.24) (2023-06-11)
 
 
