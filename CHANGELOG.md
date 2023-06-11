@@ -1,3 +1,10 @@
+## [1.16.18](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.17...v1.16.18) (2023-06-11)
+
+
+### Bug Fixes
+
+* renamed hosts to host. the value can be a string or an array of strings ([151cd0d](https://github.com/CoCreate-app/CoCreate-cursors/commit/151cd0d5d11079b66f67cb30111e51f0e191a3ad))
+
 ## [1.16.17](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.16...v1.16.17) (2023-06-10)
 
 
