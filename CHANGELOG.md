@@ -1,3 +1,10 @@
+## [1.16.27](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.26...v1.16.27) (2023-06-11)
+
+
+### Bug Fixes
+
+* Update dependencies versions for [@cocreate](https://github.com/cocreate) libraries ([b70b731](https://github.com/CoCreate-app/CoCreate-cursors/commit/b70b73136b617f90746d0984f0119b26fc0d7d4f))
+
 ## [1.16.26](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.25...v1.16.26) (2023-06-11)
 
 
