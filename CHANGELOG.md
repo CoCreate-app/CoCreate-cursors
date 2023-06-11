@@ -1,3 +1,10 @@
+## [1.16.20](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.19...v1.16.20) (2023-06-11)
+
+
+### Bug Fixes
+
+* @cocreate/cli moved to dependencies ([a4eb220](https://github.com/CoCreate-app/CoCreate-cursors/commit/a4eb220f2174fe20c0acb0888de7011ec1baec94))
+
 ## [1.16.19](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.18...v1.16.19) (2023-06-11)
 
 
