@@ -1,3 +1,25 @@
+/********************************************************************************
+ * Copyright (C) 2023 CoCreate and Contributors.
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <https://www.gnu.org/licenses/>.
+ ********************************************************************************/
+
+// Commercial Licensing Information:
+// For commercial use of this software without the copyleft provisions of the AGPLv3,
+// you must obtain a commercial license from CoCreate LLC.
+// For details, visit <https://cocreate.app/licenses/> or contact us at sales@cocreate.app.
+
 /*globals ResizeObserver*/
 import observer from '@cocreate/observer';
 import crud from '@cocreate/crud-client';
@@ -5,7 +27,7 @@ import message from '@cocreate/message-client';
 import uuid from '@cocreate/uuid';
 import localStorage from '@cocreate/local-storage';
 import { getElementPosition } from '@cocreate/selection';
-import {randomColor} from '@cocreate/random-color';
+import { randomColor } from '@cocreate/random-color';
 import './index.css';
 
 const clientId = message.socket.clientId || uuid.generate(12);
@@ -13,7 +35,7 @@ const cursorBackground = randomColor();
 
 let environment_prod = true;
 
-let selector = "[collection][document_id][name]:not([contentEditable='false'])";
+let selector = "[array][object][name]:not([contentEditable='false'])";
 
 function init() {
     let elements = document.querySelectorAll(selector);
@@ -38,15 +60,15 @@ function initDocument(doc) {
     let documents;
     try {
         documents = window.top.cursorDocuments;
-    } catch(e) {
+    } catch (e) {
         console.log('cross-origin failed')
     }
 
-    if (!documents){
+    if (!documents) {
         documents = new Map();
         try {
-            window.top.cursorDocuments = documents;  
-        } catch(e) {
+            window.top.cursorDocuments = documents;
+        } catch (e) {
             console.log('cross-origin failed')
         }
     }
@@ -58,14 +80,14 @@ function initDocument(doc) {
 
 function drawCursors(selection) {
     const socket_id = selection['clientId'];
-    const collection = selection['collection'];
-    const document_id = selection['document_id'];
+    const array = selection['array'];
+    const object = selection['object'];
     const name = selection['name'];
     let start = selection['start'];
     let end = selection['end'];
     let elements = selection.element;
     if (!elements) {
-        let selector = '[collection="' + collection + '"][document_id="' + document_id + '"][name="' + name + '"]';
+        let selector = '[array="' + array + '"][object="' + object + '"][name="' + name + '"]';
         selector += ':not(.codemirror, .monaco, [actions])';
         elements = document.querySelectorAll(selector);
     }
@@ -80,10 +102,10 @@ function drawCursors(selection) {
         if (element.tagName != 'INPUT' && element.tagName != 'TEXTAREA')
             if (contenteditable == 'false' || contenteditable == null)
                 if (cursors != 'true') continue;
-        
+
         if (element.hasAttribute('contenteditable')) {
             let domTextEditor = element;
-            if (element.tagName == 'IFRAME'){
+            if (element.tagName == 'IFRAME') {
                 // let frameClientId = element.contentDocument.defaultView.CoCreateSockets.clientId;
                 // if (frameClientId == selection.clientId) continue;
                 domTextEditor = element.contentDocument.documentElement;
@@ -107,10 +129,10 @@ function drawCursors(selection) {
         let document = element.ownerDocument;
         let mirrorDiv;
         let id_mirror = element.getAttribute('mirror_id');
-        if (!id_mirror){
+        if (!id_mirror) {
             id_mirror = uuid.generate(8);
             element.setAttribute('mirror_id', id_mirror);
-            
+
             mirrorDiv = document.createElement('cursor-container');
             mirrorDiv.id = id_mirror;
             mirrorDiv.className = (environment_prod) ? 'mirror mirror_scroll mirror_color' : 'mirror mirror_scroll';
@@ -131,16 +153,16 @@ function drawCursors(selection) {
         }
         else
             mirrorDiv = document.getElementById(id_mirror);
-        
+
         let computed = getComputedStyle(element);
         let rect = element.getBoundingClientRect();
-        
+
         let borderWidth = parseInt(computed['border-width']) * 2;
         let scrollBarWidth = 0;
         if (element.clientWidth != 0)
             scrollBarWidth = element.offsetWidth - element.clientWidth - borderWidth;
-        
-        let style = mirrorDiv.style; 
+
+        let style = mirrorDiv.style;
         style.position = 'absolute';
         style.width = rect.width + 'px';
         style.height = rect.height + 'px';
@@ -154,7 +176,7 @@ function drawCursors(selection) {
         style.outlineColor = 'transparent';
         style.boxSizing = computed['boxSizing'];
         style.lineHeight = computed['lineHeight'];
-            
+
         if (element.parentElement.style['display'] == 'inline') {
             style.top = element.clientTop + 'px';
             style.left = element.clientLeft + 'px';
@@ -162,39 +184,39 @@ function drawCursors(selection) {
             style.top = element.offsetTop + 'px';
             style.left = element.offsetLeft + 'px';
         }
-        
+
         if (element.nodeName !== 'INPUT') {
             style.wordWrap = 'break-word';
             style.whiteSpace = 'pre-wrap';
         } else {
             style.whiteSpace = 'pre';
         }
-    
+
         let properties = ['fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize', 'fontFamily', 'letterSpacing', 'lineHeight', 'textAlign', 'textTransform', 'textIndent', 'textDecoration', 'textRendering', 'textTransform', 'textIndent', 'overflowWrap', 'tabSize', 'webkitWritingMode', 'wordSpacing'];
-    
-        properties.forEach(function(prop) {
+
+        properties.forEach(function (prop) {
             if (['left', 'top'].indexOf(prop.toLowerCase()) === -1)
                 style[prop] = computed[prop];
         });
-    
+
         let spanText = mirrorDiv.querySelector('span-text');
         if (!spanText)
             spanText = document.createElement('span-text');
-            spanText.style['display'] = 'block';
+        spanText.style['display'] = 'block';
         let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
-        
+
         spanText.textContent = value_element;
         if (element.nodeName === 'INPUT')
             spanText.textContent = mirrorDiv.textContent.replace(/\s/g, " ");
         mirrorDiv.appendChild(spanText);
         let cursor, cursorFlag;
-        let details = {collection, document_id, name};
+        let details = { array, object, name };
         if (socket_id) {
             let userSelection = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
             if (userSelection && userSelection.details != details)
                 userSelection.remove();
             let selection_user = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
-            if (!selection_user){
+            if (!selection_user) {
                 selection_user = document.createElement('selection');
                 selection_user.setAttribute('socket_id', socket_id);
                 selection_user.style["position"] = "absolute";
@@ -202,18 +224,18 @@ function drawCursors(selection) {
                 selection_user.style["top"] = style_mirror.paddingTop;
                 selection_user.style["left"] = style_mirror.paddingLeft;
                 selection_user.style["width"] = mirrorDiv.clientWidth - parseInt(computed['padding-left']) - parseInt(computed['padding-right']) - scrollBarWidth + 'px';
-                selection_user.details = {collection, document_id, name};
-                
+                selection_user.details = { array, object, name };
+
                 mirrorDiv.appendChild(selection_user);
             }
-            
+
             let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
             selection_user.textContent = value_element.substring(0, start);
-            
+
             let value_end = value_element.substring(end) || '';
             let span_end = document.createElement('span-end');
             span_end.textContent = value_end;
-            
+
             cursor = document.createElement('cursor');
             cursor.setAttribute('socket_id', socket_id);
             cursor.dataset.start = start;
@@ -222,23 +244,23 @@ function drawCursors(selection) {
             cursor.setAttribute('user-background', selection.background);
             cursor.setAttribute('user-color', selection.color);
             cursor.style["background"] = selection.background;
-            cursor.details = {collection, document_id, name};
+            cursor.details = { array, object, name };
             cursor.textContent = "1";
             span_end.prepend(cursor);
-            
+
             let selectedText = document.createElement('selected-text');
             selectedText.style["backgroundColor"] = selection.background;
             selectedText.textContent = value_element.substring(start, end) || '';
             span_end.prepend(selectedText);
-            
+
             cursorFlag = document.createElement('cursor-flag');
-            cursorFlag.setAttribute('collection', 'users');
-            cursorFlag.setAttribute('document_id', selection.user_id);
+            cursorFlag.setAttribute('array', 'users');
+            cursorFlag.setAttribute('object', selection.user_id);
             cursorFlag.setAttribute('name', 'name');
             cursorFlag.style["background"] = selection.background;
             cursorFlag.innerHTML = selection.userName;
             cursor.appendChild(cursorFlag);
-            
+
             selection_user.appendChild(span_end);
         }
         scrollMirror(element);
@@ -260,7 +282,7 @@ function updateCursors(element) {
         element = mirrorDiv.element;
         let cursors = mirrorDiv.querySelectorAll('cursor');
 
-        cursors.forEach(function(child_cursor, index, array) {
+        cursors.forEach(function (child_cursor, index, array) {
             let clientId = child_cursor.getAttribute('socket_id');
             let userName = child_cursor.getAttribute('user-name');
             let background = child_cursor.getAttribute('user-background');
@@ -283,22 +305,22 @@ function updateCursors(element) {
 
 function removeCursor(clientId) {
     let elements = document.querySelectorAll(`cursor[socket_id="${clientId}"]`);
-    elements.forEach(function(element, index, array) {
+    elements.forEach(function (element, index, array) {
         element.parentNode.removeChild(element);
     });
 
     let sel_elements = document.querySelectorAll(`selection[socket_id="${clientId}"]`);
-    sel_elements.forEach(function(sel_element, index, array) {
+    sel_elements.forEach(function (sel_element, index, array) {
         sel_element.parentNode.removeChild(sel_element);
     });
 }
 
 function _initEvents(element) {
-    element.addEventListener('keydown', function(event) {
+    element.addEventListener('keydown', function (event) {
         scrollMirror(element);
     });
 
-    element.addEventListener('scroll', function() {
+    element.addEventListener('scroll', function () {
         scrollMirror(element);
     });
 
@@ -324,8 +346,8 @@ function sendPosition(info) {
             room: "",
             message: "cursor",
             data: {
-                collection: info.collection,
-                document_id: info.document_id,
+                array: info.array,
+                object: info.object,
                 name: info.name,
                 start: info.start,
                 end: info.end,
@@ -344,7 +366,7 @@ function sendPosition(info) {
 }
 
 
-message.listen('cursor', function(response) {
+message.listen('cursor', function (response) {
     // if (selection.clientId == clientId) return;
     let selection = response.data
     if (selection.start != null && selection.end != null)
@@ -356,8 +378,8 @@ message.listen('cursor', function(response) {
 observer.init({
     name: 'CoCreateCursor',
     observe: ['addedNodes'],
-    target: '[collection][document_id][name]',
-    callback: function(mutation) {
+    target: '[array][object][name]',
+    callback: function (mutation) {
         initElement(mutation.target);
     }
 });
@@ -365,8 +387,8 @@ observer.init({
 observer.init({
     name: 'CoCreateCursorAtt',
     observe: ['attributes'],
-    attributeName: crud.getAttributeNames(['collection', 'document_id', 'name']),
-    callback: function(mutation) {
+    attributeName: crud.getAttributeNames(['array', 'object', 'name']),
+    callback: function (mutation) {
         initElement(mutation.target);
     }
 });
