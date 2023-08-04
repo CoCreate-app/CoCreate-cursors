@@ -35,7 +35,7 @@ const cursorBackground = randomColor();
 
 let environment_prod = true;
 
-let selector = "[array][object][name]:not([contentEditable='false'])";
+let selector = "[array][object][key]:not([contentEditable='false'])";
 
 function init() {
     let elements = document.querySelectorAll(selector);
@@ -82,12 +82,12 @@ function drawCursors(selection) {
     const socket_id = selection['clientId'];
     const array = selection['array'];
     const object = selection['object'];
-    const name = selection['name'];
+    const key = selection['key'];
     let start = selection['start'];
     let end = selection['end'];
     let elements = selection.element;
     if (!elements) {
-        let selector = '[array="' + array + '"][object="' + object + '"][name="' + name + '"]';
+        let selector = '[array="' + array + '"][object="' + object + '"][key="' + key + '"]';
         selector += ':not(.codemirror, .monaco, [actions])';
         elements = document.querySelectorAll(selector);
     }
@@ -210,7 +210,7 @@ function drawCursors(selection) {
             spanText.textContent = mirrorDiv.textContent.replace(/\s/g, " ");
         mirrorDiv.appendChild(spanText);
         let cursor, cursorFlag;
-        let details = { array, object, name };
+        let details = { array, object, key };
         if (socket_id) {
             let userSelection = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
             if (userSelection && userSelection.details != details)
@@ -224,7 +224,7 @@ function drawCursors(selection) {
                 selection_user.style["top"] = style_mirror.paddingTop;
                 selection_user.style["left"] = style_mirror.paddingLeft;
                 selection_user.style["width"] = mirrorDiv.clientWidth - parseInt(computed['padding-left']) - parseInt(computed['padding-right']) - scrollBarWidth + 'px';
-                selection_user.details = { array, object, name };
+                selection_user.details = { array, object, key };
 
                 mirrorDiv.appendChild(selection_user);
             }
@@ -244,7 +244,7 @@ function drawCursors(selection) {
             cursor.setAttribute('user-background', selection.background);
             cursor.setAttribute('user-color', selection.color);
             cursor.style["background"] = selection.background;
-            cursor.details = { array, object, name };
+            cursor.details = { array, object, key };
             cursor.textContent = "1";
             span_end.prepend(cursor);
 
@@ -256,7 +256,7 @@ function drawCursors(selection) {
             cursorFlag = document.createElement('cursor-flag');
             cursorFlag.setAttribute('array', 'users');
             cursorFlag.setAttribute('object', selection.user_id);
-            cursorFlag.setAttribute('name', 'name');
+            cursorFlag.setAttribute('key', 'name');
             cursorFlag.style["background"] = selection.background;
             cursorFlag.innerHTML = selection.userName;
             cursor.appendChild(cursorFlag);
@@ -348,7 +348,7 @@ function sendPosition(info) {
             data: {
                 array: info.array,
                 object: info.object,
-                name: info.name,
+                key: info.key,
                 start: info.start,
                 end: info.end,
                 clientId: clientId,
@@ -378,7 +378,7 @@ message.listen('cursor', function (response) {
 observer.init({
     name: 'CoCreateCursor',
     observe: ['addedNodes'],
-    target: '[array][object][name]',
+    target: '[array][object][key]',
     callback: function (mutation) {
         initElement(mutation.target);
     }
@@ -387,7 +387,7 @@ observer.init({
 observer.init({
     name: 'CoCreateCursorAtt',
     observe: ['attributes'],
-    attributeName: crud.getAttributeNames(['array', 'object', 'name']),
+    attributeName: crud.getAttributeNames(['array', 'object', 'key']),
     callback: function (mutation) {
         initElement(mutation.target);
     }
