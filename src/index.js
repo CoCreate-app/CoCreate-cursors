@@ -22,7 +22,7 @@
 
 /*globals ResizeObserver*/
 import observer from '@cocreate/observer';
-import crud from '@cocreate/crud-client';
+import { getAttributeNames } from '@cocreate/utils';
 import message from '@cocreate/message-client';
 import uuid from '@cocreate/uuid';
 import localStorage from '@cocreate/local-storage';
@@ -387,7 +387,7 @@ observer.init({
 observer.init({
     name: 'CoCreateCursorAtt',
     observe: ['attributes'],
-    attributeName: crud.getAttributeNames(['array', 'object', 'key']),
+    attributeName: getAttributeNames(['array', 'object', 'key']),
     callback: function (mutation) {
         initElement(mutation.target);
     }
