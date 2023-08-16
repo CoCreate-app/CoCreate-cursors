@@ -1,3 +1,18 @@
+# [1.17.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.29...v1.17.0) (2023-08-16)
+
+
+### Bug Fixes
+
+* crud attributes renamed ([aae6080](https://github.com/CoCreate-app/CoCreate-cursors/commit/aae6080c167f064ce3c642930d84e58cff3044c8))
+* removed @cocreate/crud-client and import @cocreate/utils getAttributeNames function ([a838579](https://github.com/CoCreate-app/CoCreate-cursors/commit/a8385795e90ddd5874264351d18fa087a3b6a17b))
+* replace -target -selector ([37ba162](https://github.com/CoCreate-app/CoCreate-cursors/commit/37ba162aff7dc536d6ef7446500257d939a3540e))
+* webpack.config and package.json make use of mode=production instead of process.env ([e0c835e](https://github.com/CoCreate-app/CoCreate-cursors/commit/e0c835e906a458667d258c15d0395b3862e552cd))
+
+
+### Features
+
+* name attribute and variable renamed to key ([15f6427](https://github.com/CoCreate-app/CoCreate-cursors/commit/15f64279deb623deed4184d6303e709be93f78f9))
+
 ## [1.16.29](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.16.28...v1.16.29) (2023-06-14)
 
 
