@@ -1,3 +1,12 @@
+## [1.18.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.18.0...v1.18.1) (2023-08-21)
+
+
+### Bug Fixes
+
+* /dist/CoCreate.js updated to https://CoCreate.app/dist/CoCreate.js ([2df4f45](https://github.com/CoCreate-app/CoCreate-cursors/commit/2df4f4527f3652ba73dac120e30481071cb3d424))
+* replace cdn with /dist ([344a939](https://github.com/CoCreate-app/CoCreate-cursors/commit/344a9393f0f32e8f64156c6109edf345c997c45f))
+* update file uploader ([917dd0e](https://github.com/CoCreate-app/CoCreate-cursors/commit/917dd0e547f3a556e679b726efb00b8a188e2181))
+
 # [1.18.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.17.0...v1.18.0) (2023-08-17)
 
 
