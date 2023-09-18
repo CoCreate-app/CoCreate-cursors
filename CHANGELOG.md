@@ -1,3 +1,11 @@
+## [1.19.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.19.1...v1.19.2) (2023-09-18)
+
+
+### Bug Fixes
+
+*  Add path and pathname ([36a3905](https://github.com/CoCreate-app/CoCreate-cursors/commit/36a3905f66360437e32199aa08a85dfbbd31f6cb))
+* Update CoCreate depndencies to latest versions ([cf301af](https://github.com/CoCreate-app/CoCreate-cursors/commit/cf301af47f3d2bf0251ddb71ae9e5229acb3b804))
+
 ## [1.19.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.19.0...v1.19.1) (2023-08-21)
 
 
