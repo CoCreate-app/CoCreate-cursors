@@ -30,6 +30,7 @@ import { getElementPosition } from '@cocreate/selection';
 import { randomColor } from '@cocreate/random-color';
 import './index.css';
 
+const socketId = message.socket.id || uuid.generate(12);
 const clientId = message.socket.clientId || uuid.generate(12);
 const cursorBackground = randomColor();
 
@@ -79,7 +80,7 @@ function initDocument(doc) {
 }
 
 function drawCursors(selection) {
-    const socket_id = selection['clientId'];
+    const socket_id = selection['socketId'];
     const array = selection['array'];
     const object = selection['object'];
     const key = selection['key'];
@@ -92,7 +93,7 @@ function drawCursors(selection) {
         elements = document.querySelectorAll(selector);
     }
     for (let element of elements) {
-        if (window.activeElement == element && selection.clientId == clientId) {
+        if (window.activeElement == element && selection.socketId == socketId) {
             continue;
         }
         let realtime = element.getAttribute('realtime');
@@ -106,8 +107,8 @@ function drawCursors(selection) {
         if (element.hasAttribute('contenteditable')) {
             let domTextEditor = element;
             if (element.tagName == 'IFRAME') {
-                // let frameClientId = element.contentDocument.defaultView.CoCreateSockets.clientId;
-                // if (frameClientId == selection.clientId) continue;
+                // let frameClientId = element.contentDocument.defaultView.CoCreateSockets.id;
+                // if (frameClientId == selection.socketId) continue;
                 domTextEditor = element.contentDocument.documentElement;
             }
             if (!domTextEditor.htmlString)
@@ -283,7 +284,7 @@ function updateCursors(element) {
         let cursors = mirrorDiv.querySelectorAll('cursor');
 
         cursors.forEach(function (child_cursor, index, array) {
-            let clientId = child_cursor.getAttribute('socket_id');
+            let socketId = child_cursor.getAttribute('socket_id');
             let userName = child_cursor.getAttribute('user-name');
             let background = child_cursor.getAttribute('user-background');
             let color = child_cursor.getAttribute('user-color');
@@ -293,7 +294,7 @@ function updateCursors(element) {
                 element: [element],
                 start,
                 end,
-                clientId,
+                socketId,
                 userName,
                 background,
                 color
@@ -303,13 +304,13 @@ function updateCursors(element) {
     }
 }
 
-function removeCursor(clientId) {
-    let elements = document.querySelectorAll(`cursor[socket_id="${clientId}"]`);
+function removeCursor(socketId) {
+    let elements = document.querySelectorAll(`cursor[socket_id="${socketId}"]`);
     elements.forEach(function (element, index, array) {
         element.parentNode.removeChild(element);
     });
 
-    let sel_elements = document.querySelectorAll(`selection[socket_id="${clientId}"]`);
+    let sel_elements = document.querySelectorAll(`selection[socket_id="${socketId}"]`);
     sel_elements.forEach(function (sel_element, index, array) {
         sel_element.parentNode.removeChild(sel_element);
     });
@@ -351,7 +352,7 @@ function sendPosition(info) {
                 key: info.key,
                 start: info.start,
                 end: info.end,
-                clientId: clientId,
+                socketId,
                 color: info.color || localStorage.getItem("cursorColor"),
                 background: info.background || localStorage.getItem("cursorBackground") || cursorBackground,
                 userName: info.userName || localStorage.getItem("userName") || clientId,
@@ -367,12 +368,12 @@ function sendPosition(info) {
 
 
 message.listen('cursor', function (response) {
-    // if (selection.clientId == clientId) return;
+    // if (selection.socketId == socketId) return;
     let selection = response.data
     if (selection.start != null && selection.end != null)
         drawCursors(selection);
     else
-        removeCursor(selection.clientId);
+        removeCursor(selection.socketId);
 });
 
 observer.init({
