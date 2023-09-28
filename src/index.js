@@ -30,7 +30,6 @@ import { getElementPosition } from '@cocreate/selection';
 import { randomColor } from '@cocreate/random-color';
 import './index.css';
 
-const socketId = message.socket.id || uuid.generate(12);
 const clientId = message.socket.clientId || uuid.generate(12);
 const cursorBackground = randomColor();
 
@@ -93,7 +92,7 @@ function drawCursors(selection) {
         elements = document.querySelectorAll(selector);
     }
     for (let element of elements) {
-        if (window.activeElement == element && selection.socketId == socketId) {
+        if (window.activeElement == element && message.socket.has(selection.socketId)) {
             continue;
         }
         let realtime = element.getAttribute('realtime');
@@ -352,13 +351,12 @@ function sendPosition(info) {
                 key: info.key,
                 start: info.start,
                 end: info.end,
-                socketId,
                 color: info.color || localStorage.getItem("cursorColor"),
                 background: info.background || localStorage.getItem("cursorBackground") || cursorBackground,
                 userName: info.userName || localStorage.getItem("userName") || clientId,
                 user_id: info.user_id || localStorage.getItem("user_id") || clientId
             },
-            broadcastBrowser: 'once'
+            broadcastBrowser: true
         });
     }
     catch (e) {
@@ -368,7 +366,7 @@ function sendPosition(info) {
 
 
 message.listen('cursor', function (response) {
-    // if (selection.socketId == socketId) return;
+    // if (message.socket.has(selection.socketId)) return;
     let selection = response.data
     if (selection.start != null && selection.end != null)
         drawCursors(selection);
