@@ -1,3 +1,11 @@
+## [1.20.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.0...v1.20.1) (2023-10-09)
+
+
+### Bug Fixes
+
+* replaced socketId with socket.has(data.sockeId) ([b3515d7](https://github.com/CoCreate-app/CoCreate-cursors/commit/b3515d7d13758210624b0e4d0ee6cda2a0c3a382))
+* update to use data.socketId and data.clientId ([1d780ec](https://github.com/CoCreate-app/CoCreate-cursors/commit/1d780ec9998235075347e8da0ed7d753b43cf46c))
+
 # [1.20.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.19.2...v1.20.0) (2023-09-19)
 
 
