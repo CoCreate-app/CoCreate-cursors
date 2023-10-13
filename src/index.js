@@ -343,7 +343,6 @@ function initResizeObserver(element) {
 function sendPosition(info) {
     try {
         message.send({
-            room: "",
             message: "cursor",
             data: {
                 array: info.array,
@@ -368,6 +367,7 @@ function sendPosition(info) {
 message.listen('cursor', function (response) {
     // if (message.socket.has(selection.socketId)) return;
     let selection = response.data
+    selection.socketId = response.socketId
     if (selection.start != null && selection.end != null)
         drawCursors(selection);
     else
