@@ -1,3 +1,11 @@
+## [1.20.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.4...v1.20.5) (2023-10-14)
+
+
+### Bug Fixes
+
+* add missing socketId ([bc855f8](https://github.com/CoCreate-app/CoCreate-cursors/commit/bc855f8458084899a74d89f15994e3e767675850))
+* bump dependencies ([53cbfe3](https://github.com/CoCreate-app/CoCreate-cursors/commit/53cbfe387f8d682ad3c03748d2582fd79ce79aad))
+
 ## [1.20.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.3...v1.20.4) (2023-10-09)
 
 
