@@ -1,3 +1,10 @@
+## [1.20.6](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.5...v1.20.6) (2023-10-19)
+
+
+### Bug Fixes
+
+* removed @cocreate/message-client ([50548ed](https://github.com/CoCreate-app/CoCreate-cursors/commit/50548ed558f40f1fa95ccbc24ffaa29cc97769ca))
+
 ## [1.20.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.4...v1.20.5) (2023-10-14)
 
 
