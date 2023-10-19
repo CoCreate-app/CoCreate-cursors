@@ -23,14 +23,14 @@
 /*globals ResizeObserver*/
 import observer from '@cocreate/observer';
 import { getAttributeNames } from '@cocreate/utils';
-import message from '@cocreate/message-client';
+import socket from '@cocreate/socket-client';
 import uuid from '@cocreate/uuid';
 import localStorage from '@cocreate/local-storage';
 import { getElementPosition } from '@cocreate/selection';
 import { randomColor } from '@cocreate/random-color';
 import './index.css';
 
-const clientId = message.socket.clientId || uuid.generate(12);
+const clientId = socket.clientId || uuid.generate(12);
 const cursorBackground = randomColor();
 
 let environment_prod = true;
@@ -92,7 +92,7 @@ function drawCursors(selection) {
         elements = document.querySelectorAll(selector);
     }
     for (let element of elements) {
-        if (window.activeElement == element && message.socket.has(selection.socketId)) {
+        if (window.activeElement == element && socket.has(selection.socketId)) {
             continue;
         }
         let realtime = element.getAttribute('realtime');
@@ -342,8 +342,8 @@ function initResizeObserver(element) {
 
 function sendPosition(info) {
     try {
-        message.send({
-            message: "cursor",
+        socket.send({
+            method: "cursor",
             data: {
                 array: info.array,
                 object: info.object,
@@ -364,8 +364,8 @@ function sendPosition(info) {
 }
 
 
-message.listen('cursor', function (response) {
-    // if (message.socket.has(selection.socketId)) return;
+socket.listen('cursor', function (response) {
+    // if (socket.has(selection.socketId)) return;
     let selection = response.data
     selection.socketId = response.socketId
     if (selection.start != null && selection.end != null)
