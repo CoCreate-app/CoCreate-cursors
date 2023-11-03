@@ -1,3 +1,11 @@
+## [1.20.8](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.7...v1.20.8) (2023-11-03)
+
+
+### Bug Fixes
+
+* favicon.ico path ([c185ebb](https://github.com/CoCreate-app/CoCreate-cursors/commit/c185ebbea3913c464ef72260f66007de23db7606))
+* update dependencies to the lates versions ([93a2da5](https://github.com/CoCreate-app/CoCreate-cursors/commit/93a2da51f2821444f9cc7cb0c64543ac346e573f))
+
 ## [1.20.7](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.6...v1.20.7) (2023-10-25)
 
 
