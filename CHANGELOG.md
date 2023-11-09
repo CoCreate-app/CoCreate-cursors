@@ -1,3 +1,11 @@
+## [1.20.9](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.8...v1.20.9) (2023-11-09)
+
+
+### Bug Fixes
+
+* meta name typo ([2abbacc](https://github.com/CoCreate-app/CoCreate-cursors/commit/2abbacc2f84ceee06ae9ee637fda1eccdf42f90c))
+* update host ([f55fc34](https://github.com/CoCreate-app/CoCreate-cursors/commit/f55fc3442a974b62e5b36293f2757c2d7ef1fcc9))
+
 ## [1.20.8](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.7...v1.20.8) (2023-11-03)
 
 
