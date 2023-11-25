@@ -1,3 +1,15 @@
+# [1.23.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.22.0...v1.23.0) (2023-11-25)
+
+
+### Bug Fixes
+
+* update licensing details ([912212c](https://github.com/CoCreate-app/CoCreate-cursors/commit/912212ce9d866835ad76e6a4145692e9cea7467e))
+
+
+### Features
+
+* upgrade dependencies for latest features and fixes ([1a0a9f6](https://github.com/CoCreate-app/CoCreate-cursors/commit/1a0a9f6d1fe9d924b59b059cc4b2d7c2db7c5e70))
+
 # [1.22.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.21.0...v1.22.0) (2023-11-25)
 
 
