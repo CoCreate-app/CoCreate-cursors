@@ -1,3 +1,15 @@
+# [1.22.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.21.0...v1.22.0) (2023-11-25)
+
+
+### Bug Fixes
+
+* update nav, edit button and css path ([0101546](https://github.com/CoCreate-app/CoCreate-cursors/commit/0101546d717eda65197317cae26704f30f30399e))
+
+
+### Features
+
+* upgrade dependencies for latest features and fixes ([abb992a](https://github.com/CoCreate-app/CoCreate-cursors/commit/abb992ad185dd41aa1d261cc30c7dd623089cd15))
+
 # [1.21.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.20.10...v1.21.0) (2023-11-19)
 
 
