@@ -1,3 +1,10 @@
+## [1.23.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.23.0...v1.23.1) (2023-12-09)
+
+
+### Bug Fixes
+
+* typo ([0f88b14](https://github.com/CoCreate-app/CoCreate-cursors/commit/0f88b14259588d78ef739f494e8a7db7117c9942))
+
 # [1.23.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.22.0...v1.23.0) (2023-11-25)
 
 
