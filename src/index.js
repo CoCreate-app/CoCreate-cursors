@@ -50,7 +50,7 @@ function initElements(elements) {
 function initElement(element) {
     let realtime = element.getAttribute('realtime');
     let cursors = element.getAttribute('cursors');
-    if (realtime == 'false' || cursors == 'false') return;
+    if (!realtime || realtime === 'false' || cursors === 'false') return;
     if (element.hasAttribute('actions')) return;
     if (element.cursor) return;
     element.cursor = true;
@@ -98,7 +98,7 @@ function drawCursors(selection) {
         let realtime = element.getAttribute('realtime');
         let cursors = element.getAttribute('cursors');
         let contenteditable = element.getAttribute('contenteditable');
-        if (realtime == 'false' || cursors == 'false') continue;
+        if (!realtime || realtime == 'false' || cursors == 'false') continue;
         if (element.tagName != 'INPUT' && element.tagName != 'TEXTAREA')
             if (contenteditable == 'false' || contenteditable == null)
                 if (cursors != 'true') continue;
