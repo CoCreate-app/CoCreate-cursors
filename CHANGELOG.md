@@ -1,3 +1,10 @@
+## [1.23.3](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.23.2...v1.23.3) (2024-02-14)
+
+
+### Bug Fixes
+
+* realtime defaults to false ([4f85854](https://github.com/CoCreate-app/CoCreate-cursors/commit/4f8585465739ba3a6910d3acf298a1f983dffad8))
+
 ## [1.23.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.23.1...v1.23.2) (2024-02-05)
 
 
