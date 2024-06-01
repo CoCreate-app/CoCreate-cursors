@@ -92,7 +92,7 @@ function drawCursors(selection) {
         elements = document.querySelectorAll(selector);
     }
     for (let element of elements) {
-        if (window.activeElement == element && socket.has(selection.socketId)) {
+        if (window.activeElement == element && socket.frameId === selection.frameId) {
             continue;
         }
         let realtime = element.getAttribute('realtime');
@@ -368,6 +368,7 @@ socket.listen('cursor', function (response) {
     // if (socket.has(selection.socketId)) return;
     let selection = response.data
     selection.socketId = response.socketId
+    selection.frameId = response.frameId
     if (selection.start != null && selection.end != null)
         drawCursors(selection);
     else
