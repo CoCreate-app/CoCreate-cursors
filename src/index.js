@@ -86,7 +86,7 @@ function drawCursors(selection) {
     let elements = selection.element;
     if (!elements) {
         let selector = '[array="' + array + '"][object="' + object + '"][key="' + key + '"]';
-        selector += ':not(.codemirror, .monaco, [actions])';
+        selector += ':not([actions])';
         elements = document.querySelectorAll(selector);
     }
     for (let element of elements) {
@@ -114,19 +114,19 @@ function drawCursors(selection) {
             }
             if (!domTextEditor.htmlString)
                 continue
-            let pos = getElementPosition(domTextEditor.htmlString, start, end);
+            // let pos = getElementPosition(domTextEditor.htmlString, start, end);
 
-            if (pos.path) {
-                element = domTextEditor.querySelector(pos.path);
-                if (pos.start) {
-                    let endPos = end - start;
-                    if (endPos > 0)
-                        end = pos.start + endPos;
-                    else
-                        end = pos.start;
-                    start = pos.start;
-                }
-            }
+            // if (pos.path) {
+            //     element = domTextEditor.querySelector(pos.path);
+            //     if (pos.start) {
+            //         let endPos = end - start;
+            //         if (endPos > 0)
+            //             end = pos.start + endPos;
+            //         else
+            //             end = pos.start;
+            //         start = pos.start;
+            //     }
+            // }
         }
 
         if (!element) continue;
@@ -154,9 +154,9 @@ function drawCursors(selection) {
 
             _initEvents(element);
             initDocument(document);
-        }
-        else
+        } else
             mirrorDiv = document.getElementById(id_mirror);
+
 
         let computed = getComputedStyle(element);
         let rect = element.getBoundingClientRect();
@@ -170,16 +170,15 @@ function drawCursors(selection) {
         style.position = 'absolute';
         style.width = rect.width + 'px';
         style.height = rect.height + 'px';
+        style.margin = '0px';
+        style.borderColor = 'transparent';
+        style.outlineColor = 'transparent';
+
         style.overflowX = computed['overflowX'];
         style.overflowY = computed['overflowY'];
-        style.margin = '0px';
         style.padding = computed['padding'];
         style.border = computed['border'];
-        style.borderColor = 'transparent';
         style.outline = computed['outline'];
-        style.outlineColor = 'transparent';
-        style.boxSizing = computed['boxSizing'];
-        style.lineHeight = computed['lineHeight'];
 
         if (element.parentElement.style['display'] == 'inline') {
             style.top = element.clientTop + 'px';
@@ -189,19 +188,23 @@ function drawCursors(selection) {
             style.left = element.offsetLeft + 'px';
         }
 
-        if (element.nodeName !== 'INPUT') {
-            style.wordWrap = 'break-word';
-            style.whiteSpace = 'pre-wrap';
+        if (contenteditable) {
+            const actualStyles = getActualStyles(element);
+            for (const [prop, value] of Object.entries(actualStyles)) {
+                style[prop] = value;
+            }
         } else {
-            style.whiteSpace = 'pre';
-        }
-
-        let properties = ['fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize', 'fontFamily', 'letterSpacing', 'lineHeight', 'textAlign', 'textTransform', 'textIndent', 'textDecoration', 'textRendering', 'textTransform', 'textIndent', 'overflowWrap', 'tabSize', 'webkitWritingMode', 'wordSpacing'];
-
-        properties.forEach(function (prop) {
-            if (['left', 'top'].indexOf(prop.toLowerCase()) === -1)
+            let properties = ['boxSizing', 'fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize', 'fontFamily', 'letterSpacing', 'lineHeight', 'textAlign', 'textTransform', 'textIndent', 'textDecoration', 'textRendering', 'textTransform', 'textIndent', 'overflowWrap', 'tabSize', 'webkitWritingMode', 'whiteSpace', 'wordSpacing'];
+            properties.forEach(function (prop) {
                 style[prop] = computed[prop];
-        });
+            });
+
+            let paddingBottom = parseFloat(computed['padding-bottom'].replace('px', ''))
+            style.height = rect.height - paddingBottom + 'px';
+
+            if (element.nodeName === 'INPUT')
+                style.whiteSpace = 'pre';
+        }
 
         let cursor, cursorFlag;
         let details = { array, object, key };
@@ -226,11 +229,8 @@ function drawCursors(selection) {
             let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
             if (contenteditable) {
                 selection_user.innerHTML = value_element.substring(0, start);
-                // TODO traverse childNodes and apply css
             } else
                 selection_user.textContent = value_element.substring(0, start);
-
-            // selection_user.textContent = value_element.substring(0, start);
 
             let value_end = value_element.substring(end) || '';
             let span_end = document.createElement('span-end');
@@ -249,15 +249,16 @@ function drawCursors(selection) {
             cursor.setAttribute('user-color', selection.color);
             cursor.style["background"] = selection.background;
             cursor.details = { array, object, key };
-            cursor.textContent = "1";
+            cursor.textContent = " ";
             span_end.prepend(cursor);
 
             let selectedText = document.createElement('selected-text');
             selectedText.style["backgroundColor"] = selection.background;
 
-            if (contenteditable)
+            if (contenteditable) {
+                // TODO: handle if selected text is wraaped in an element and if multiple elements are elected
                 selectedText.innerHTML = value_element.substring(start, end) || '';
-            else
+            } else
                 selectedText.textContent = value_element.substring(start, end) || '';
 
             span_end.prepend(selectedText);
@@ -276,6 +277,34 @@ function drawCursors(selection) {
     }
 }
 
+function getActualStyles(element) {
+    const actualStyles = {};
+
+    // Copy styles that are directly applied to the element (inline styles)
+    for (const prop in element.style) {
+        if (element.style[prop]) {
+            actualStyles[prop] = element.style[prop];
+        }
+    }
+
+    // Get styles from classes, IDs, attributes, and tag names
+    for (const sheet of document.styleSheets) {
+        try {
+            for (const rule of sheet.cssRules) {
+                if (element.matches(rule.selectorText)) {
+                    for (const prop of rule.style) {
+                        actualStyles[prop] = rule.style.getPropertyValue(prop);
+                    }
+                }
+            }
+        } catch (e) {
+            console.warn("Unable to access stylesheet:", e);
+        }
+    }
+
+    return actualStyles;
+}
+
 function updateCursors(element) {
     let mirrorDivs = [];
     let id_mirror = element.getAttribute('mirror_id');
@@ -283,10 +312,10 @@ function updateCursors(element) {
         let mirrorDiv = element.ownerDocument.getElementById(id_mirror);
         if (mirrorDiv)
             mirrorDivs = [mirrorDiv];
-    }
-    else {
+    } else {
         mirrorDivs = element.querySelectorAll('.mirror');
     }
+
     for (let mirrorDiv of mirrorDivs) {
         element = mirrorDiv.element;
         let cursors = mirrorDiv.querySelectorAll('cursor');

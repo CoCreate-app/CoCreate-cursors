@@ -3,6 +3,7 @@ cursor {
     display: inline-block;
     width: 2px;
     background-color: dodgerblue;
+    white-space: pre-wrap
     /*z-index:10;*/
 }
 
@@ -43,4 +44,8 @@ selected-text {
 .mirror_scroll::-webkit-scrollbar {
     background: rgba(0, 0, 0, 0.00);
     width: 0px;
+}
+
+[mirror_id][contenteditable] {
+    white-space: pre-wrap
 }
