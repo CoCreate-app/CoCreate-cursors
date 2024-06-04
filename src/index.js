@@ -83,8 +83,6 @@ function drawCursors(selection) {
     const array = selection['array'];
     const object = selection['object'];
     const key = selection['key'];
-    let start = selection['start'];
-    let end = selection['end'];
     let elements = selection.element;
     if (!elements) {
         let selector = '[array="' + array + '"][object="' + object + '"][key="' + key + '"]';
@@ -92,6 +90,8 @@ function drawCursors(selection) {
         elements = document.querySelectorAll(selector);
     }
     for (let element of elements) {
+        let start = selection['start']
+        let end = selection['end']
         if (window.activeElement == element && socket.frameId === selection.frameId) {
             continue;
         }
@@ -100,10 +100,12 @@ function drawCursors(selection) {
         let contenteditable = element.getAttribute('contenteditable');
         if (!realtime || realtime == 'false' || cursors == 'false') continue;
         if (element.tagName != 'INPUT' && element.tagName != 'TEXTAREA')
-            if (contenteditable == 'false' || contenteditable == null)
+            if (contenteditable == 'false' || contenteditable === null) {
                 if (cursors != 'true') continue;
+            }
 
         if (element.hasAttribute('contenteditable')) {
+            contenteditable = true
             let domTextEditor = element;
             if (element.tagName == 'IFRAME') {
                 // let frameClientId = element.contentDocument.defaultView.CoCreateSockets.id;
@@ -113,15 +115,17 @@ function drawCursors(selection) {
             if (!domTextEditor.htmlString)
                 continue
             let pos = getElementPosition(domTextEditor.htmlString, start, end);
-            if (pos.start) {
-                if (pos.path)
-                    element = domTextEditor.querySelector(pos.path);
-                let endPos = end - start;
-                if (endPos > 0)
-                    end = pos.start + endPos;
-                else
-                    end = pos.start;
-                start = pos.start;
+
+            if (pos.path) {
+                element = domTextEditor.querySelector(pos.path);
+                if (pos.start) {
+                    let endPos = end - start;
+                    if (endPos > 0)
+                        end = pos.start + endPos;
+                    else
+                        end = pos.start;
+                    start = pos.start;
+                }
             }
         }
 
@@ -199,16 +203,6 @@ function drawCursors(selection) {
                 style[prop] = computed[prop];
         });
 
-        let spanText = mirrorDiv.querySelector('span-text');
-        if (!spanText)
-            spanText = document.createElement('span-text');
-        spanText.style['display'] = 'block';
-        let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
-
-        spanText.textContent = value_element;
-        if (element.nodeName === 'INPUT')
-            spanText.textContent = mirrorDiv.textContent.replace(/\s/g, " ");
-        mirrorDiv.appendChild(spanText);
         let cursor, cursorFlag;
         let details = { array, object, key };
         if (socket_id) {
@@ -230,11 +224,21 @@ function drawCursors(selection) {
             }
 
             let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
-            selection_user.textContent = value_element.substring(0, start);
+            if (contenteditable) {
+                selection_user.innerHTML = value_element.substring(0, start);
+                // TODO traverse childNodes and apply css
+            } else
+                selection_user.textContent = value_element.substring(0, start);
+
+            // selection_user.textContent = value_element.substring(0, start);
 
             let value_end = value_element.substring(end) || '';
             let span_end = document.createElement('span-end');
-            span_end.textContent = value_end;
+            if (contenteditable)
+                span_end.innerHTML = value_end
+            else
+                span_end.textContent = value_end
+
 
             cursor = document.createElement('cursor');
             cursor.setAttribute('socket_id', socket_id);
@@ -250,7 +254,12 @@ function drawCursors(selection) {
 
             let selectedText = document.createElement('selected-text');
             selectedText.style["backgroundColor"] = selection.background;
-            selectedText.textContent = value_element.substring(start, end) || '';
+
+            if (contenteditable)
+                selectedText.innerHTML = value_element.substring(start, end) || '';
+            else
+                selectedText.textContent = value_element.substring(start, end) || '';
+
             span_end.prepend(selectedText);
 
             cursorFlag = document.createElement('cursor-flag');
