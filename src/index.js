@@ -106,13 +106,13 @@ function drawCursors(selection) {
 
         if (element.hasAttribute('contenteditable')) {
             contenteditable = true
-            let domTextEditor = element;
+            // let domTextEditor = element;
             if (element.tagName == 'IFRAME') {
                 // let frameClientId = element.contentDocument.defaultView.CoCreateSockets.id;
                 // if (frameClientId == selection.socketId) continue;
-                domTextEditor = element.contentDocument.documentElement;
+                element = element.contentDocument.documentElement;
             }
-            if (!domTextEditor.htmlString)
+            if (!element.htmlString)
                 continue
             // let pos = getElementPosition(domTextEditor.htmlString, start, end);
 
@@ -209,22 +209,21 @@ function drawCursors(selection) {
         let cursor, cursorFlag;
         let details = { array, object, key };
         if (socket_id) {
-            let userSelection = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
-            if (userSelection && userSelection.details != details)
-                userSelection.remove();
             let selection_user = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
-            if (!selection_user) {
-                selection_user = document.createElement('selection');
-                selection_user.setAttribute('socket_id', socket_id);
-                selection_user.style["position"] = "absolute";
-                let style_mirror = getComputedStyle(mirrorDiv);
-                selection_user.style["top"] = style_mirror.paddingTop;
-                selection_user.style["left"] = style_mirror.paddingLeft;
-                selection_user.style["width"] = mirrorDiv.clientWidth - parseInt(computed['padding-left']) - parseInt(computed['padding-right']) - scrollBarWidth + 'px';
-                selection_user.details = { array, object, key };
+            if (selection_user && selection_user.details != details)
+                selection_user.remove();
+            // let selection_user = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
+            // if (!selection_user) {
+            selection_user = document.createElement('selection');
+            selection_user.setAttribute('socket_id', socket_id);
+            selection_user.style["position"] = "absolute";
+            let style_mirror = getComputedStyle(mirrorDiv);
+            selection_user.style["top"] = style_mirror.paddingTop;
+            selection_user.style["left"] = style_mirror.paddingLeft;
+            selection_user.style["width"] = mirrorDiv.clientWidth - parseInt(computed['padding-left']) - parseInt(computed['padding-right']) - scrollBarWidth + 'px';
+            selection_user.details = { array, object, key };
 
-                mirrorDiv.appendChild(selection_user);
-            }
+            // }
 
             let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
             if (contenteditable) {
@@ -232,13 +231,28 @@ function drawCursors(selection) {
             } else
                 selection_user.textContent = value_element.substring(0, start);
 
-            let value_end = value_element.substring(end) || '';
-            let span_end = document.createElement('span-end');
-            if (contenteditable)
-                span_end.innerHTML = value_end
-            else
-                span_end.textContent = value_end
 
+            // TODO: if selectionElement span end needs to be position within the selection user element
+            let userCursor = document.createElement('user-cursor');
+            let selectionElement
+            if (contenteditable) {
+                selectionElement = getElementPosition(element.htmlString, start, end);
+            }
+            if (selectionElement && selectionElement.element && selectionElement.position !== 'afterend') {
+                const lastChildElement = selection_user.lastElementChild;
+                lastChildElement.appendChild(userCursor);
+            } else
+                selection_user.appendChild(userCursor);
+
+            let selectedText = document.createElement('selected-text');
+            selectedText.style["backgroundColor"] = selection.background;
+
+            if (contenteditable) {
+                selectedText.innerHTML = value_element.substring(start, end) || '';
+            } else
+                selectedText.textContent = value_element.substring(start, end) || '';
+
+            userCursor.appendChild(selectedText);
 
             cursor = document.createElement('cursor');
             cursor.setAttribute('socket_id', socket_id);
@@ -250,18 +264,6 @@ function drawCursors(selection) {
             cursor.style["background"] = selection.background;
             cursor.details = { array, object, key };
             cursor.textContent = " ";
-            span_end.prepend(cursor);
-
-            let selectedText = document.createElement('selected-text');
-            selectedText.style["backgroundColor"] = selection.background;
-
-            if (contenteditable) {
-                // TODO: handle if selected text is wraaped in an element and if multiple elements are elected
-                selectedText.innerHTML = value_element.substring(start, end) || '';
-            } else
-                selectedText.textContent = value_element.substring(start, end) || '';
-
-            span_end.prepend(selectedText);
 
             cursorFlag = document.createElement('cursor-flag');
             cursorFlag.setAttribute('array', 'users');
@@ -270,8 +272,18 @@ function drawCursors(selection) {
             cursorFlag.style["background"] = selection.background;
             cursorFlag.innerHTML = selection.userName;
             cursor.appendChild(cursorFlag);
+            userCursor.appendChild(cursor);
+
+            let span_end = document.createElement('span-end');
+            let value_end = value_element.substring(end) || '';
+            if (contenteditable)
+                span_end.innerHTML = value_end
+            else
+                span_end.textContent = value_end
 
             selection_user.appendChild(span_end);
+
+            mirrorDiv.appendChild(selection_user);
         }
         scrollMirror(element);
     }

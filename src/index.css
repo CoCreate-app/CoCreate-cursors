@@ -49,3 +49,7 @@ selected-text {
 [mirror_id][contenteditable] {
     white-space: pre-wrap
 }
+
+selected-text * {
+    background-color: inherit;
+}
