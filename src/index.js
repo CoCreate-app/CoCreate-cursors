@@ -212,8 +212,7 @@ function drawCursors(selection) {
             let selection_user = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
             if (selection_user && selection_user.details != details)
                 selection_user.remove();
-            // let selection_user = mirrorDiv.querySelector(`selection[socket_id="${socket_id}"]`);
-            // if (!selection_user) {
+
             selection_user = document.createElement('selection');
             selection_user.setAttribute('socket_id', socket_id);
             selection_user.style["position"] = "absolute";
@@ -223,36 +222,54 @@ function drawCursors(selection) {
             selection_user.style["width"] = mirrorDiv.clientWidth - parseInt(computed['padding-left']) - parseInt(computed['padding-right']) - scrollBarWidth + 'px';
             selection_user.details = { array, object, key };
 
-            // }
-
             let value_element = (['TEXTAREA', 'INPUT'].indexOf(element.nodeName) == -1) ? element.innerHTML : element.value;
             if (contenteditable) {
                 selection_user.innerHTML = value_element.substring(0, start);
             } else
                 selection_user.textContent = value_element.substring(0, start);
 
-
-            // TODO: if selectionElement span end needs to be position within the selection user element
-            let userCursor = document.createElement('user-cursor');
             let selectionElement
             if (contenteditable) {
                 selectionElement = getElementPosition(element.htmlString, start, end);
             }
+
+            let lastChildTagName, lastChildElement
             if (selectionElement && selectionElement.element && selectionElement.position !== 'afterend') {
-                const lastChildElement = selection_user.lastElementChild;
-                lastChildElement.appendChild(userCursor);
-            } else
-                selection_user.appendChild(userCursor);
+                lastChildElement = selection_user.lastElementChild;
+                lastChildTagName = lastChildElement.tagName.toLowerCase()
+            }
 
             let selectedText = document.createElement('selected-text');
             selectedText.style["backgroundColor"] = selection.background;
 
             if (contenteditable) {
-                selectedText.innerHTML = value_element.substring(start, end) || '';
-            } else
-                selectedText.textContent = value_element.substring(start, end) || '';
+                // TODO:
+                let selectedTextFrag = document.createElement('selected-text');
+                selectedTextFrag.style["backgroundColor"] = selection.background;
 
-            userCursor.appendChild(selectedText);
+                let secondHalfString = value_element.substring(start, end) || '';
+                if (lastChildTagName) {
+                    const closingTagRegex = new RegExp("</\\s*" + lastChildTagName + "\\s*>", "i");
+                    const closingTagMatch = secondHalfString.match(closingTagRegex);
+                    let closingTagEnd
+                    if (closingTagMatch) {
+                        closingTagEnd = closingTagMatch.index + closingTagMatch[0].length;
+
+                        selectedTextFrag.innerHTML = secondHalfString.substring(0, closingTagEnd) || '';
+                        lastChildElement.appendChild(selectedTextFrag);
+
+                        selectedText.innerHTML = value_element.substring(start + closingTagEnd, end) || '';
+                    } else {
+                        return console.error("Closing tag not found");
+                    }
+                } else {
+                    selectedText.innerHTML = value_element.substring(start, end) || '';
+                }
+            } else {
+                selectedText.textContent = value_element.substring(start, end) || '';
+            }
+
+            selection_user.appendChild(selectedText);
 
             cursor = document.createElement('cursor');
             cursor.setAttribute('socket_id', socket_id);
@@ -272,7 +289,7 @@ function drawCursors(selection) {
             cursorFlag.style["background"] = selection.background;
             cursorFlag.innerHTML = selection.userName;
             cursor.appendChild(cursorFlag);
-            userCursor.appendChild(cursor);
+            selection_user.appendChild(cursor);
 
             let span_end = document.createElement('span-end');
             let value_end = value_element.substring(end) || '';
