@@ -242,34 +242,43 @@ function drawCursors(selection) {
             let selectedText = document.createElement('selected-text');
             selectedText.style["backgroundColor"] = selection.background;
 
+            let setCursorInLastChild = false
             if (contenteditable) {
-                // TODO:
-                let selectedTextFrag = document.createElement('selected-text');
-                selectedTextFrag.style["backgroundColor"] = selection.background;
+                if (lastChildTagName && start !== end) {
+                    let selectedTextFrag = document.createElement('selected-text');
+                    selectedTextFrag.style["backgroundColor"] = selection.background;
 
-                let secondHalfString = value_element.substring(start, end) || '';
-                if (lastChildTagName) {
                     const closingTagRegex = new RegExp("</\\s*" + lastChildTagName + "\\s*>", "i");
+                    let secondHalfString = value_element.substring(start, end) || '';
                     const closingTagMatch = secondHalfString.match(closingTagRegex);
+                    // console.log('secondHalfString', secondHalfString)
+
                     let closingTagEnd
                     if (closingTagMatch) {
                         closingTagEnd = closingTagMatch.index + closingTagMatch[0].length;
+                        // console.log('closingTagEnd', closingTagEnd)
 
                         selectedTextFrag.innerHTML = secondHalfString.substring(0, closingTagEnd) || '';
                         lastChildElement.appendChild(selectedTextFrag);
+                        // console.log('selectedTextFrag', selectedTextFrag)
 
                         selectedText.innerHTML = value_element.substring(start + closingTagEnd, end) || '';
+                        // console.log('selectedText', selectedText)
+
                     } else {
-                        return console.error("Closing tag not found");
+                        selectedText.innerHTML = value_element.substring(start, end) || '';
+                        setCursorInLastChild = true
                     }
                 } else {
+                    if (lastChildTagName)
+                        setCursorInLastChild = true
+
                     selectedText.innerHTML = value_element.substring(start, end) || '';
                 }
             } else {
                 selectedText.textContent = value_element.substring(start, end) || '';
             }
 
-            selection_user.appendChild(selectedText);
 
             cursor = document.createElement('cursor');
             cursor.setAttribute('socket_id', socket_id);
@@ -289,7 +298,14 @@ function drawCursors(selection) {
             cursorFlag.style["background"] = selection.background;
             cursorFlag.innerHTML = selection.userName;
             cursor.appendChild(cursorFlag);
-            selection_user.appendChild(cursor);
+
+            if (setCursorInLastChild) {
+                lastChildElement.appendChild(selectedText);
+                lastChildElement.appendChild(cursor);
+            } else {
+                selection_user.appendChild(selectedText);
+                selection_user.appendChild(cursor);
+            }
 
             let span_end = document.createElement('span-end');
             let value_end = value_element.substring(end) || '';
