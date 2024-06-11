@@ -37,8 +37,7 @@ selected-text {
 }
 
 .mirror_color {
-    color: transparent;
-    pointer-events: none;
+    color: transparent!important;
 }
 
 .mirror_scroll::-webkit-scrollbar {
