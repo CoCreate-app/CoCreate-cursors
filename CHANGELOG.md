@@ -1,3 +1,18 @@
+## [1.23.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.23.4...v1.23.5) (2024-06-12)
+
+
+### Bug Fixes
+
+* bump cocreate dependencies ([004badc](https://github.com/CoCreate-app/CoCreate-cursors/commit/004badc58b9eaec4b3b7c9e7f4a6933da5420121))
+* contenteditable element selections ([8f16a74](https://github.com/CoCreate-app/CoCreate-cursors/commit/8f16a7465c027e78b63fa450675877ac827fcdc8))
+* cursor selections on contenteditable elements ([8fc58e0](https://github.com/CoCreate-app/CoCreate-cursors/commit/8fc58e0dce113844876858244160de6c1ed3efaf))
+* fix cursors and selection between contenteditable and textareas ([2e12fec](https://github.com/CoCreate-app/CoCreate-cursors/commit/2e12fece9f37a54d82731ef59bf03536b845a3b0))
+* improved handling of contenteditable cursors using innerHtml ([36b0b40](https://github.com/CoCreate-app/CoCreate-cursors/commit/36b0b4073eb46763dfec1d955aae2cdcf707430c))
+* improved whitespace handling ([0fe857e](https://github.com/CoCreate-app/CoCreate-cursors/commit/0fe857ef526b19e65f524ca2b0adc88bc6f807eb))
+* set transparent!important ([e728c56](https://github.com/CoCreate-app/CoCreate-cursors/commit/e728c5692d5022d839e41375339089e93da3bb3c))
+* svg icon class ([b7512a5](https://github.com/CoCreate-app/CoCreate-cursors/commit/b7512a5d272dfb62e0a4537c96c426f879b73340))
+* use framId to determin if should continue element loop ([bb865cf](https://github.com/CoCreate-app/CoCreate-cursors/commit/bb865cf859a0ae319f45330bec9ba8532ab5cd91))
+
 ## [1.23.4](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.23.3...v1.23.4) (2024-04-29)
 
 
