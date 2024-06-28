@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <style>
+            .highlight {
+                position: absolute;
+                background-color: yellow;
+                opacity: 0.2;
+                pointer-events: none;
+                z-index: 1000;
+            }
+        </style>
+        <title>Highlight Selected Text</title>
+    </head>
+    <body>
+        <div class="markdown-body padding:0_20px width:100%">
+            <h2>Introduction</h2>
+            <p>
+                Choosing a career is one of the most significant decisions we
+                face in our lives. It's not just about picking a job—it's about
+                finding a path that aligns with our passions, strengths, and
+                values. However, with so many options and paths available, the
+                process can be overwhelming. In this blog post, we'll delve into
+                strategies for finding your career path, from self-reflection to
+                taking concrete action.
+            </p>
+            <h2>Self-Reflection: Know Thyself</h2>
+            <h3>Assess Your Interests and Skills</h3>
+            <p>
+                Start by asking yourself what you enjoy doing. What are your
+                hobbies? What subjects do you find fascinating? Also, consider
+                your skills. Are there tasks you excel at or that come naturally
+                to you? Make a list of your interests and skills to guide your
+                career exploration.
+            </p>
+            <h3>Understand Your Values</h3>
+            <p>
+                Your values are the principles that matter most to you in life.
+                Do you value work-life balance, or is career progression your
+                top priority? Do you want to make a difference in the world, or
+                is financial security more important? Knowing what you value can
+                help you find careers that align with your principles.
+            </p>
+            <h3>Consider Your Personality</h3>
+            <p>
+                Personality can play a big role in job satisfaction. Are you an
+                extrovert who thrives in social environments, or are you more
+                introverted and prefer solitary work? Personality assessments,
+                like the Myers-Briggs Type Indicator or the Big Five, can
+                provide insights into careers that might suit you.
+            </p>
+            <h2>Exploration: Broaden Your Horizons</h2>
+            <h3>Research Potential Careers</h3>
+            <p>
+                Once you have a better understanding of your interests, skills,
+                and values, start researching careers that align with them. Look
+                into job descriptions, required qualifications, and potential
+                career paths. Informational interviews with professionals in the
+                field can also provide valuable insights.
+            </p>
+            <h3>Get Experience</h3>
+            <p>
+                Internships, part-time jobs, and volunteer opportunities are
+                excellent ways to gain experience and learn more about different
+                careers. These experiences can help you understand what you like
+                and don't like in a work environment.
+            </p>
+            <h3>Education and Training</h3>
+            <p>
+                Sometimes, the career you're interested in requires specific
+                education or training. Research the necessary qualifications and
+                consider whether you're willing to undertake the required
+                education or certification processes.
+            </p>
+            <h2>Evaluating Options: Making the Choice</h2>
+            <h3>Pros and Cons</h3>
+            <p>
+                For each career option you're considering, list the pros and
+                cons. This can help you visualize which career aligns best with
+                your interests, skills, and values.
+            </p>
+            <h3>Long-Term Outlook</h3>
+            <p>
+                Consider the long-term prospects of each career. Is the field
+                growing, or is it in decline? Will there be opportunities for
+                advancement? A career with a positive outlook can offer more
+                stability and growth potential.
+            </p>
+            <h3>Work Environment</h3>
+            <p>
+                Think about the type of work environment you thrive in. Do you
+                prefer a structured corporate setting, a creative agency, or
+                perhaps the flexibility of freelancing? Make sure your chosen
+                career can provide the environment you're looking for.
+            </p>
+            <h2>Taking Action: Moving Forward</h2>
+            <h3>Set Goals</h3>
+            <p>
+                Once you've decided on a career path, set short-term and
+                long-term goals. What steps do you need to take to enter your
+                chosen field? This could include further education, networking,
+                or gaining more experience.
+            </p>
+            <h3>Create a Plan</h3>
+            <p>
+                Develop a detailed plan of how you'll reach your goals. Break
+                down your plan into manageable steps, and set deadlines to keep
+                yourself accountable.
+            </p>
+            <h3>Stay Flexible</h3>
+            <p>
+                Remember that career paths can change. Stay open to new
+                opportunities, and don't be afraid to pivot if your interests or
+                circumstances change.
+            </p>
+            <h2>Conclusion</h2>
+            <p>
+                Choosing a career is a journey that requires introspection,
+                exploration, and a willingness to adapt. By understanding
+                yourself, researching options, evaluating potential paths, and
+                taking action, you can find a career that is fulfilling and
+                rewarding. Remember that it's okay to change directions, and the
+                most important thing is to find a path that feels right for you.
+            </p>
+
+            <input value="hello today good sir" />
+        </div>
+        <script>
+            document.addEventListener("selectionchange", () => {
+                // Remove existing highlights
+                document
+                    .querySelectorAll(".highlight")
+                    .forEach((el) => el.remove());
+
+                // Get the selection object
+                const selection = window.getSelection();
+
+                // Check if there's any text selected
+                if (!selection.isCollapsed) {
+                    // Iterate over all ranges in the selection
+                    for (let i = 0; i < selection.rangeCount; i++) {
+                        const range = selection.getRangeAt(i);
+                        const rects = range.getClientRects();
+
+                        // Iterate over all rects in the current range
+                        for (let rect of rects) {
+                            const highlightSpan = document.createElement("div");
+                            highlightSpan.className = "highlight";
+
+                            highlightSpan.style.left = `${
+                                rect.left + window.scrollX
+                            }px`;
+                            highlightSpan.style.top = `${
+                                rect.top + window.scrollY
+                            }px`;
+                            highlightSpan.style.width = `${rect.width}px`;
+                            highlightSpan.style.height = `${rect.height}px`;
+
+                            document.body.appendChild(highlightSpan);
+                        }
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>
