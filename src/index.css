@@ -45,7 +45,7 @@ selected-text {
     width: 0px;
 }
 
-[mirror_id][contenteditable] {
+.mirror[mirror_id][contenteditable] {
     white-space: pre-wrap
 }
 
