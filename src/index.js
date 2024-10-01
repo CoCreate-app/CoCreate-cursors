@@ -104,16 +104,35 @@ function drawCursors(selection) {
                 if (cursors != 'true') continue;
             }
 
+        let domTextEditor = element;
+
         if (element.hasAttribute('contenteditable')) {
             contenteditable = true
             // let domTextEditor = element;
             if (element.tagName == 'IFRAME') {
                 // let frameClientId = element.contentDocument.defaultView.CoCreateSockets.id;
                 // if (frameClientId == selection.socketId) continue;
-                element = element.contentDocument.documentElement;
+                domTextEditor = element = element.contentDocument.documentElement;
+
+                let pos = getElementPosition(domTextEditor.htmlString, start, end);
+
+                if (pos.path) {
+                    element = element.querySelector(pos.path);
+                    if (pos.start) {
+                        let endPos = end - start;
+                        if (endPos > 0)
+                            end = pos.start + endPos;
+                        else
+                            end = pos.start;
+                        start = pos.start;
+                    }
+                }
+
             }
-            if (!element.htmlString)
+
+            if (!domTextEditor.htmlString)
                 continue
+
             // let pos = getElementPosition(domTextEditor.htmlString, start, end);
 
             // if (pos.path) {
@@ -142,7 +161,10 @@ function drawCursors(selection) {
             mirrorDiv.className = (environment_prod) ? 'mirror mirror_scroll mirror_color' : 'mirror mirror_scroll';
             mirrorDiv.contentEditable = false;
             mirrorDiv.element = element;
-            element.insertAdjacentElement('afterend', mirrorDiv);
+            if (element.tagName === "HTML")
+                element.insertAdjacentElement('beforeend', mirrorDiv);
+            else
+                element.insertAdjacentElement('afterend', mirrorDiv);
             // let parent = element.parentElement;
             // let parentComputed = getComputedStyle(parent);
             // let parentStylePosition = parentComputed['position'];
@@ -180,7 +202,7 @@ function drawCursors(selection) {
         style.border = computed['border'];
         style.outline = computed['outline'];
 
-        if (element.parentElement.style['display'] == 'inline') {
+        if (element.parentElement && element.parentElement.style['display'] == 'inline') {
             style.top = element.clientTop + 'px';
             style.left = element.clientLeft + 'px';
         } else {
@@ -230,13 +252,14 @@ function drawCursors(selection) {
 
             let selectionElement
             if (contenteditable) {
-                selectionElement = getElementPosition(element.htmlString, start, end);
+                selectionElement = getElementPosition(domTextEditor.htmlString, selection.start, selection.end);
             }
 
             let lastChildTagName, lastChildElement
             if (selectionElement && selectionElement.element && selectionElement.position !== 'afterend') {
                 lastChildElement = selection_user.lastElementChild;
-                lastChildTagName = lastChildElement.tagName.toLowerCase()
+                if (lastChildElement)
+                    lastChildTagName = lastChildElement.tagName.toLowerCase()
             }
 
             let selectedText = document.createElement('selected-text');
