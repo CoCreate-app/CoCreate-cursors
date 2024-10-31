@@ -484,7 +484,7 @@ socket.listen('cursor', function (response) {
 observer.init({
     name: 'CoCreateCursor',
     observe: ['addedNodes'],
-    target: '[array][object][key]',
+    selector: '[array][object][key]',
     callback: function (mutation) {
         initElement(mutation.target);
     }
