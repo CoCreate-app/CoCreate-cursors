@@ -1,3 +1,18 @@
+# [1.24.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.23.5...v1.24.0) (2024-11-04)
+
+
+### Bug Fixes
+
+* frameELement handlning ([d6e22b2](https://github.com/CoCreate-app/CoCreate-cursors/commit/d6e22b2629f6cbbdee62d74737e1a167cecad371))
+* mirror_id specificity ([af25adb](https://github.com/CoCreate-app/CoCreate-cursors/commit/af25adbe2399534c95dec3b22d0c9c135eeff945))
+* observer taget has been renamed to selector ([69a331b](https://github.com/CoCreate-app/CoCreate-cursors/commit/69a331bde18eb94ff038e025cb3bf2a59a33dc8d))
+* pretier.config.js and file formating ([0424309](https://github.com/CoCreate-app/CoCreate-cursors/commit/042430940a6fc0fd3bdaa758de39058f4cf4b7d3))
+
+
+### Features
+
+* add prettier.config.js and format files ([592805d](https://github.com/CoCreate-app/CoCreate-cursors/commit/592805d42049e75c5ffa8a6ef74ef64960bd0be3))
+
 ## [1.23.5](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.23.4...v1.23.5) (2024-06-12)
 
 
