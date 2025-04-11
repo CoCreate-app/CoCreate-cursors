@@ -1,3 +1,10 @@
+## [1.24.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.24.0...v1.24.1) (2025-04-11)
+
+
+### Bug Fixes
+
+* update observer observe param to type and and attributeName to attributeFilter ([924d448](https://github.com/CoCreate-app/CoCreate-cursors/commit/924d448b2e575cefc01aead3640f53e7095b34f0))
+
 # [1.24.0](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.23.5...v1.24.0) (2024-11-04)
 
 
