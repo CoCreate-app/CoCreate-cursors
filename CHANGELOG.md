@@ -1,3 +1,13 @@
+## [1.24.2](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.24.1...v1.24.2) (2025-04-30)
+
+
+### Bug Fixes
+
+* added css-loader ([eab505a](https://github.com/CoCreate-app/CoCreate-cursors/commit/eab505acd6c3ef74fa38e7bf27ad0a6b5ab73ad1))
+* update query attributes ([7afd3d7](https://github.com/CoCreate-app/CoCreate-cursors/commit/7afd3d79c2a038773f59ed82bf0e82a76303487b))
+* updated cocreate modules versions ([7db97ed](https://github.com/CoCreate-app/CoCreate-cursors/commit/7db97ed3ba4bae6efe88e6f6e6eac52cef464ec7))
+* webpack.config and devdependencies ([9a6e1ca](https://github.com/CoCreate-app/CoCreate-cursors/commit/9a6e1ca6726667eba70969548f7232ce1a4b66c7))
+
 ## [1.24.1](https://github.com/CoCreate-app/CoCreate-cursors/compare/v1.24.0...v1.24.1) (2025-04-11)
 
 
